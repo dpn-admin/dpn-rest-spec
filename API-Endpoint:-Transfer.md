@@ -3,7 +3,8 @@
 A Transfer represents the exchange of a content between the Node API Server to a specific Node API Client.
 
 ## DPN REST API
-Endpoint: /api-v1/transfer/
+**Endpoint:** `/api-v1/transfer/`
+Supports listing through GET operations.
 
 ### GET Operations
 
