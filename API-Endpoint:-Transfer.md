@@ -24,6 +24,8 @@ Returns a list of Transfers from the server node.
 * **page_size** = <int> to set the max number of results per page.
 
 **Example Return:**
+
+**url:** `/api-v1/transfer/?page_size=2`
 ```json
 {
     "count":110,
