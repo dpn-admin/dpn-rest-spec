@@ -1,6 +1,6 @@
 # Overview
 
-The DPN REST API is a RESTful standard for communicating between nodes in the DPN Federation of Nodes.  
+The DPN REST API is a RESTful standard for communicating between Nodes in the DPN Federation.  
 
 # Overview of Node Responsibilities
 
