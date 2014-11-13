@@ -5,7 +5,6 @@ A Transfer represents the exchange of a content between the Node API Server to a
 ## Transfer Data Structure
 
 The following is the data structure for an individual transfer:
-
 * **node** - String of target node namespace .
 * **dpn_object_id** - String of the dpn object identifier this applies to.
 * **status** - String of single character code representing the status of the transfer.
@@ -24,6 +23,7 @@ The following is the data structure for an individual transfer:
 * **updated_on** - String in DPN DateTime Format of last record update. 
 
 **Example Transfer:**
+
 ```json
 {
     "node":"chron",
@@ -41,9 +41,10 @@ The following is the data structure for an individual transfer:
 }
 ```
 
-## DPN REST API
 **Endpoint:** `/api-v1/transfer/`
-Supports listing through GET operations.
+## DPN REST API
+
+Supports operating on lists of transfers.
 
 ### GET Operations
 
@@ -66,6 +67,7 @@ Returns a list of Transfers from the server node.
 **Example Return:**
 
 **url:** `/api-v1/transfer/?page_size=2`
+
 ```json
 {
     "count":110,
@@ -101,5 +103,32 @@ Returns a list of Transfers from the server node.
             "updated_on":"2014-11-13T17:18:28.245754Z"
         }
     ]
+}
+```
+
+## EarthDiver API
+
+### POST operations
+
+To support workflows for creating transfers EarthDiver supports POST operations.  It requires the following data in the body of the post in order to create the transfer.
+
+Data strucutre:
+* **dpn_object_id:** String of the dpn object id to look up the registry entry.
+* **link** String of the link to use for downloading the file.
+* **node** String of the node namespace to link the node and filter any API User access.
+* **size** Int of the size of the package in bytes.
+* **exp_fixity** String of fixity value to compare to the 'receipt' field and set the fixity field to true or false, hidden in all API returns.
+
+Restrictions:
+*  This operation is limited to api_admin users only.
+
+**POST Body Example:**
+```json
+{
+    "dpn_object_id":"8044ea1a-cba5-44e7-a4d5-122f649f81a4",
+    "link":"sshaccount@dpnserver.test.org:8044ea1a-cba5-44e7-a4d5-122f649f81a4.tar",
+    "node":"chron",
+    "size":3239653228,
+    "exp_fixity":"eced7e98269750587531381811b2a59f"
 }
 ```
