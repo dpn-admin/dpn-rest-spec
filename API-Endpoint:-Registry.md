@@ -42,11 +42,7 @@ A Registry Entry represents the metadata about a specific DPN object, also calle
     "first_version":"892c3cca-4e18-4873-9c7e-758f5d17a5e9"
 }```
 
-## Endpoint `/api-v1/registry/`
-
-### DPN REST API
-
-#### GET Operations
+## External Endpoint GET `/api-v1/registry/`
 
 Returns a list of Registry Entries.
 
@@ -102,3 +98,12 @@ Returns a list of Registry Entries.
         }
     ]
 }```
+
+
+#### POST Operations
+
+This allows the creation of a single registry entry through a post body and is primarily used for creating items in DPN for ingest.  The post body is the same as the sample data structure for a Registry Entry.
+
+**Restrictions**
+* API Admins
+
