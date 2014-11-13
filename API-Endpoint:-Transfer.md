@@ -14,14 +14,14 @@ Returns a list of Transfers from the server node.
 * API Admins have no node Filter applied and can see all transfers.
 
 **Querystring Options**
-* dpn_object_id = <exact id> to FILTER by exact DPN Object ID value.
-* status = [P|A|R|C] to FILTER by Pending, Accept, Reject or Confirmed status
-* fixity = [true|false|none] to FILTER by fixity status.
-* valid = [true|false|none] to FILTER by validation status.
-* node = <exact name> FILTER by the namespace used for the node. (i.e. "aptrust"|"chron"|"sdr"...)
-* created_on = <dpn date format> to ORDER the return by record creation date. (prepend with '-' to reverse order)
-* updated_on = <dpn date format> to ORDER the return by last update. (prepend with '-' to reverse order)
-* page_size = <int> to set the max number of results per page.
+* **dpn_object_id** = <exact id> to FILTER by exact DPN Object ID value.
+* **status** = [P|A|R|C] to FILTER by Pending, Accept, Reject or Confirmed status
+* **fixity** = [true|false|none] to FILTER by fixity status.
+* **valid** = [true|false|none] to FILTER by validation status.
+* **node** = <exact name> FILTER by the namespace used for the node. (i.e. "aptrust"|"chron"|"sdr"...)
+* **created_on** = <dpn date format> to ORDER the return by record creation date. (prepend with '-' to reverse order)
+* **updated_on** = <dpn date format> to ORDER the return by last update. (prepend with '-' to reverse order)
+* **page_size** = <int> to set the max number of results per page.
 
 **Example Return:**
 ```json
