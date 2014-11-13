@@ -125,7 +125,7 @@ Updates the transfer indicated by the event_id in the URL.
 * API Users belonging to the target node.
 * API Admins.
 * READ ONLY FIELDS: "link", "size", "fixity", "event_id", "protocol", "created_on", "updated_on", "valid", "dpn_object_id", "node"
-* API Users can only set status of Accept (A) or Reject (B).
+* API Users can only set status of Accept (A) or Reject (R).
 
 ## EarthDiver API
 
