@@ -1,9 +1,5 @@
 # Overview
 
-The DPN REST API is a RESTful standard for communicating between Nodes in the DPN Federation.  
-
-# Overview of Node Responsibilities
-
 The term Node refers to any DPN member acting to send, manage or receive content for preservation in the DPN Federation.  A node may act as a First Node, a Replicating Node and frequently it acts in both roles.  Note that Nodes may have more responsibilities than those listed here but these are the most relevant to the design of the API.
 
 ## First Node: 
