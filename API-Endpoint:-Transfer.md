@@ -107,6 +107,26 @@ Returns a list of Transfers from the server node.
 }
 ```
 
+**Endpoint:** `/api-v1/transfer/<event_id>/`
+
+### GET Operations
+
+This displays data about a single Transfer based in its event_id.
+
+**Restrictions**
+* API Users belonging to the target node.
+* SuperUsers
+
+### PUT Operations
+
+Updates the transfer indicated by the event_id in the URL.
+
+**Restrictions**
+* API Users belonging to the target node.
+* API Admins.
+* READ ONLY FIELDS: "link", "size", "fixity", "event_id", "protocol", "created_on", "updated_on", "valid", "dpn_object_id", "node"
+* API Users can only set status of Accept (A) or Reject (B).
+
 ## EarthDiver API
 
 **Endpoint:** `/api-v1/transfer/`
@@ -121,7 +141,7 @@ Data strucutre:
 * **size** Int of the size of the package in bytes.
 * **exp_fixity** String of fixity value to compare to the 'receipt' field and set the fixity field to true or false, hidden in all API returns.
 
-Restrictions:
+**Restrictions**
 *  This operation is limited to api_admin users only.
 
 **POST Body Example:**
