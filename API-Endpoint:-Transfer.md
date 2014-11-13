@@ -46,8 +46,8 @@ The following is the data structure for an individual transfer:
 
 Supports operating on lists of transfers.
 
-**Endpoint:** `/api-v1/transfer/`
-### GET Operations
+### **Endpoint:** `/api-v1/transfer/`
+#### GET Operations
 
 Returns a list of Transfers from the server node.
 
@@ -107,9 +107,9 @@ Returns a list of Transfers from the server node.
 }
 ```
 
-**Endpoint:** `/api-v1/transfer/<event_id>/`
+### **Endpoint:** `/api-v1/transfer/<event_id>/`
 
-### GET Operations
+#### GET Operations
 
 This displays data about a single Transfer based in its event_id.
 
@@ -117,7 +117,7 @@ This displays data about a single Transfer based in its event_id.
 * API Users belonging to the target node.
 * SuperUsers
 
-### PUT Operations
+#### PUT Operations
 
 Updates the transfer indicated by the event_id in the URL.
 
@@ -129,8 +129,8 @@ Updates the transfer indicated by the event_id in the URL.
 
 ## EarthDiver API
 
-**Endpoint:** `/api-v1/transfer/`
-### POST operations
+### **Endpoint:** `/api-v1/transfer/`
+#### POST operations
 
 To support workflows for creating transfers EarthDiver supports POST operations.  It requires the following data in the body of the post in order to create the transfer.
 
