@@ -40,7 +40,8 @@ A Registry Entry represents the metadata about a specific DPN object, also calle
     "previous_version":null,
     "forward_version":null,
     "first_version":"892c3cca-4e18-4873-9c7e-758f5d17a5e9"
-}```
+}
+```
 
 ## External Endpoint GET `/api-v1/registry/`
 
