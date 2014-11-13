@@ -2,7 +2,7 @@
 
 ### Client Authorization
 
-The API server MUST implement token based authorization in the header of each request.  The format of this header attribute is the standard:
+The API server MUST implement token based authorization in the header of each request and MUST limit access to all returns to Authorized user tokens in addition to any other restrictions on views or returns.
 
     Authorization: token <token key>
 
