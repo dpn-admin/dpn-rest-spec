@@ -119,18 +119,6 @@ Returns data on a a specific Node as determined by namespace.
 **Example Return:**
 ```json
 {
-    "ports":[
-        {
-            "ip":"127.0.0.1",
-            "port":22,
-            "note":null
-        },
-        {
-            "ip":"127.0.0.1",
-            "port":443,
-            "note":null
-        }
-    ],
     "storage":[
         {
             "region":"VA",
