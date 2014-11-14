@@ -114,14 +114,14 @@ This allows the creation of a single registry entry through a post body.  The po
 
 ### **Endpoint** `/api-v1/registry/<dpn_object_id>/`
 
-### GET Operation (EXTERNAL)
+#### GET Operation (EXTERNAL)
 
 Returns the data for a single Registry Entry matching the dpn_object_id.
 
 **Restrictions**
 * Standard
 
-### PUT Operation (INTERNAL)
+#### PUT Operation (INTERNAL)
 
 Updates a single registry entry matching the dpn_object_id.
 
