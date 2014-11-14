@@ -16,16 +16,34 @@ The following is a data structure for an individual Node.
 * **protocols** - Array of Strings identifying what transfer protocols this node supports.
 * **created_on** - String formatted DPN Datetime of when this record was created.
 * **updated_on** - String formatted DPN Datetime of when this record was last updated.
+* **ports** - Empty Array or Array of port objects that need firewall rules.  structured as:
+    * **ip** - String of IP Address.
+    * **port** - Int of port.
+    * **note** - null or String of short on what that entry is for.
+* **storage** - Empty Array or Array of storage objects. structured as:
+    * **region** - String of two character state code for the storage location.
+    * **type** - null or String describing the type of storage layer.
 
 **Example Node Entry:**
 ```json
 {
-    "port_set":[
-        "127.0.0.1: 22",
-        "127.0.0.1: 443"
+    "ports":[
+        {
+            "ip":"127.0.0.1",
+            "port":22,
+            "note":null
+        },
+        {
+            "ip":"127.0.0.1",
+            "port":443,
+            "note":null
+        }
     ],
-    "storage_set":[
-        "Solaris In Memory [TX]"
+    "storage":[
+        {
+            "region":"TX",
+            "type":"Solaris In Memory"
+        }
     ],
     "protocols":[
         "rsync"
@@ -40,5 +58,137 @@ The following is a data structure for an individual Node.
     "restore_to":false,
     "created_on":"2014-11-11T00:27:16.070135Z",
     "updated_on":"2014-11-11T00:27:16.070417Z"
+}
+```
+
+## Endpoints and Supported Methods
+
+### Endpoint `/api-v1/node/`
+
+GET Operation (EXTERNAL)
+
+Returns a list of Nodes.
+
+**Restrictions**
+* Standard
+
+**Querystring Options**
+* page_size = Number of max results per page.
+
+**Example of return for url:** `/api-v1/node/?page_size=2`
+```json
+{
+    "count":5,
+    "next":"http://localhost:8000/api-v1/node/?page=2&page_size=2",
+    "previous":null,
+    "results":[
+        {
+            "ports":[
+                {
+                    "ip":"127.0.0.1",
+                    "port":22,
+                    "note":null
+                },
+                {
+                    "ip":"127.0.0.1",
+                    "port":443,
+                    "note":null
+                }
+            ],
+            "storage":[
+                {
+                    "region":"TX",
+                    "type":"Solaris In Memory"
+                }
+            ],
+            "protocols":[
+                "rsync"
+            ],
+            "name":"TDR",
+            "namespace":"tdr",
+            "api_root":"https://dpn.utexas.edu/dpnrest/",
+            "ssh_pubkey":null,
+            "replicate_from":true,
+            "replicate_to":true,
+            "restore_from":false,
+            "restore_to":false,
+            "created_on":"2014-11-11T00:27:16.070135Z",
+            "updated_on":"2014-11-11T00:27:16.070417Z"
+        },
+        {
+            "ports":[
+                {
+                    "ip":"127.0.0.1",
+                    "port":22,
+                    "note":null
+                },
+                {
+                    "ip":"127.0.0.1",
+                    "port":443,
+                    "note":null
+                }
+            ],
+            "storage":[
+                {
+                    "region":"CA",
+                    "type":"CDROM under David's Desk"
+                }
+            ],
+            "protocols":[
+                "rsync"
+            ],
+            "name":"Chronopolis",
+            "namespace":"chron",
+            "api_root":"https://dpn.chronopolis.org/dpnrest/",
+            "ssh_pubkey":null,
+            "replicate_from":true,
+            "replicate_to":true,
+            "restore_from":false,
+            "restore_to":false,
+            "created_on":"2014-11-11T00:27:16.078881Z",
+            "updated_on":"2014-11-11T00:27:16.078921Z"
+        }
+    ]
+}
+```
+
+**Endpoint `/api-v1/node/aptrust/`
+
+Returns data on a a specific Node as determined by namespace.
+
+**Example Return:**
+```json
+{
+    "ports":[
+        {
+            "ip":"127.0.0.1",
+            "port":22,
+            "note":null
+        },
+        {
+            "ip":"127.0.0.1",
+            "port":443,
+            "note":null
+        }
+    ],
+    "storage":[
+        {
+            "region":"VA",
+            "type":"Amazon S3"
+        }
+    ],
+    "protocols":[
+        "rsync"
+    ],
+    "name":"APTrust",
+    "namespace":"aptrust",
+    "api_root":"https://dpn-dev.aptrust.org/dpnrest/",
+    "ssh_pubkey":null,
+    "replicate_from":true,
+    "replicate_to":true,
+    "restore_from":false,
+    "restore_to":false,
+    "created_on":"2014-11-11T00:27:16.093555Z",
+    "updated_on":"2014-11-11T00:27:16.093586Z"
 }
 ```
