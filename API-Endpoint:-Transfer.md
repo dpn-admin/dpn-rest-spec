@@ -41,15 +41,11 @@ The following is the data structure for an individual transfer:
 }
 ```
 
-**Endpoint:** `/api-v1/transfer/`
-## DPN REST API
-
-Supports operating on lists of transfers.
-
 ### **Endpoint:** `/api-v1/transfer/`
-#### GET Operations
 
-Returns a list of Transfers from the server node.
+#### GET Operation (EXTERNAL)
+
+Returns a list of Transfers from the server node and additional fields needed for counting and paging through the return list.
 
 **Restrictions**
 * By default transfers must be filtered to only the requesting users node.
@@ -107,32 +103,9 @@ Returns a list of Transfers from the server node.
 }
 ```
 
-### **Endpoint:** `/api-v1/transfer/<event_id>/`
+#### POST Operations (INTERNAL)
 
-#### GET Operations
-
-This displays data about a single Transfer based in its event_id.
-
-**Restrictions**
-* API Users belonging to the target node.
-* SuperUsers
-
-#### PUT Operations
-
-Updates the transfer indicated by the event_id in the URL.
-
-**Restrictions**
-* API Users belonging to the target node.
-* API Admins.
-* READ ONLY FIELDS: "link", "size", "fixity", "event_id", "protocol", "created_on", "updated_on", "valid", "dpn_object_id", "node"
-* API Users can only set status of Accept (A) or Reject (R).
-
-## EarthDiver API
-
-### **Endpoint:** `/api-v1/transfer/`
-#### POST operations
-
-To support workflows for creating transfers EarthDiver supports POST operations.  It requires the following data in the body of the post in order to create the transfer.
+Creates new Transfers.  It requires the following data in the body of the post in order to create the transfer.
 
 Data strucutre:
 * **dpn_object_id:** String of the dpn object id to look up the registry entry.
@@ -154,3 +127,23 @@ Data strucutre:
     "exp_fixity":"eced7e98269750587531381811b2a59f"
 }
 ```
+
+### **Endpoint:** `/api-v1/transfer/<event_id>/`
+
+#### GET Operations (EXTERNAL)
+
+This displays data about a single Transfer based in its event_id.
+
+**Restrictions**
+* API Users belonging to the target node.
+* SuperUsers
+
+#### PUT Operations (EXTERNAL)
+
+Updates the transfer indicated by the event_id in the URL.
+
+**Restrictions**
+* API Users belonging to the target node.
+* API Admins.
+* READ ONLY FIELDS: "link", "size", "fixity", "event_id", "protocol", "created_on", "updated_on", "valid", "dpn_object_id", "node"
+* API Users can only set status of Accept (A) or Reject (R).
