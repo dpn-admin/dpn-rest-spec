@@ -43,7 +43,11 @@ A Registry Entry represents the metadata about a specific DPN object, also calle
 }
 ```
 
-## External Endpoint GET `/api-v1/registry/`
+## Supported HTTP Methods
+
+### **Endpoint** `/api-v1/registry/`
+
+#### GET Operation (EXTERNAL)
 
 Returns a list of Registry Entries.
 
@@ -58,7 +62,7 @@ Returns a list of Registry Entries.
 * **ordering** = Comma separated list of String field names to ORDER return by (accepted values: last_modified_date)
 * **page_size** = Number of max results per page.
 
-**Example Return for url:**
+**Example Return for url:** `/api-v1/registry/?page_size=2`
 ```json
 {
     "count":1000,
@@ -100,11 +104,25 @@ Returns a list of Registry Entries.
     ]
 }```
 
+#### POST Operation (INTERNAL)
 
-#### POST Operations
-
-This allows the creation of a single registry entry through a post body and is primarily used for creating items in DPN for ingest.  The post body is the same as the sample data structure for a Registry Entry.
+This allows the creation of a single registry entry through a post body.  The post body is the same as the sample data structure for a Registry Entry.
 
 **Restrictions**
-* API Admins
+* API Admins only.
 
+### **Endpoint** `/api-v1/registry/<dpn_object_id>/`
+
+### GET Operation (EXTERNAL)
+
+Returns the data for a single Registry Entry matching the dpn_object_id.
+
+**Restrictions**
+* Standard
+
+### PUT Operation (INTERNAL)
+
+Updates a single registry entry matching the dpn_object_id.
+
+**Restrictions**
+* API Admins Only.
