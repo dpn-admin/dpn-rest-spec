@@ -57,7 +57,9 @@ Returns a list of Nodes.
 * Standard
 
 **Querystring Options**
-* page_size = Number of max results per page.
+* **replicate_to** = Boolean value.
+* **replicate_from** = Boolean value.
+* **page_size** = Number of max results per page.
 
 **Example of return for url:** `/api-v1/node/?page_size=2`
 ```json
