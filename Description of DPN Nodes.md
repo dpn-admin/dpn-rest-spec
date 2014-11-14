@@ -7,8 +7,7 @@ The term Node refers to any DPN member acting to send, manage or receive content
 A DPN Node acting as the entry point for content into the DPN Network. 
 
 It is responsible for:
-* Establishing workflows to properly receive content from DPN Depositors it represents.
-* Providing a valid DPN Bag for deposit into the DPN Network.
+* Staging valid DPN Bags for transfer into the DPN network.
 * Selecting an appropriate number of Replicating Nodes to copy the DPN Bag based on DPN policy for geographic distribution and technical diversity of storage.
 * Staging tarred DPN Bags for transfer to selected Replicating Nodes.
 * Notifying Replicating Nodes of content that is ready to be transferred.
