@@ -32,5 +32,20 @@ This client is responsible for packaging content into DPN Bags, Gathering the ap
     * PUT each transfer setting it's status to Accept.
     * Begin Rsync on each item I have agreed to copy.
 
+## Registry Copy
+
+* GET a list of nodes from `/api-v1/node/`
+* For each node API endpoint do the following:
+    * GET `<Node.api_root>/api-v1/registry/?after=<datetime of pull>&ordering=last_modified_date&page_size=100`
+    * Iterate through each registry entry in the result set and insert it into my registry.
+    * Repeat this process instead of using pages until the result set is 0.
+    * Record the last_modified_date of the final result and store that for my next pull.
 
 ## Restore Client
+
+* Pull a list of nodes that have that dpn_object_id and are not me.
+* Pick one I have marked as 'restore_from'
+* POST to `<Node.api_root>/api-v1/restore/` with the dpn_object_id.
+* During my normal transfer checks if I get a pull for an object I already have, look to see if its a restore.
+   * Pull it if it is.
+   * Reject the transfer if it isn't.
