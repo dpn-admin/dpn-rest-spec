@@ -102,7 +102,8 @@ Returns a list of Registry Entries.
             "first_version":"4d9dd207-43d4-441c-b499-e88f0ceb07ed"
         }
     ]
-}```
+}
+```
 
 #### POST Operation (INTERNAL)
 
