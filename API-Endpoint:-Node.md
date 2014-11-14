@@ -16,3 +16,29 @@ The following is a data structure for an individual Node.
 * **protocols** - Array of Strings identifying what transfer protocols this node supports.
 * **created_on** - String formatted DPN Datetime of when this record was created.
 * **updated_on** - String formatted DPN Datetime of when this record was last updated.
+
+**Example Node Entry:**
+```json
+{
+    "port_set":[
+        "127.0.0.1: 22",
+        "127.0.0.1: 443"
+    ],
+    "storage_set":[
+        "Solaris In Memory [TX]"
+    ],
+    "protocols":[
+        "rsync"
+    ],
+    "name":"TDR",
+    "namespace":"tdr",
+    "api_root":"https://dpn.utexas.edu/dpnrest/",
+    "ssh_pubkey":null,
+    "replicate_from":true,
+    "replicate_to":true,
+    "restore_from":false,
+    "restore_to":false,
+    "created_on":"2014-11-11T00:27:16.070135Z",
+    "updated_on":"2014-11-11T00:27:16.070417Z"
+}
+```
