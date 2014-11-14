@@ -16,10 +16,6 @@ The following is a data structure for an individual Node.
 * **protocols** - Array of Strings identifying what transfer protocols this node supports.
 * **created_on** - String formatted DPN Datetime of when this record was created.
 * **updated_on** - String formatted DPN Datetime of when this record was last updated.
-* **ports** - Empty Array or Array of port objects that need firewall rules.  structured as:
-    * **ip** - String of IP Address.
-    * **port** - Int of port.
-    * **note** - null or String of short on what that entry is for.
 * **storage** - Empty Array or Array of storage objects. structured as:
     * **region** - String of two character state code for the storage location.
     * **type** - null or String describing the type of storage layer.
@@ -27,18 +23,6 @@ The following is a data structure for an individual Node.
 **Example Node Entry:**
 ```json
 {
-    "ports":[
-        {
-            "ip":"127.0.0.1",
-            "port":22,
-            "note":null
-        },
-        {
-            "ip":"127.0.0.1",
-            "port":443,
-            "note":null
-        }
-    ],
     "storage":[
         {
             "region":"TX",
@@ -83,18 +67,6 @@ Returns a list of Nodes.
     "previous":null,
     "results":[
         {
-            "ports":[
-                {
-                    "ip":"127.0.0.1",
-                    "port":22,
-                    "note":null
-                },
-                {
-                    "ip":"127.0.0.1",
-                    "port":443,
-                    "note":null
-                }
-            ],
             "storage":[
                 {
                     "region":"TX",
@@ -116,18 +88,6 @@ Returns a list of Nodes.
             "updated_on":"2014-11-11T00:27:16.070417Z"
         },
         {
-            "ports":[
-                {
-                    "ip":"127.0.0.1",
-                    "port":22,
-                    "note":null
-                },
-                {
-                    "ip":"127.0.0.1",
-                    "port":443,
-                    "note":null
-                }
-            ],
             "storage":[
                 {
                     "region":"CA",
