@@ -31,3 +31,6 @@ Individual users should be creates through the Django admin backend 'User' secti
 * Each user should be assigned to the appropriate node in their user profile to properly filter returns to only their node.  While editing the user (after creating them), click on the Profile section and select the proper Node.
 * Any user that will query the API needs to have a token created for it (No token is created by default for security reasons).  Do this through the Admin Interface 'Token' section.
 
+# Additional Security Considerations
+
+Any API server MUST use https for all requests and is assumed to have explicit Firewall rules configured for each individual server/client required.
