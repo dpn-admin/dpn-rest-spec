@@ -41,6 +41,8 @@ The following is the data structure for an individual transfer:
 }
 ```
 
+## Supported HTTP Methods
+
 ### **Endpoint:** `/api-v1/transfer/`
 
 #### GET Operation (EXTERNAL)
@@ -103,7 +105,7 @@ Returns a list of Transfers from the server node and additional fields needed fo
 }
 ```
 
-#### POST Operations (INTERNAL)
+#### POST Operation (INTERNAL)
 
 Creates new Transfers.  It requires the following data in the body of the post in order to create the transfer.
 
@@ -130,7 +132,7 @@ Data strucutre:
 
 ### **Endpoint:** `/api-v1/transfer/<event_id>/`
 
-#### GET Operations (EXTERNAL)
+#### GET Operation (EXTERNAL)
 
 This displays data about a single Transfer based in its event_id.
 
@@ -138,7 +140,7 @@ This displays data about a single Transfer based in its event_id.
 * API Users belonging to the target node.
 * SuperUsers
 
-#### PUT Operations (EXTERNAL)
+#### PUT Operation (EXTERNAL)
 
 Updates the transfer indicated by the event_id in the URL.
 
