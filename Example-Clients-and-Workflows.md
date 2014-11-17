@@ -35,9 +35,16 @@ This client is responsible for packaging content into DPN Bags, Gathering the ap
 ## Registry Copy
 
 * GET a list of nodes from `/api-v1/node/`
-* For each node API endpoint do the following:
-    * GET `<Node.api_root>/api-v1/registry/?after=<datetime of pull>&ordering=last_modified_date&page_size=100`
+* For each node Initiate a pull of registry entries for each object type.
+* See below for the steps for an individual pull but in order to ensure you have all required objects a record might reference (entries self refer to brightening and rights objects)
+* Pull all RIGHTS object entries updated since last pull from the target Node.
+* Pull all BRIGHTENING object entries updated since last pull from the target Node.
+* Pull all DATA object entries updated since the last pull from the target Node.
+
+* Pulling Entries from Target Node.:
+    * GET `<Node.api_root>/api-v1/registry/?after=<datetime of pull>&object_type=<type>&ordering=last_modified_date&page_size=100`
     * Iterate through each registry entry in the result set and insert it into my registry.
+    * Log any invalid registry entries.
     * Repeat this process instead of using pages until the result set is 0.
     * Record the last_modified_date of the final result and store that for my next pull.
 
