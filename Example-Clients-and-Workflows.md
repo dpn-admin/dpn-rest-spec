@@ -8,8 +8,8 @@ There are many ways a node can choose to implement their back end clients but I 
 
 This client is responsible for packaging content into DPN Bags, Gathering the appropriate Metadata for a Registry Entry, Picking which nodes to transfer to and staging the content in the appropriate locations.
 
-*  Starting with a valid DPN Bag and it's metadata.
-*  POST the bag metadata to `/api-v1/registry/?replicate_to=True` to create the registry entry.
+*  Starting with a valid DPN Bag and its metadata.
+*  POST the bag metadata to `/api-v1/registry/` to create the registry entry.
 *  GET data about the nodes at `/api-v1/node/`
 *  Select 2 nodes to copy with based on diversity of `storage.region` and `storage.type`.
 *  Copy or symlink the content to the appropriate location.
