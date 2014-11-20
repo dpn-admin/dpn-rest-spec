@@ -1,4 +1,4 @@
-# Overivew
+# Overview
 
 EarthDiver is an implementation of a recommended REST API for use in the DPN Federated network of Nodes.  It serves as an example of how a common REST API could be implemented for a DPN First Node.  
 
