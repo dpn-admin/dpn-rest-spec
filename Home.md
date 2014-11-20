@@ -23,3 +23,5 @@ There are a number of benefits of this approach to solving this problem.  Some a
 *  It adopts an explicitly request/response protocol that results in either a timeout or status code response for better handling.
 *  Broad support for REST across all major code libraries and strong best practices community.
 *  It uses client/server communication with individual user contexts and authorization/authentication.
+*  It allows for versioning of api calls, which facilitates migration of the root structure and calls easier.
+*  It provides high extensibility by focusing on data structures and endpoint calls instead of system state or sequence.
