@@ -27,7 +27,7 @@ This client is responsible for packaging content into DPN Bags, Gathering the ap
     * Confirm the PUT returns a value of True for `Transer.fixty` or retry if False.
     * Repeat until there are no more transfers I have agreed to.
 * If there are no transfers I have agreed to:
-    * GET a lit of pending transfers from `<Node.api_root>/api-v1/transfer/?status=P`
+    * GET a list of pending transfers from `<Node.api_root>/api-v1/transfer/?status=P`
     * Iterate through a number of pending results I wish to accept (~10 or 20).
     * PUT each transfer setting it's status to Accept.
     * Begin Rsync on each item I have agreed to copy.
