@@ -25,3 +25,4 @@ There are a number of benefits of this approach to solving this problem.  Some a
 *  It uses client/server communication with individual user contexts and authorization/authentication.
 *  It allows for versioning of api calls, which facilitates migration of the root structure and calls easier.
 *  It provides high extensibility by focusing on data structures and endpoint calls instead of system state or sequence.
+*  It makes the state of all data, actions and events apparent to all clients with appropriate access.
