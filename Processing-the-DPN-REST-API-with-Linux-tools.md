@@ -1,6 +1,6 @@
-# Using CURL
+## Using CURL
 
-Curl is a good Linux command for experimenting with the DPN Rest API.
+The Linux curl command can be useful for experimenting with the DPN Rest API.
 Another useful Linux tool (for processing Json) is jq http://stedolan.github.io/jq/
 
 For these examples - set your security token and the hostname of the DPN Rest server into environment variables.
