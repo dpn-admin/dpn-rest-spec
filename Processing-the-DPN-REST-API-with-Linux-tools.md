@@ -17,6 +17,7 @@ To use jq to pretty print the output of one of the commands just pipe to 'jq "."
 
 ## Get the JSON for a specific transfer
 (Assuming event id such as aptrust-2 is in environment variable event_id)
+
 `curl  --header  "Authorization: token $token"  http://${host}/api-v1/transfer/${event_id}`
 
 ## Change status of a transfer
