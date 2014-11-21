@@ -10,7 +10,7 @@ Documentation of the API will designate specific as either EXTERNAL or INTERNAL
 
 See Pages on specific topics or API calls for more information.
 
-#  Benefits of Approach
+#  Benefits of the REST Approach
 
 There are a number of benefits of this approach to solving this problem.  Some are listed here in no particular order.
 
