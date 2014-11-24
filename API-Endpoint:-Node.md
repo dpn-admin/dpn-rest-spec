@@ -60,9 +60,8 @@ Returns a list of Nodes.
 * **replicate_to** = Boolean value.
 * **replicate_from** = Boolean value.
 * **page_size** = Number of max results per page.
-* **page** = Current page number.
 
-**Example of return for url:** `/api-v1/node/?page=2&page_size=2`
+**Example of return for url:** `/api-v1/node/?page_size=2`
 ```json
 {
     "count":5,
