@@ -14,7 +14,7 @@ See Pages on specific topics or API calls for more information.
 
 There are a number of benefits of this approach to solving this problem.  Some are listed here in no particular order.
 
-*  The system focuses on data over system state, which enables better recovery 
+*  The system focuses on data over system state, which enables better recovery and fewer retries.
 *  It exposes data for all operations to any client that wishes to interact with or audit the system.
 *  It allows on demand direct access to data through calls to any endpoint without blocking.
 *  It adopts a pull paradigm for moving content which allows nodes to throttle as needed.
