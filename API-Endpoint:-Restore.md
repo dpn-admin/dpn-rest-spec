@@ -4,7 +4,7 @@ A Restore represents a request for the local node to create a transfer with the 
 
 ## Restore Data Structure
 
-* **node** - String of node namespace that requested the Restore.
+* **node** - String of [node](https://github.com/APTrust/EarthDiver/wiki/API-Endpoint:-Node) namespace that requested the Restore.
 * **dpn_object_id** - String of the DPN Object ID.
 * **status** - Single character String of the status of the request.
     * 'Q' - Requsted:  Default status used when record first created.
