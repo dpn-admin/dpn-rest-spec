@@ -6,8 +6,8 @@ A Registry Entry represents the metadata about a specific DPN object, also calle
 
 **Fields:**
 * **first_node** - String of the node namespace.
-* **brightening_objects** - null or Array of Strings listing the DPN Object ID of the brightening objects.
-* **rights_objects** - null or Array of Strings listing the DPN Object ID of the rights objects.
+* **brightening_objects** - Empty Array or Array of Strings listing the DPN Object ID of the brightening objects.
+* **rights_objects** - Empty Array or Array of Strings listing the DPN Object ID of the rights objects.
 * **replicating_nodes** - null or Array of Strings listing the node namespaces of nodes with confirmed transfers.
 * **dpn_object_id** - String of the globally unique identifier for this DPN object.
 * **local_id** - null or String of the primary local identifier.
