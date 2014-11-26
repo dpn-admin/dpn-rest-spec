@@ -5,7 +5,7 @@ A Transfer represents the exchange of a content between the Node API Server to a
 ## Transfer Data Structure
 
 The following is the data structure for an individual transfer:
-* **node** - String of target node namespace .
+* **node** - String of target [node](https://github.com/APTrust/EarthDiver/wiki/API-Endpoint:-Node) namespace .
 * **dpn_object_id** - String of the dpn object identifier this applies to.
 * **status** - String of single character code representing the status of the transfer.
     * 'P' - Pending: staged for transfer and awaiting response from target node.
