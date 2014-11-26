@@ -5,7 +5,7 @@ A Registry Entry represents the metadata about a specific DPN object, also calle
 ## Registry Data Structure
 
 **Fields:**
-* **first_node** - String of the node namespace.
+* **first_node** - String of the [node](https://github.com/APTrust/EarthDiver/wiki/API-Endpoint:-Node) namespace.
 * **brightening_objects** - Empty Array or Array of Strings listing the DPN Object ID of the brightening objects.
 * **rights_objects** - Empty Array or Array of Strings listing the DPN Object ID of the rights objects.
 * **replicating_nodes** - Empty Array or Array of Strings listing the node namespaces of nodes with confirmed transfers.
