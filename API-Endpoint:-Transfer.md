@@ -14,6 +14,7 @@ The following is the data structure for an individual transfer:
     * 'C' - Confirm: set by the local node after it receives all data to confirm a good transfer.
 * **event_id** - String used to identify this particular transfer in detail views.
 * **protocol** - Single character String used to identify the transfer protocol.
+    * 'R' - Rsync Protocol.
 * **link** - String of transfer link to be used for the specified protocol.
 * **size** - Int of size of the object in bytes.
 * **fixity_type** - String of the fixity algorithm expected for the receipt.
