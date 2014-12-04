@@ -24,7 +24,7 @@ This client is responsible for packaging content into DPN Bags, Gathering the ap
     * Rsync using the link provided in `Transfer.link` running as many concurrent downloads as I allow.
     * Perform a fixity check on the bag after it arrives.
     * PUT the the transfer record endpoint with the fixity receipt `<Node.api_endpoint>/api-v1/transfer/<event_id>/`
-    * Confirm the PUT returns a value of True for `Transer.fixty` or retry if False.
+    * Confirm the PUT returns a value of True for `Transfer.fixty` or retry if False.
     * Repeat until there are no more transfers I have agreed to.
 * If there are no transfers I have agreed to:
     * GET a list of pending transfers from `<Node.api_root>/api-v1/transfer/?status=P`
