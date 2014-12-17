@@ -116,7 +116,7 @@ This allows the creation of a single registry entry through a post body.  The po
 
 #### GET Operation (EXTERNAL)
 
-Returns the data for a single Registry Entry matching the dpn_object_id.  The body of the put is the same as the datastructure listed for a single record above.
+Returns the data for a single Registry Entry matching the dpn_object_id.  The return value is the JSON representation of the Registry Entry.
 
 **Restrictions**
 * Standard
