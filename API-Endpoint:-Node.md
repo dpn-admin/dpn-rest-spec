@@ -5,17 +5,17 @@ A Node represents the metadata and configuration data for a specific node in the
 ## Node Data Structure
 
 The following is a data structure for an individual Node.
-* **name** - String of human readable name for node.
+* **name** - String of human readable name for node. _(read_only)_
 * **namespace** - String of lowercase identifier used to disambigously reference this node in DPN.
 * **api_root** - null or String of the root location of this nodes API server.
 * **ssh_pubkey** - null or String of the ssh public key this node uses for rsync over ssh.
-* **replicate_from** - Boolean of whether the local node chooses to replicate content from this node.
-* **replicate_to** - Boolean of whether the local node chooses to repilcate content to this node.
-* **restore_from** - Boolean of whether the local node chooses to restore content from this node.
-* **restore_to** - Boolean of whether the local node chooses to restore content to this node.
+* **replicate_from** - Boolean of whether the local node chooses to replicate content from this node. _(read_only)_
+* **replicate_to** - Boolean of whether the local node chooses to repilcate content to this node. _(read_only)_
+* **restore_from** - Boolean of whether the local node chooses to restore content from this node. _(read_only)_
+* **restore_to** - Boolean of whether the local node chooses to restore content to this node. _(read_only)_
 * **protocols** - Array of Strings identifying what transfer protocols this node supports.
-* **created_on** - String formatted DPN Datetime of when this record was created.
-* **updated_on** - String formatted DPN Datetime of when this record was last updated.
+* **created_on** - String formatted DPN Datetime of when this record was created. _(read_only)_
+* **updated_on** - String formatted DPN Datetime of when this record was last updated. _(read_only)_
 * **storage** - Empty Array or Array of storage objects. structured as:
     * **region** - String of two character state code for the storage location.
     * **type** - null or String describing the type of storage layer.
