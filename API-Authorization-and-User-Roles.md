@@ -26,7 +26,7 @@ Throughout this document several user roles are references and they are defined 
 
 ## EarthDiver Implementation
 
-Individual users should be creates through the Django admin backend 'User' section.
+Individual users should be createed through the Django admin backend 'User' section.
 * Each user should be added to the appropriate Group ('api_users' or 'api_admins')
 * Each user should be assigned to the appropriate node in their user profile to properly filter returns to only their node.  While editing the user (after creating them), click on the Profile section and select the proper Node.
 * Any user that will query the API needs to have a token created for it (No token is created by default for security reasons).  Do this through the Admin Interface 'Token' section.
