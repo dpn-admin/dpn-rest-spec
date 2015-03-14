@@ -86,23 +86,45 @@ Standard
 
 #### Description
 
-This allows the creation of a single bag through a post body.  The post body is the same as the sample data structure for a Bag.
+This allows the creation of a single bag through a post body.  The post body is the same as the sample data structure for a Bag.  If successful, the response will be identical to that of a GET request.
 
 #### Permissions
 * API Admins only.
 
-### **Endpoint** `/api-v1/bag/<uuid>/`
+### GET `/api-v1/bag/<uuid>/`
 
-#### GET Operation (EXTERNAL)
+|HTTP Method|API Type|
+|--------|-----------|
+|GET|EXTERNAL|
 
-Returns the data for a single Registry Entry matching the uuid.  The return value is the JSON representation of the Bag.
+|Case|HTTP Code|
+|----|---------|
+|Success|200|
+|Not Found|404|
+|Authorization Failed|401|
 
-**Restrictions**
+#### Description
+
+Returns the data for a single Bag record matching the uuid.  The return value is the JSON representation of the Bag.
+
+#### Permissions
 * Standard
 
-#### PUT Operation (INTERNAL)
+### PUT `/api-v1/bag/<uuid>/`
 
-Updates a single bag matching the uuid.  The body of the put is the same as the data structure listed for a single record above, minus rights, brightening and replicating nodes.
+|HTTP Method|API Type|
+|--------|-----------|
+|PUT|INTERNAL|
+
+|Case|HTTP Code|
+|----|---------|
+|Success|200|
+|Not Found|404|
+|Bad Resource|400|
+|Illegal Transition|400|
+|Authorization Failed|401|
+
+Updates a single bag matching the uuid.  The body of the put is the same as the data structure listed for a single record above.
 
 **Restrictions**
 * API Admins Only.
