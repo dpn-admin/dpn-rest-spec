@@ -116,6 +116,7 @@ Returns a list of Nodes.
 }
 ```
 
+---
 ### GET `/api-<version>/node/<node:namespace>/`
 
 |HTTP Method|API Type|
@@ -139,8 +140,7 @@ Returns data on a a specific Node as determined by namespace.
 #### Querystring Options
 * None
 
-
-#### Example Return:
+#### Example Return for: `/api-1.0/node/chron>/`
 ```json
 {
     "protocols": [
