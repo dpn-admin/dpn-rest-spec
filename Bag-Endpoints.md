@@ -1,6 +1,6 @@
 ## Supported HTTP Methods
 
-### **Endpoint** `/api_version/bag/`
+### GET `/api_version/bag/`
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -19,8 +19,8 @@ set the page_size parameter to an acceptable value.
 #### Permissions
 Standard
 
+#### Querystring Options
 
-**Querystring Options**
 * **before** = DPN DateTime string to FILTER results by last_modified_date earlier than this, inclusive.
 * **after** = DPN DateTime String to FILTER result by last_modified_date later than this, inclusive.
 * **admin_node** = String to FILTER by administrative node namespace.
@@ -28,7 +28,7 @@ Standard
 * **ordering** = Comma separated list of String field names to ORDER return by (accepted values: updated_at)
 * **page_size** = Number of max results per page.
 
-**Example Return for url:** `/api-v1/registry/?page_size=2`
+#### Example Return: `/api-v1/registry/?page_size=2`
 ```json
 {
     "count": 27,
@@ -71,11 +71,24 @@ Standard
 }
 ```
 
-#### POST Operation (INTERNAL)
+### POST `/api_version/bag/<uuid>`
+
+|HTTP Method|API Type|
+|--------|-----------|
+|POST|INTERNAL|
+
+|Case|HTTP Code|
+|----|---------|
+|Success|201|
+|Bad Resource|400|
+|Duplicate|409|
+|Authorization Failed|401|
+
+#### Description
 
 This allows the creation of a single bag through a post body.  The post body is the same as the sample data structure for a Bag.
 
-**Restrictions**
+#### Permissions
 * API Admins only.
 
 ### **Endpoint** `/api-v1/bag/<uuid>/`
