@@ -92,6 +92,7 @@ This allows the creation of a single bag through a post body.  The post body is 
 #### Permissions
 * API Admins only.
 
+---
 ### GET `/api-v1/bag/<uuid>/`
 
 |HTTP Method|API Type|
