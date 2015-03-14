@@ -1,6 +1,6 @@
 ## Supported HTTP Methods
 
-### **Endpoint:** `/api-v1/replicate/`
+### **Endpoint:** `/<api_version>/replicate/`
 
 #### GET Operation (EXTERNAL)
 
