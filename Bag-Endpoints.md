@@ -1,6 +1,6 @@
 ## Supported HTTP Methods
 
-### GET `/api_version/bag/`
+### GET `/api_<version>/bag/`
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -28,7 +28,7 @@ Standard
 * **ordering** = Comma separated list of String field names to ORDER return by (accepted values: updated_at)
 * **page_size** = Number of max results per page.
 
-#### Example Return: `/api-v1/registry/?page_size=2`
+#### Example Return: `/api-v1.0/registry/?page_size=2`
 ```json
 {
     "count": 27,
@@ -72,7 +72,7 @@ Standard
 ```
 
 ---
-### POST `/api_version/bag/<uuid>`
+### POST `/api_<version>/bag/<uuid>`
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -93,7 +93,7 @@ This allows the creation of a single bag through a post body.  The post body is 
 * API Admins only.
 
 ---
-### GET `/api-v1/bag/<uuid>/`
+### GET `/api-<version>/bag/<uuid>/`
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -113,7 +113,7 @@ Returns the data for a single Bag record matching the uuid.  The return value is
 * Standard
 
 ---
-### PUT `/api-v1/bag/<uuid>/`
+### PUT `/api-<version>/bag/<uuid>/`
 
 |HTTP Method|API Type|
 |--------|-----------|
