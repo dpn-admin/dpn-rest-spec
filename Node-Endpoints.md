@@ -1,6 +1,6 @@
 ## Endpoints and Supported Methods
 
-### GET `/api-<version>/node/`
+### GET `/<api_version>/node/`
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -21,11 +21,11 @@ Returns a list of Nodes.
 #### Querystring Options
 * **page_size** = Number of max results per page.
 
-#### Example Return For: `/api-1.0/node/?page_size=2`
+#### Example Return For: `/1.0/node/?page_size=2`
 ```json
 {
     "count": 5,
-    "next": "http://localhost:8000/api-1.0/node/?page=2&page_size=2",
+    "next": "http://localhost:8000/1.0/node/?page=2&page_size=2",
     "previous": null,
     "results": [
         {
@@ -117,7 +117,7 @@ Returns a list of Nodes.
 ```
 
 ---
-### GET `/api-<version>/node/<node:namespace>/`
+### GET `/<api_version>/node/<node:namespace>/`
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -140,7 +140,7 @@ Returns data on a a specific Node as determined by namespace.
 #### Querystring Options
 * None
 
-#### Example Return for: `/api-1.0/node/chron>/`
+#### Example Return for: `/1.0/node/chron>/`
 ```json
 {
     "protocols": [
