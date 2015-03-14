@@ -1,19 +1,30 @@
 ## Supported HTTP Methods
 
-### **Endpoint** `/api-v1/bag/`
+### **Endpoint** `/api_version/bag/`
 
-#### GET Operation (EXTERNAL)
+|HTTP Method|API Type|
+|--------|-----------|
+|GET|EXTERNAL|
 
-Returns a list of Registry Entries.
+|Case|HTTP Code|
+|----|---------|
+|Success|200|
+|Authorization Failed|401|
 
-**Restrictions**
-* Standard
+#### Description
+
+Returns a list of Registry Entries.  If the requested resource is too large, the server should
+set the page_size parameter to an acceptable value.
+
+#### Permissions
+Standard
+
 
 **Querystring Options**
-* **before** = DPN DateTime string to FILTER results by last_modified_date earlier than this.
-* **after** = DPN DateTime String to FILTER result by last_modified_date later than this.
-* **original_node** = String to FILTER by node namespace.
-* **bag_type** = String character to FILTER by object type.
+* **before** = DPN DateTime string to FILTER results by last_modified_date earlier than this, inclusive.
+* **after** = DPN DateTime String to FILTER result by last_modified_date later than this, inclusive.
+* **admin_node** = String to FILTER by administrative node namespace.
+* **bag_type** = String character to FILTER by bag type.
 * **ordering** = Comma separated list of String field names to ORDER return by (accepted values: updated_at)
 * **page_size** = Number of max results per page.
 
@@ -26,8 +37,8 @@ Returns a list of Registry Entries.
     "results": [
         {
             "uuid": "9998e960-fc6d-44f4-9d73-9a60a8eae609",
-            "original_node": "aptrust",
-            "brightening": [],
+            "ingest_node": "aptrust",
+            "interpretive": [],
             "rights": [],
             "replicating_nodes": [],
             "admin_node": "aptrust",
@@ -42,8 +53,8 @@ Returns a list of Registry Entries.
         },
         {
             "uuid": "9998e960-fc6d-44f4-9d73-9a60a8eaea09",
-            "original_node": "aptrust",
-            "brightening": [],
+            "ingest_node": "aptrust",
+            "interpretive": [],
             "rights": [],
             "replicating_nodes": [],
             "admin_node": "aptrust",
