@@ -1,30 +1,41 @@
 ## Endpoints and Supported Methods
 
-### Endpoint `/api-v1/node/`
+### GET `/api-<version>/node/`
 
-GET Operation (EXTERNAL)
+|HTTP Method|API Type|
+|--------|-----------|
+|GET|EXTERNAL|
+
+|Case|HTTP Code|
+|----|---------|
+|Success|200|
+|Authorization Failed|401|
+
+#### Description
 
 Returns a list of Nodes.
 
-**Restrictions**
+#### Permissions
 * Standard
 
-**Querystring Options**
-* **replicate_to** = Boolean value.
-* **replicate_from** = Boolean value.
+#### Querystring Options
 * **page_size** = Number of max results per page.
 
-**Example of return for url:** `/api-v1/node/?page_size=2`
+#### Example Return For: `/api-1.0/node/?page_size=2`
 ```json
 {
     "count": 5,
-    "next": "http://localhost:8000/api-v1/node/?page=2&page_size=2",
+    "next": "http://localhost:8000/api-1.0/node/?page=2&page_size=2",
     "previous": null,
     "results": [
         {
             "protocols": [
                 "rsync"
             ],
+            "storage": {
+                "region": "central",
+                "type": "chron-proprietary"
+            },
             "replicate_from": [
                 "sdr",
                 "tdr",
@@ -63,6 +74,10 @@ Returns a list of Nodes.
             "protocols": [
                 "rsync"
             ],
+            "storage": {
+                "region": "central",
+                "type": "chron-proprietary"
+            },
             "replicate_from": [
                 "chron",
                 "tdr",
@@ -101,16 +116,40 @@ Returns a list of Nodes.
 }
 ```
 
-**Endpoint `/api-v1/node/aptrust/`
+### GET `/api-<version>/node/<node:namespace>/`
+
+|HTTP Method|API Type|
+|--------|-----------|
+|GET|EXTERNAL|
+
+|Case|HTTP Code|
+|----|---------|
+|Success|200|
+|Not Found|404|
+|Authorization Failed|401|
+
+#### Description
 
 Returns data on a a specific Node as determined by namespace.
 
-**Example Return:**
+
+#### Permissions
+* Standard
+
+#### Querystring Options
+* None
+
+
+#### Example Return:
 ```json
 {
     "protocols": [
         "rsync"
     ],
+    "storage": {
+        "region": "central",
+        "type": "chron-proprietary"
+    },
     "replicate_from": [
         "chron",
         "sdr",
