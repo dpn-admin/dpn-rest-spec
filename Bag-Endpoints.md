@@ -1,4 +1,4 @@
-## Supported HTTP Methods
+## Endpoints and Supported Methods
 
 ### GET `/<api_version>/bag/`
 
