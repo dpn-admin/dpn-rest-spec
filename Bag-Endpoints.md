@@ -71,6 +71,7 @@ Standard
 }
 ```
 
+---
 ### POST `/api_version/bag/<uuid>`
 
 |HTTP Method|API Type|
@@ -110,6 +111,7 @@ Returns the data for a single Bag record matching the uuid.  The return value is
 #### Permissions
 * Standard
 
+---
 ### PUT `/api-v1/bag/<uuid>/`
 
 |HTTP Method|API Type|
