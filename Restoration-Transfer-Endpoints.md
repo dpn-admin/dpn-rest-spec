@@ -21,6 +21,8 @@ Returns a paged list of Restore requests.
 * **status** - FILTER by status code.
 * **to_node** - FILTER by node namespace.
 * **order_by** - Comma separated list of strings to ORDER the return.  Accepted values are 'created_at' and 'updated_at'
+* **page_size** = Number of max results per page.
+* **page** = Page number to return, starting at 1.  For use with page_size.
 
 #### Example Return For: `/1.0/restore/`
 
