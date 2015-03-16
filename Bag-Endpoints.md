@@ -27,6 +27,7 @@ Standard
 * **bag_type** = String character to FILTER by bag type.
 * **ordering** = Comma separated list of String field names to ORDER return by (accepted values: updated_at)
 * **page_size** = Number of max results per page.
+* **page** = Page number to return, starting at 1.  For use with page_size.
 
 #### Example Return For: `/1.0/bag/?page_size=2`
 ```json
