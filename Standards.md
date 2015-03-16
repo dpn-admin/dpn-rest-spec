@@ -15,16 +15,25 @@ Example:
     2015-03-13T15:40:05Z
 
 ### Fixity Algorithms
+
+Field: "fixity_algorithm"
+
 |Name|Representation|
 |----|--------------|
 |SHA256|"sha256"|
 
 ### Protocols
+
+Field: "protocol"
+
 |Name|Representation|
 |----|--------------|
 |Rsync|"rsync"|
 
 ### Storage Regions
+
+Field: "storage": { "region" }
+
 |Name|Representation|
 |----|--------------|
 |Default|"default"|
@@ -33,6 +42,8 @@ Any two nodes with the "default" storage region are considered to be in a separa
 allowing / disallowing replication to or from those nodes.
 
 ### Storage Types
+
+Field: "storage": { "type" }
 
 |Name|Representation|
 |----|--------------|
