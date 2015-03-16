@@ -28,6 +28,7 @@ Standard
 * **created_at** = <dpn date format> to ORDER the return by record creation date.
 * **updated_at** = <dpn date format> to ORDER the return by last update.
 * **page_size** = <int> to set the max number of results per page.
+* **page** = Page number to return, starting at 1.  For use with page_size.
 
 #### Example Return for: `/1.0/replication/?page_size=2`
 
