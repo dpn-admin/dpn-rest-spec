@@ -1,30 +1,42 @@
-### API Calls
+## Endpoints and Supported Methods
 
-### **Endpoint:** `/api-v1/restore/`
+### GET `/<api_version>/restore/`
 
-#### GET Operation (EXTERNAL)
+|HTTP Method|API Type|
+|--------|-----------|
+|GET|EXTERNAL|
+
+|Case|HTTP Code|
+|----|---------|
+|Success|200|
+|Authorization Failed|401|
+
+#### Description
 
 Returns a paged list of Restore requests.
 
-**Querystring Options**
+#### Querystring Options
+
 * **uuid** - FILTER by DPN Object ID
 * **status** - FILTER by status code.
-* **node** - FILTER by node namespace.
+* **to_node** - FILTER by node namespace.
 * **order_by** - Comma separated list of strings to ORDER the return.  Accepted values are 'created_at' and 'updated_at'
+
+#### Example Return For: `/1.0/restore/`
 
 ```json
 {
     "count": 8,
-    "next": "http://localhost:8000/api-v1/restore/?page_size=2&page=2",
+    "next": "http://localhost:8000/1.0/restore/?page_size=2&page=2",
     "previous": null,
     "results": [
         {
             "from_node": "tdr",
             "to_node": "aptrust",
-            "bag": "6078e948-d561-42b4-b13b-cf0404575cf7",
+            "uuid": "6078e948-d561-42b4-b13b-cf0404575cf7",
             "restore_id": "aptrust-64",
-            "status": "Requested",
-            "protocol": "R",
+            "status": "requested",
+            "protocol": "rsync",
             "link": null,
             "created_at": "2015-02-25T15:27:40.426645Z",
             "updated_at": "2015-02-25T15:27:40.427711Z"
@@ -32,10 +44,10 @@ Returns a paged list of Restore requests.
         {
             "from_node": "chron",
             "to_node": "aptrust",
-            "bag": "6078e948-d561-42b4-b13b-cf0404575cf7",
+            "uuid": "6078e948-d561-42b4-b13b-cf0404575cf7",
             "restore_id": "aptrust-65",
-            "status": "Requested",
-            "protocol": "R",
+            "status": "requested",
+            "protocol": "rsync",
             "link": null,
             "created_at": "2015-02-25T15:27:40.432741Z",
             "updated_at": "2015-02-25T15:27:40.433824Z"
@@ -44,33 +56,66 @@ Returns a paged list of Restore requests.
 }
 ```
 
-#### POST Operation (EXTERNAL)
+---
+### POST `/<api_version>/restore/<restore_id>`
+
+|HTTP Method|API Type|
+|--------|-----------|
+|POST|INTERNAL|
+
+|Case|HTTP Code|
+|----|---------|
+|Success|201|
+|Bad Resource|400|
+|Duplicate|409|
+|Authorization Failed|401|
+
+#### Description
 
 Creates a new restore record on the local node. 
 
-**Restriction**
+#### Permissions
 * API Users
 * API Admins
 
-**Post Body Example:**
-```json
-{
-    "from_node": "tdr",
-    "to_node": "chron",
-    "bag": "8287ee9e-74f1-490b-8209-800985361134",
-    "protocol": "R"
-}
-```
+---
+### GET `/<api_version>/restore/<restore_id>/`
 
-### **Endpoint:** `/api-v1/restore/<restore_id>/`
+|HTTP Method|API Type|
+|--------|-----------|
+|GET|EXTERNAL|
 
-### GET Operation (EXTERNAL)
+|Case|HTTP Code|
+|----|---------|
+|Success|200|
+|Not Found|404|
+|Authorization Failed|401|
+
+#### Description
 
 Returns the record for a single restore as identified by the restore_id.
 
-### PUT Operation (INTERNAL)
+#### Permissions
+* Standard
 
-Updates a specific restore as identified by the event_id.
+---
+### PUT `/<api_version>/restore/<restore_id>/`
 
-**Restrictions**
+|HTTP Method|API Type|
+|--------|-----------|
+|PUT|INTERNAL|
+
+|Case|HTTP Code|
+|----|---------|
+|Success|200|
+|Not Found|404|
+|Bad Resource|400|
+|Illegal Transition|400|
+|Authorization Failed|401|
+
+#### Description
+
+Updates a specific restore as identified by the restore_id.
+
+#### Permissions
 * API Admins
