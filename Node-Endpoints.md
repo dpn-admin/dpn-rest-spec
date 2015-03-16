@@ -20,6 +20,8 @@ Returns a list of Nodes.
 
 #### Querystring Options
 * **page_size** = Number of max results per page.
+* **page** = Page number to return, starting at 1.  For use with page_size.
+
 
 #### Example Return For: `/1.0/node/?page_size=2`
 ```json
