@@ -1,6 +1,6 @@
 ## Description
 
-This page attempts to capture standard values for various fields.
+This page defines standard values for various fields.  
 
 ### DPN Format Date Time
 
