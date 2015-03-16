@@ -25,8 +25,7 @@ Standard
 * **bag_valid** = [true|false|null] to FILTER by validation status.
 * **from_node** = <exact name> FILTER by the namespace of the from_node. (i.e. "aptrust"|"chron"|"sdr"...)
 * **to_node** = <exact name> FILTER by the namespace of the to_node. (i.e. "aptrust"|"chron"|"sdr"...)
-* **created_at** = <dpn date format> to ORDER the return by record creation date.
-* **updated_at** = <dpn date format> to ORDER the return by last update.
+* **order_by** - Comma separated list of strings to ORDER the return.  Accepted values are 'created_at' and 'updated_at'
 * **page_size** = <int> to set the max number of results per page.
 * **page** = Page number to return, starting at 1.  For use with page_size.
 
