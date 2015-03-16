@@ -28,7 +28,7 @@ Standard
 * **ordering** = Comma separated list of String field names to ORDER return by (accepted values: updated_at)
 * **page_size** = Number of max results per page.
 
-#### Example Return For: `/1.0/registry/?page_size=2`
+#### Example Return For: `/1.0/bag/?page_size=2`
 ```json
 {
     "count": 27,
@@ -129,5 +129,5 @@ Returns the data for a single Bag record matching the uuid.  The return value is
 
 Updates a single bag matching the uuid.  The body of the put is the same as the data structure listed for a single record above.
 
-**Restrictions**
+#### Permissions
 * API Admins Only.
