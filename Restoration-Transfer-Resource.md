@@ -9,6 +9,7 @@ A Restoration Transfer represents a request for a replicating node to transfer a
 * **to_node** - String of namespace of node to which the bag will be restored. This is the node that generated this request resource. _(read_only)_
 * **uuid** - The uuid (UUIDv4) of the bag to be transferred. _(read_only)_
 * **protocol** - String used to identify the transfer protocol. _(read_only)_
+* **link** - Null or string of transfer link to be used for the specified protocol, set by from_node.
 * **status** - String status of the request.
     * 'requested':  Default status used when record first created.
     * 'accepted':  Indicates the to_node has accepted the request to restore the bag.
