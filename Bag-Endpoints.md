@@ -44,13 +44,13 @@ Standard
             "replicating_nodes": [],
             "admin_node": "aptrust",
             "fixities": [],
-            "local_id": null,
+            "local_id": "some_local_id",
             "size": 2526492640,
             "first_version_uuid": "9998e960-fc6d-44f4-9d73-9a60a8eae609",
             "version": 1,
             "bag_type": "D",
-            "created_at": "2015-02-25T16:24:02.475138Z",
-            "updated_at": "2015-02-25T16:24:02.475178Z"
+            "created_at": "2015-02-25T16:24:02Z",
+            "updated_at": "2015-02-25T16:24:02Z"
         },
         {
             "uuid": "9998e960-fc6d-44f4-9d73-9a60a8eaea09",
@@ -60,13 +60,13 @@ Standard
             "replicating_nodes": [],
             "admin_node": "aptrust",
             "fixities": [],
-            "local_id": null,
+            "local_id": "some-other-local-id",
             "size": 2526492640,
             "first_version_uuid": "9998e960-fc6d-44f4-9d73-9a60a8eaea09",
             "version": 1,
             "bag_type": "D",
-            "created_at": "2015-02-25T16:22:44.648807Z",
-            "updated_at": "2015-02-25T16:22:44.649091Z"
+            "created_at": "2015-02-25T16:22:44Z",
+            "updated_at": "2015-02-25T16:22:44Z"
         }
     ]
 }
@@ -85,6 +85,7 @@ Standard
 |Bad Resource|400|
 |Duplicate|409|
 |Authorization Failed|401|
+|Authorized, Not Permitted|403|
 
 #### Description
 
@@ -105,6 +106,7 @@ This allows the creation of a single bag through a post body.  The post body is 
 |Success|200|
 |Not Found|404|
 |Authorization Failed|401|
+
 
 #### Description
 
@@ -127,6 +129,7 @@ Returns the data for a single Bag record matching the uuid.  The return value is
 |Bad Resource|400|
 |Illegal Transition|400|
 |Authorization Failed|401|
+|Authorized, Not Permitted|403|
 
 Updates a single bag matching the uuid.  The body of the put is the same as the data structure listed for a single record above.
 
