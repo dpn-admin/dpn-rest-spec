@@ -50,8 +50,8 @@ Standard
             "status": "requested",
             "protocol": "rsync",
             "link": "dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar",
-            "created_at": "2015-02-25T15:27:40.469359Z",
-            "updated_at": "2015-02-25T15:27:40.471294Z"
+            "created_at": "2015-02-25T15:27:40Z",
+            "updated_at": "2015-02-25T15:27:40Z"
         },
         {
             "from_node": "aptrust",
@@ -66,8 +66,8 @@ Standard
             "status": "requested",
             "protocol": "rsync",
             "link": "dpn.hathi@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar",
-            "created_at": "2015-02-25T15:27:40.463484Z",
-            "updated_at": "2015-02-25T15:27:40.465401Z"
+            "created_at": "2015-02-25T15:27:40Z",
+            "updated_at": "2015-02-25T15:27:40Z"
         }
     ]
 }
@@ -85,6 +85,7 @@ Standard
 |Bad Resource|400|
 |Duplicate|409|
 |Authorization Failed|401|
+|Authorized, Not Permitted|403|
 
 #### Description
 
@@ -127,6 +128,7 @@ Standard
 |Bad Resource|400|
 |Illegal Transition|400|
 |Authorization Failed|401|
+|Authorized, Not Permitted|403|
 
 #### Description
 
