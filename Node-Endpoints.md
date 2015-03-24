@@ -69,8 +69,8 @@ Returns a list of Nodes.
             "namespace": "chron",
             "api_root": "https://chronopolis01.umiacs.umd.edu/",
             "ssh_pubkey": null,
-            "created_at": "2015-02-25T15:27:39.819647Z",
-            "updated_at": "2015-02-25T15:27:39.824840Z"
+            "created_at": "2015-02-25T15:27:39.",
+            "updated_at": "2015-02-25T15:27:39Z"
         },
         {
             "protocols": [
@@ -111,8 +111,8 @@ Returns a list of Nodes.
             "namespace": "sdr",
             "api_root": "https://dpn.stanford.edu/dpnrest/",
             "ssh_pubkey": null,
-            "created_at": "2015-02-25T15:27:39.826296Z",
-            "updated_at": "2015-02-25T15:27:39.830339Z"
+            "created_at": "2015-02-25T15:27:39Z",
+            "updated_at": "2015-02-25T15:27:39Z"
         }
     ]
 }
@@ -183,7 +183,7 @@ Returns data on a a specific Node as determined by namespace.
     "namespace": "aptrust",
     "api_root": "https://devops.aptrust.org/dpnode/",
     "ssh_pubkey": null,
-    "created_at": "2015-02-25T15:27:39.842493Z",
-    "updated_at": "2015-02-25T15:27:39.846688Z"
+    "created_at": "2015-02-25T15:27:39Z",
+    "updated_at": "2015-02-25T15:27:39Z"
 }
 ```
