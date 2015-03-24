@@ -40,8 +40,8 @@ Returns a paged list of Restore requests.
             "status": "requested",
             "protocol": "rsync",
             "link": null,
-            "created_at": "2015-02-25T15:27:40.426645Z",
-            "updated_at": "2015-02-25T15:27:40.427711Z"
+            "created_at": "2015-02-25T15:27:40Z",
+            "updated_at": "2015-02-25T15:27:40Z"
         },
         {
             "from_node": "chron",
@@ -51,8 +51,8 @@ Returns a paged list of Restore requests.
             "status": "requested",
             "protocol": "rsync",
             "link": null,
-            "created_at": "2015-02-25T15:27:40.432741Z",
-            "updated_at": "2015-02-25T15:27:40.433824Z"
+            "created_at": "2015-02-25T15:27:40Z",
+            "updated_at": "2015-02-25T15:27:40Z"
         }
     ]
 }
@@ -71,6 +71,7 @@ Returns a paged list of Restore requests.
 |Bad Resource|400|
 |Duplicate|409|
 |Authorization Failed|401|
+|Authorized, Not Permitted|403|
 
 #### Description
 
@@ -114,6 +115,7 @@ Returns the record for a single restore as identified by the restore_id.
 |Bad Resource|400|
 |Illegal Transition|400|
 |Authorization Failed|401|
+|Authorized, Not Permitted|403|
 
 #### Description
 
