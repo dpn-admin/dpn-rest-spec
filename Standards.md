@@ -22,6 +22,8 @@ Field: "fixity_algorithm"
 |----|--------------|
 |SHA256|"sha256"|
 
+The fixity is **always** calculated on the tagmanifest-<algorithm>.txt file.  
+
 ### Protocols
 
 Field: "protocol"
