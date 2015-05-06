@@ -73,7 +73,7 @@ Standard
 ```
 
 ---
-### POST `/<api_version>/bag/<uuid>`
+### POST `/<api_version>/bag/`
 
 |HTTP Method|API Type|
 |--------|-----------|
