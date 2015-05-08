@@ -42,7 +42,7 @@ The following is the data structure for an individual transfer:
             "status": "Requested",
             "protocol": "R",
             "link": "dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar",
-            "created_at": "2015-02-25T15:27:40.469359Z",
-            "updated_at": "2015-02-25T15:27:40.471294Z"
+            "created_at": "2015-02-25T15:27:40Z",
+            "updated_at": "2015-02-25T15:27:40Z"
         }
 ```
