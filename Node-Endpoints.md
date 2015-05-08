@@ -69,7 +69,7 @@ Returns a list of Nodes.
             "namespace": "chron",
             "api_root": "https://chronopolis01.umiacs.umd.edu/",
             "ssh_pubkey": null,
-            "created_at": "2015-02-25T15:27:39.",
+            "created_at": "2015-02-25T15:27:39Z",
             "updated_at": "2015-02-25T15:27:39Z"
         },
         {
