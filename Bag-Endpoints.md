@@ -43,7 +43,7 @@ Standard
             "rights": [],
             "replicating_nodes": [],
             "admin_node": "aptrust",
-            "fixities": [],
+            "fixities": {"sha256": "someshafixityvalue" },
             "local_id": "some_local_id",
             "size": 2526492640,
             "first_version_uuid": "9998e960-fc6d-44f4-9d73-9a60a8eae609",
