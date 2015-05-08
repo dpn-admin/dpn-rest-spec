@@ -37,7 +37,7 @@ A Bag represents the metadata about a specific DPN object, also called a DPN Bag
             "first_version_uuid": "9998e960-fc6d-44f4-9d73-9a60a8eae609",
             "version": 1,
             "bag_type": "D",
-            "created_at": "2015-02-25T16:24:02.475138Z",
-            "updated_at": "2015-02-25T16:24:02.475178Z"
+            "created_at": "2015-02-25T16:24:02Z",
+            "updated_at": "2015-02-25T16:24:02Z"
         }
 ```
