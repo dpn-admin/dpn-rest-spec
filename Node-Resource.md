@@ -66,7 +66,7 @@ The following is a data structure for an individual Node.
             "namespace": "chron",
             "api_root": "https://chronopolis01.umiacs.umd.edu/",
             "ssh_pubkey": "",
-            "created_at": "2015-02-25T15:27:39.819647Z",
-            "updated_at": "2015-03-06T14:21:50.235825Z"
+            "created_at": "2015-02-25T15:27:39Z",
+            "updated_at": "2015-03-06T14:21:50Z"
         }
 ```
