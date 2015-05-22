@@ -18,7 +18,8 @@ A Bag represents the metadata about a specific DPN object, also called a DPN Bag
 * **interpretive** - Empty Array or Array of Strings listing the uuid of the interpretive bags.
 * **rights** - Empty Array or Array of Strings listing the uuid of the rights bags.
 * **replicating_nodes** - Empty Array or Array of Strings listing the node namespaces of nodes that are storing the bag.
-* **fixities** - Hash of fixity algorithm : fixity value pairs, minimum of one.  _(add only)_
+* **fixities** - Hash of fixity algorithm : fixity value pairs, minimum of one.  Calculated on the
+tagmanifest-<algorithm>.txt file.  _(add only)_
 * **created_at** - String of DPN Format DateTime this record was first created. _(read only)_
 * **updated_at** - String of DPN Format DateTime this record was last updated.
 

@@ -12,6 +12,7 @@ The following is the data structure for an individual transfer:
 * **fixity_algorithm** - String of the fixity algorithm expected for the receipt. _(read_only)_
 * **fixity_nonce** - null or a string of the nonce to be used for verification. _(read_only)_
 * **fixity_value** - null or string of the fixity calculated by the to_node after transferring the bag to its staging area.
+Calculated on the serialized bag file received from the from_node.
 * **fixity_accept** - null or boolean set by the from_node to indicate whether the to_node's fixity digest was correct.
 * **bag_valid** - null or boolean set by to_node to record results of bag validation. 
 * **status** - String status of the transfer.
