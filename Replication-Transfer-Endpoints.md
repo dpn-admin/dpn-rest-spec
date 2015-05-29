@@ -19,6 +19,7 @@ Returns a list of Replication Transfers from the server node and additional fiel
 Standard
 
 #### Querystring Options
+* **after** = <ISO 8601 datetime string> to return only transfer requests updated after the specified datetime
 * **uuid** = <exact id> to FILTER by exact bag UUID value.
 * **status** = to FILTER by status
 * **fixity_accept** = [true|false|null] to FILTER by fixity status.
