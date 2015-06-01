@@ -17,6 +17,7 @@ Returns a paged list of Restore requests.
 
 #### Querystring Options
 
+* **after** - to return only restore requests updated after the specified datetime
 * **uuid** - FILTER by DPN Object ID
 * **status** - FILTER by status code.
 * **to_node** - FILTER by node namespace.
