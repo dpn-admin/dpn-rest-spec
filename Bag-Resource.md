@@ -32,7 +32,8 @@ tagmanifest-<algorithm>.txt file.  _(add only)_
             "rights": [],
             "replicating_nodes": [],
             "admin_node": "aptrust",
-            "fixities": {"sha256": "someshafixityvalue" },
+            "fixities": {"sha256": "someshafixityvalue",
+                         "md5": "somemd5fixityvalue" }
             "local_id": "my_bag",
             "size": 2526492640,
             "first_version_uuid": "9998e960-fc6d-44f4-9d73-9a60a8eae609",
