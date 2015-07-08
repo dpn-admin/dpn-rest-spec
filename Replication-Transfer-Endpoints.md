@@ -30,7 +30,7 @@ Standard
 * **page_size** = <int> to set the max number of results per page.
 * **page** = Page number to return, starting at 1.  For use with page_size.
 
-#### Example Return for: `/1.0/replication/?page_size=2`
+#### Example Return for: `/1.0/replicate/?page_size=2`
 
 ```json
 {
@@ -96,7 +96,7 @@ Creates new Replication Transfers.  It requires the following data in the body o
 * API Admins only.
 
 ---
-### GET `/<api_version>/replication/<replication_id>/`
+### GET `/<api_version>/replicate/<replication_id>/`
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -116,7 +116,7 @@ This displays data about a single Replication Transfer based in its replication_
 Standard
 
 ---
-### PUT `/<api_version>/replication/<replication_id>/`
+### PUT `/<api_version>/replicate/<replication_id>/`
 
 |HTTP Method|API Type|
 |--------|-----------|
