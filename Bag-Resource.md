@@ -10,6 +10,7 @@ A Bag represents the metadata about a specific DPN object, also called a DPN Bag
 * **first_version_uuid** - String of first version uuid (UUIDv4).
 * **ingest_node** - String of the [[node|Node:-Resource]] namespace that originally ingested this bag. _(read only)_
 * **admin_node** - String of the [[node|Node:-Resource]] namespace that currently administers this bag.
+* **member** - UUID of the [[member|Member:-Resource]] who deposited this bag.
 * **version** - Unsigned integer of this bag's version number, starting with 1. _(read only)_
 * **bag_type** - Single character String of the code for the type of object. _(read only)_
     * 'D' - Data
@@ -32,6 +33,7 @@ tagmanifest-<algorithm>.txt file.  _(add only)_
             "rights": [],
             "replicating_nodes": [],
             "admin_node": "aptrust",
+            "member": "a58231cd-6573-4451-b767-f380ee08922c",
             "fixities": {"sha256": "someshafixityvalue",
                          "md5": "somemd5fixityvalue" },
             "local_id": "my_bag",
