@@ -22,8 +22,8 @@ Field: "fixity_algorithm"
 |----|--------------|
 |SHA256|"sha256"|
 
-For replication transfers, the fixity is calculated on the serialized bag file.
-For all other times, the fixity is calculated on the tagmanifest-<algorithm>.txt file.
+The fixity is **__always__** calculated on the tagmanifest-<algorithm>.txt file.  
+This includes both transfer and in-place fixity.
 
 ### Protocols
 
