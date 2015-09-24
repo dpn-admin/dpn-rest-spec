@@ -24,6 +24,7 @@ Standard
 * **before** = DPN DateTime string to FILTER results by last_modified_date earlier than this, inclusive.
 * **after** = DPN DateTime String to FILTER result by last_modified_date later than this, inclusive.
 * **admin_node** = String to FILTER by administrative node namespace.
+* **member** = UUID to FILTER by the uuid of the member who 'owns' this bag.
 * **bag_type** = String character to FILTER by bag type.
 * **ordering** = Comma separated list of String field names to ORDER return by (accepted values: updated_at)
 * **page_size** = Number of max results per page.
