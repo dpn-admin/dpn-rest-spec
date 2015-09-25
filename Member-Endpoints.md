@@ -77,6 +77,32 @@ Returns data on a Member as determined by the uuid.
 }
 ```
 
+### GET `/<api_version>/member/<member:uuid>/bags/`
+
+|HTTP Method|API Type|
+|--------|-----------|
+|GET|EXTERNAL|
+
+|Case|HTTP Code|
+|----|---------|
+|Success|200|
+|Not Found|404|
+|Authorization Failed|401|
+
+#### Description
+
+Returns a member's bags.  Behavior should match that of `/bags/?member=<member:uuid>`
+
+#### Permissions
+* Standard
+
+#### Querystring Options
+* Supports the same querystring options as `/bags/`
+ 
+#### Example Return for: `/api-v1/member/5e4bc824-9be2-44ea-a22c-d1e74afb30c3/bags/`
+Same as `/bags/`
+
+
 ---
 ### POST `/<api_version>/member/`
 
