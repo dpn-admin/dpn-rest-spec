@@ -7,7 +7,8 @@ A Node represents the metadata and configuration data for a specific node in the
 The following is a data structure for an individual Node.
 * **name** - String of human readable name for node.
 * **namespace** - String of lowercase identifier used to unambigously reference this node in DPN. _(read_only)_
-* **api_root** - null or String of the root location of this nodes server.
+* **api_root** - null or String of the root location of this nodes server.  This field should NOT be changed
+  during normal operations.  It should only change out of band.
 * **ssh_pubkey** - null or String of the ssh public key this node.
 * **replicate_from** - Array of namespaces of nodes that this node will replicate from.
 * **replicate_to** - Array of namespaces of nodes that this node will replicate to. 
