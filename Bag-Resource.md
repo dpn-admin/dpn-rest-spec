@@ -7,7 +7,7 @@ A Bag represents the metadata about a specific DPN object, also called a DPN Bag
 * **uuid** - String of the unique (UUIDv4) identifier for this DPN object. _(read only)_
 * **local_id** - String of the primary local identifier.
 * **size** - Size of the bag in bytes. _(read only)_
-* **first_version_uuid** - String of first version uuid (UUIDv4).
+* **first_version_uuid** - String of first version uuid (UUIDv4). _(read only)_
 * **ingest_node** - String of the [[node|Node:-Resource]] namespace that originally ingested this bag. _(read only)_
 * **admin_node** - String of the [[node|Node:-Resource]] namespace that currently administers this bag.
 * **member** - UUID of the [[member|Member:-Resource]] who deposited this bag.
