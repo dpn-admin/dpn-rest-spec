@@ -90,7 +90,9 @@ Standard
 
 #### Description
 
-Creates new Replication Transfers.  It requires the following data in the body of the post in order to create the transfer.
+Creates new Replication Transfers.
+It requires the following data in the body of the post in order to create the transfer.
+If successful, the response will be identical to that of a GET request.
 
 #### Permissions
 * API Admins only.
@@ -133,7 +135,8 @@ Standard
 
 #### Description
 
-Updates the transfer indicated by the event_id in the URL. RESTRICTIONS BELOW NEED TO BE VERIFIED!
+Updates the transfer indicated by the event_id in the URL.
+If successful, the response will be identical to that of a GET request.
 
 #### Permissions
 * API Users belonging to the to_node.
