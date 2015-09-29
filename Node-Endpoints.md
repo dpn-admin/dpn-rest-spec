@@ -142,7 +142,7 @@ Returns data on a a specific Node as determined by namespace.
 #### Querystring Options
 * None
 
-#### Example Return for: `/1.0/node/chron>/`
+#### Example Return for: `/1.0/node/chron/`
 ```json
 {
     "protocols": [
@@ -187,3 +187,49 @@ Returns data on a a specific Node as determined by namespace.
     "updated_at": "2015-02-25T15:27:39Z"
 }
 ```
+
+---
+### POST `/<api_version>/node/`
+
+|HTTP Method|API Type|
+|--------|-----------|
+|POST|INTERNAL|
+
+|Case|HTTP Code|
+|----|---------|
+|Success|201|
+|Bad Resource|400|
+|Duplicate|409|
+|Authorization Failed|401|
+|Authorized, Not Permitted|403|
+
+#### Description
+
+Creates a Node.
+The body is the same as the data structure for the Node.
+
+#### Permissions
+* API Admins only.
+
+---
+### PUT `/<api_version>/node/<node:namespace>/`
+
+|HTTP Method|API Type|
+|--------|-----------|
+|PUT|INTERNAL|
+
+|Case|HTTP Code|
+|----|---------|
+|Success|200|
+|Not Found|404|
+|Bad Resource|400|
+|Illegal Transition|400|
+|Authorization Failed|401|
+|Authorized, Not Permitted|403|
+
+Updates a single Node matching the namespace.
+The body of the put is the same as the data structure listed for a single record above.
+
+#### Permissions
+* API Admins Only.
+
