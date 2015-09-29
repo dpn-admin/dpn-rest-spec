@@ -97,7 +97,7 @@ Returns a member's bags.  Behavior should match that of `/bags/?member=<member:u
 * Standard
 
 #### Querystring Options
-* Supports the same querystring options as `/bags/`
+* Supports the same querystring options as `/bags/`, except for `member`.
  
 #### Example Return for: `/api-v1/member/5e4bc824-9be2-44ea-a22c-d1e74afb30c3/bags/`
 Same as `/bags/`
@@ -120,7 +120,9 @@ Same as `/bags/`
 
 #### Description
 
-Creates a Member. The body is the same as the data structure for the Member.
+Creates a Member.
+The body is the same as the data structure for the Member.
+If successful, the response will be identical to that of a GET request.
 
 #### Permissions
 * API Admins only.
@@ -141,7 +143,9 @@ Creates a Member. The body is the same as the data structure for the Member.
 |Authorization Failed|401|
 |Authorized, Not Permitted|403|
 
-Updates a single Member matching the uuid. The body of the put is the same as the data structure listed for a single record above.
+Updates a single Member matching the uuid.
+The body of the put is the same as the data structure listed for a single record above.
+If successful, the response will be identical to that of a GET request.
 
 #### Permissions
 * API Admins Only.
