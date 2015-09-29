@@ -207,6 +207,7 @@ Returns data on a a specific Node as determined by namespace.
 
 Creates a Node.
 The body is the same as the data structure for the Node.
+If successful, the response will be identical to that of a GET request.
 
 #### Permissions
 * API Admins only.
@@ -229,6 +230,7 @@ The body is the same as the data structure for the Node.
 
 Updates a single Node matching the namespace.
 The body of the put is the same as the data structure listed for a single record above.
+If successful, the response will be identical to that of a GET request.
 
 #### Permissions
 * API Admins Only.
