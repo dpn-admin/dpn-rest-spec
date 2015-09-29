@@ -76,7 +76,8 @@ Returns a paged list of Restore requests.
 
 #### Description
 
-Creates a new restore record on the local node. 
+Creates a new restore record on the local node.
+If successful, the response will be identical to that of a GET request.
 
 #### Permissions
 * API Users
@@ -121,6 +122,8 @@ Returns the record for a single restore as identified by the restore_id.
 #### Description
 
 Updates a specific restore as identified by the restore_id.
+If successful, the response will be identical to that of a GET request.
 
 #### Permissions
+* API users belonging to the from_node.
 * API Admins
