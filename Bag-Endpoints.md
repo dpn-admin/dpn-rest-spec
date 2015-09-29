@@ -92,7 +92,9 @@ Standard
 
 #### Description
 
-This allows the creation of a single bag through a post body.  The post body is the same as the sample data structure for a Bag.  If successful, the response will be identical to that of a GET request.
+This allows the creation of a single bag through a post body.
+The post body is the same as the sample data structure for a Bag.
+If successful, the response will be identical to that of a GET request.
 
 #### Permissions
 * API Admins only.
@@ -113,7 +115,9 @@ This allows the creation of a single bag through a post body.  The post body is 
 
 #### Description
 
-Returns the data for a single Bag record matching the uuid.  The return value is the JSON representation of the Bag.
+Returns the data for a single Bag record matching the uuid.
+The return value is the JSON representation of the Bag.
+If successful, the response will be identical to that of a GET request.
 
 #### Permissions
 * Standard
@@ -134,7 +138,9 @@ Returns the data for a single Bag record matching the uuid.  The return value is
 |Authorization Failed|401|
 |Authorized, Not Permitted|403|
 
-Updates a single bag matching the uuid.  The body of the put is the same as the data structure listed for a single record above.
+Updates a single bag matching the uuid.
+The body of the put is the same as the data structure listed for a single record above.
+If successful, the response will be identical to that of a GET request.
 
 #### Permissions
 * API Admins Only.
