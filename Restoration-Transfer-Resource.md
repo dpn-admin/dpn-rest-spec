@@ -5,7 +5,7 @@ A Restoration Transfer represents a request for a replicating node to transfer a
 ## Restoration Transfer Data Structure
 
 * **restore_id** - The unique id of this restoration request. Typically consists of the node namespace plus a numeric ID, in the format "chron-2501". _(read_only)_
-* **from_node** - String of namespace of node from which the bag will be restored.
+* **from_node** - String of namespace of node from which the bag will be restored. _(read_only)_
 * **to_node** - String of namespace of node to which the bag will be restored. This is the node that generated this request resource. _(read_only)_
 * **uuid** - The uuid (UUIDv4) of the bag to be transferred. _(read_only)_
 * **protocol** - String used to identify the transfer protocol. _(read_only)_
