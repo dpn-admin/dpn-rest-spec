@@ -54,3 +54,17 @@ Field: "storage": { "type" }
 
 Any two nodes with the "default" storage type are considered to use a different type for the purposes of 
 allowing / disallowing replication to or from those nodes.
+
+### Space Calculations
+
+All DPN space calculations will use the base 10 representation.
+
+|Metric|Value   |
+|------|--------|
+|KB    |1000    |
+|MB    |1000**2 |
+|GB    |1000**3 |
+|TB    |1000**4 |
+|PB    |1000**5 |
+
+Reference: https://en.wikipedia.org/wiki/Gigabyte
