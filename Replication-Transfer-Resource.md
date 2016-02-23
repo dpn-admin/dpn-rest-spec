@@ -6,8 +6,8 @@ node to another node, which then becomes a replicating node for the bag.
 ## Replication Transfer Data Structure
 
 The following is the data structure for an individual transfer:
-* **replication_id** - The unique id of this replication request. Typically 
-   consists of the node namespace plus a numeric ID, in the format "chron-2501". _(read_only)_
+* **replication_id** - String of the unique (UUIDv4) identifier for this 
+   replication request. _(read only)_
 * **from_node** - String of the namespace of the node sending the bag.  
    This is the node that generated this request resource. _(read_only)_
 * **to_node** - String of the namespace of the node receiving the bag.  Must 

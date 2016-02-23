@@ -1,11 +1,10 @@
 ## Overview
-
 A Member represents an institution who deposits data into DPN.
 
 ## Member Data Structure
 
 The following is a data structure for an individual Node.
-* **uuid** - A UUID for the member.
+* **uuid** - String of the unique (UUIDv4) identifier for this member. _(read only)_
 * **name** - The name the member goes by.
 * **email** - A contact email for the member.
 
