@@ -1,6 +1,12 @@
 ## Endpoints and Supported Methods
 
-### GET `/<api_version>/member/`
+* [GET /member/](#GET-/member/) - Index
+* [GET /member/:uuid](#GET-/member/uuid) - Show
+* [GET /member/:uuid/bags](#GET-/member/uuid/bags) - Index of member's bags
+* [POST /member/](#POST-/member/) - Create member
+* [PUT /member/:uuid](#PUT-/member/uuid) - Update member
+
+### GET `/<api_version>/member/` <a name="GET-/member/"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -45,7 +51,7 @@ Returns a list of Members.
 ```
 
 ---
-### GET `/<api_version>/member/<member:uuid>/`
+### GET `/<api_version>/member/<member:uuid>/` <a name="GET-/member/uuid"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -77,7 +83,7 @@ Returns data on a Member as determined by the uuid.
 }
 ```
 
-### GET `/<api_version>/member/<member:uuid>/bags/`
+### GET `/<api_version>/member/<member:uuid>/bags/` <a name="GET-/member/uuid/bags"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -104,7 +110,7 @@ Same as `/bags/`
 
 
 ---
-### POST `/<api_version>/member/`
+### POST `/<api_version>/member/` <a name="POST-/member/"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -128,7 +134,7 @@ If successful, the response will be identical to that of a GET request.
 * API Admins only.
 
 ---
-### PUT `/<api_version>/member/<uuid>/`
+### PUT `/<api_version>/member/<uuid>/` <a name="PUT-/member/uuid"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|

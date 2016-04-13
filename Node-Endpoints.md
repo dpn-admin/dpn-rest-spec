@@ -1,6 +1,11 @@
 ## Endpoints and Supported Methods
 
-### GET `/<api_version>/node/`
+* [GET /node/](#GET-/node/) - Index
+* [GET /node/:namespace](#GET-/node/namespace) - Show
+* [POST /node/](#POST-/node/) - Create
+* [PUT /node/:namespace](#PUT-/node/namespace) - Update
+
+### GET `/<api_version>/node/` <a name="GET-/node/"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -119,7 +124,7 @@ Returns a list of Nodes.
 ```
 
 ---
-### GET `/<api_version>/node/<node:namespace>/`
+### GET `/<api_version>/node/<node:namespace>/` <a name="GET-/node/namespace"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -189,7 +194,7 @@ Returns data on a a specific Node as determined by namespace.
 ```
 
 ---
-### POST `/<api_version>/node/`
+### POST `/<api_version>/node/` <a name="POSt-/node/"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -213,7 +218,7 @@ If successful, the response will be identical to that of a GET request.
 * API Admins only.
 
 ---
-### PUT `/<api_version>/node/<node:namespace>/`
+### PUT `/<api_version>/node/<node:namespace>/` <a name="PUT-/node/namespace"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|

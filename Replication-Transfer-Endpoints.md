@@ -1,6 +1,11 @@
 ## Endpoints and Supported Methods
 
-### GET `/<api_version>/replicate/`
+* [GET /replicate/](#GET-/replicate/) - Index
+* [GET /replicate/:replication_id](#GET-/replicate/replication_id) - Show
+* [POST /replicate/](#POST-/replicate/) - Create
+* [PUT /replicate/:replication_id](#PUT-/replicate/replication_id) - Update
+
+### GET `/<api_version>/replicate/` <a name="GET-/replicate/"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -74,7 +79,7 @@ Standard
 }
 ```
 ---
-### POST `/<api_version>/replicate/<replication_id>`
+### POST `/<api_version>/replicate/<replication_id>` <a name="POST-/replicate/"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -98,7 +103,7 @@ If successful, the response will be identical to that of a GET request.
 * API Admins only.
 
 ---
-### GET `/<api_version>/replicate/<replication_id>/`
+### GET `/<api_version>/replicate/<replication_id>/` <a name="GET-/replicate/replication_id"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -118,7 +123,7 @@ This displays data about a single Replication Transfer based in its replication_
 Standard
 
 ---
-### PUT `/<api_version>/replicate/<replication_id>/`
+### PUT `/<api_version>/replicate/<replication_id>/` <a name="PUT-/replicate/replication_id"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|

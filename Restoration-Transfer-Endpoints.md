@@ -1,6 +1,11 @@
 ## Endpoints and Supported Methods
 
-### GET `/<api_version>/restore/`
+* [GET /restore/](#GET-/restore/) - Index
+* [GET /restore/:restore_id](#GET-/restore/restore_id) - Show
+* [POST /restore/](#POST-/restore/) - Create
+* [PUT /restore/:restore_id](#PUT-/restore/restore_id) - Update
+
+### GET `/<api_version>/restore/` <a name="GET-/restore/"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -60,7 +65,7 @@ Returns a paged list of Restore requests.
 ```
 
 ---
-### POST `/<api_version>/restore/<restore_id>`
+### POST `/<api_version>/restore/<restore_id>` <a name="POST-/restore/"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -84,7 +89,7 @@ If successful, the response will be identical to that of a GET request.
 * API Admins
 
 ---
-### GET `/<api_version>/restore/<restore_id>/`
+### GET `/<api_version>/restore/<restore_id>/` <a name="GET-/restore/restore_id"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -104,7 +109,7 @@ Returns the record for a single restore as identified by the restore_id.
 * Standard
 
 ---
-### PUT `/<api_version>/restore/<restore_id>/`
+### PUT `/<api_version>/restore/<restore_id>/` <a name="PUT-/restore/restore_id"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|

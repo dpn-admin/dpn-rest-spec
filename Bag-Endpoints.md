@@ -1,6 +1,11 @@
 ## Endpoints and Supported Methods
 
-### GET `/<api_version>/bag/`
+* [GET /bag/](#GET-/bag/) - Index bags
+* [POST /bag/](#POST-/bag/) - Create bag
+* [GET /bag/:uuid](#GET-/bag/uuid) - Show bag
+* [PUT /bag/:uuid](#PUT-/bag/uuid) - Update bag
+
+### GET `/<api_version>/bag/` <a name="GET-/bag/"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -76,7 +81,7 @@ Standard
 ```
 
 ---
-### POST `/<api_version>/bag/`
+### POST `/<api_version>/bag/` <a name="POST-/bag/"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -100,7 +105,7 @@ If successful, the response will be identical to that of a GET request.
 * API Admins only.
 
 ---
-### GET `/<api_version>/bag/<uuid>/`
+### GET `/<api_version>/bag/<uuid>/` <a name="GET-/bag/uuid"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|
@@ -123,7 +128,7 @@ If successful, the response will be identical to that of a GET request.
 * Standard
 
 ---
-### PUT `/<api_version>/bag/<uuid>/`
+### PUT `/<api_version>/bag/<uuid>/` <a name="PUT-/bag/uuid"></a>
 
 |HTTP Method|API Type|
 |--------|-----------|
