@@ -5,7 +5,7 @@ info:
   version: 1.0.0
 schemes:
   - https
-basePath: /api-v1
+basePath: /api-v2
 consumes:
   - application/json
 produces:
@@ -693,9 +693,8 @@ definitions:
             type: string
           to_node:
             description: >
-              Namespace of the node receiving the bag. Must be neither
-              the admin_node nor a replicating_node for the bag being
-              transferred.
+              Namespace of the node receiving the bag. Must not be a 
+              replicating_node for the bag being transferred.
             type: string
             format: uuid
           fixity_algorithm:
@@ -1110,6 +1109,7 @@ paths:
         - $ref: '#/parameters/after_created'
         - $ref: '#/parameters/page'
         - $ref: '#/parameters/page_size'
+        - $ref: '#/parameters/order_by_timestamps'
       responses:
         '200':
           description: Success
@@ -1131,6 +1131,7 @@ paths:
         - $ref: '#/parameters/after_created'
         - $ref: '#/parameters/page'
         - $ref: '#/parameters/page_size'
+        - $ref: '#/parameters/order_by_timestamps'
       responses:
         '200':
           description: Success
