@@ -1011,6 +1011,9 @@
             "$ref": "#/parameters/after_created"
           },
           {
+            "$ref": "#/parameters/order_by_timestamps"
+          },
+          {
             "$ref": "#/parameters/page"
           },
           {
@@ -1046,6 +1049,9 @@
           },
           {
             "$ref": "#/parameters/after_created"
+          },
+          {
+            "$ref": "#/parameters/order_by_timestamps"
           },
           {
             "$ref": "#/parameters/page"
