@@ -1,439 +1,439 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "title": "DPN API",
-        "description": "Digital Preservation Network",
-        "version": "1.0.0"
+  "swagger": "2.0",
+  "info": {
+    "title": "DPN API",
+    "description": "Digital Preservation Network",
+    "version": "1.0.0"
+  },
+  "schemes": [
+    "https"
+  ],
+  "basePath": "/api-v2",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "definitions": {
+    "Error": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "description": "String of the encountered errors, possibly json formatted.",
+          "type": "string",
+          "format": "json"
+        }
+      }
     },
-    "schemes": [
-        "https"
-    ],
-    "basePath": "/api-v1",
-    "consumes": [
-        "application/json"
-    ],
-    "produces": [
-        "application/json"
-    ],
-    "definitions": {
-        "Error": {
-            "type": "object",
-            "properties": {
-                "errors": {
-                    "description": "String of the encountered errors, possibly json formatted.",
-                    "type": "string",
-                    "format": "json"
-                }
+    "Timestamps": {
+      "description": "Timestamps for DPN objects",
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "description": "DPN-formatted date-time when this record was first created. _(read only)_",
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "description": "DPN-formatted date-time when this record was last updated.",
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "ResultList": {
+      "description": "Generic list of results",
+      "type": "object",
+      "required": [
+        "count",
+        "next",
+        "previous"
+      ],
+      "properties": {
+        "count": {
+          "description": "Count of total results",
+          "type": "integer",
+          "format": "int32",
+          "minimum": 0
+        },
+        "next": {
+          "description": "URL of next page, or null. Note that null (correct) is not \"null\" (incorrect).",
+          "type": "string"
+        },
+        "previous": {
+          "description": "URL of previous page, or null. Note that null (correct) is not \"null\" (incorrect).",
+          "type": "string"
+        }
+      }
+    },
+    "BagResultList": {
+      "description": "Container for a list of bags",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResultList"
+        },
+        {
+          "type": "object",
+          "required": [
+            "results"
+          ],
+          "properties": {
+            "results": {
+              "description": "List of bags",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Bag"
+              }
             }
+          }
+        }
+      ]
+    },
+    "DigestResultList": {
+      "description": "Container for a list of digests",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResultList"
         },
-        "Timestamps": {
-            "description": "Timestamps for DPN objects",
-            "type": "object",
-            "properties": {
-                "created_at": {
-                    "description": "DPN-formatted date-time when this record was first created. _(read only)_",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "updated_at": {
-                    "description": "DPN-formatted date-time when this record was last updated.",
-                    "type": "string",
-                    "format": "date-time"
-                }
+        {
+          "type": "object",
+          "required": [
+            "results"
+          ],
+          "properties": {
+            "results": {
+              "description": "List of digests",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Digest"
+              }
             }
+          }
+        }
+      ]
+    },
+    "FixityCheckResultList": {
+      "description": "Container for a list of fixity checks",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResultList"
         },
-        "ResultList": {
-            "description": "Generic list of results",
-            "type": "object",
-            "required": [
-                "count",
-                "next",
-                "previous"
-            ],
-            "properties": {
-                "count": {
-                    "description": "Count of total results",
-                    "type": "integer",
-                    "format": "int32",
-                    "minimum": 0
-                },
-                "next": {
-                    "description": "URL of next page, or null. Note that null (correct) is not \"null\" (incorrect).",
-                    "type": "string"
-                },
-                "previous": {
-                    "description": "URL of previous page, or null. Note that null (correct) is not \"null\" (incorrect).",
-                    "type": "string"
-                }
+        {
+          "type": "object",
+          "required": [
+            "results"
+          ],
+          "properties": {
+            "results": {
+              "description": "List of fixity checks",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FixityCheck"
+              }
             }
+          }
+        }
+      ]
+    },
+    "IngestResultList": {
+      "description": "Container for a list of ingests",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResultList"
         },
-        "BagResultList": {
-            "description": "Container for a list of bags",
-            "type": "object",
-            "allOf": [
-                {
-                    "$ref": "#/definitions/ResultList"
-                },
-                {
-                    "type": "object",
-                    "required": [
-                        "results"
-                    ],
-                    "properties": {
-                        "results": {
-                            "description": "List of bags",
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Bag"
-                            }
-                        }
-                    }
-                }
-            ]
-        },
-        "DigestResultList": {
-            "description": "Container for a list of digests",
-            "type": "object",
-            "allOf": [
-                {
-                    "$ref": "#/definitions/ResultList"
-                },
-                {
-                    "type": "object",
-                    "required": [
-                        "results"
-                    ],
-                    "properties": {
-                        "results": {
-                            "description": "List of digests",
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Digest"
-                            }
-                        }
-                    }
-                }
-            ]
-        },
-        "FixityCheckResultList": {
-            "description": "Container for a list of fixity checks",
-            "type": "object",
-            "allOf": [
-                {
-                    "$ref": "#/definitions/ResultList"
-                },
-                {
-                    "type": "object",
-                    "required": [
-                        "results"
-                    ],
-                    "properties": {
-                        "results": {
-                            "description": "List of fixity checks",
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/FixityCheck"
-                            }
-                        }
-                    }
-                }
-            ]
-        },
-        "IngestResultList": {
-            "description": "Container for a list of ingests",
-            "type": "object",
-            "allOf": [
-                {
-                    "$ref": "#/definitions/ResultList"
-                },
-                {
-                    "type": "object",
-                    "required": [
-                        "results"
-                    ],
-                    "properties": {
-                        "results": {
-                            "description": "List of ingests",
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Ingest"
-                            }
-                        }
-                    }
-                }
-            ]
-        },
-        "MemberResultList": {
-            "description": "Container for a list of members",
-            "type": "object",
-            "allOf": [
-                {
-                    "$ref": "#/definitions/ResultList"
-                },
-                {
-                    "type": "object",
-                    "required": [
-                        "results"
-                    ],
-                    "properties": {
-                        "results": {
-                            "description": "List of members",
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Member"
-                            }
-                        }
-                    }
-                }
-            ]
-        },
-        "NodeResultList": {
-            "description": "Container for a list of nodes",
-            "type": "object",
-            "allOf": [
-                {
-                    "$ref": "#/definitions/ResultList"
-                },
-                {
-                    "type": "object",
-                    "required": [
-                        "results"
-                    ],
-                    "properties": {
-                        "results": {
-                            "description": "List of nodes",
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Node"
-                            }
-                        }
-                    }
-                }
-            ]
-        },
-        "ReplicationRequestResultList": {
-            "description": "Container for a list of replication requests",
-            "type": "object",
-            "allOf": [
-                {
-                    "$ref": "#/definitions/ResultList"
-                },
-                {
-                    "type": "object",
-                    "required": [
-                        "results"
-                    ],
-                    "properties": {
-                        "results": {
-                            "description": "List of replication requests",
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/ReplicationRequest"
-                            }
-                        }
-                    }
-                }
-            ]
-        },
-        "Bag": {
-            "description": "A DPN bag of any type",
-            "type": "object",
-            "allOf": [
-                {
-                    "type": "object",
-                    "required": [
-                        "uuid",
-                        "local_id",
-                        "size",
-                        "first_version_uuid",
-                        "ingest_node",
-                        "admin_node",
-                        "member",
-                        "version",
-                        "bag_type",
-                        "interpretive"
-                    ],
-                    "properties": {
-                        "uuid": {
-                            "description": "Unique UUIDv4 identifier for this bag. _(read only)_",
-                            "type": "string",
-                            "format": "uuid"
-                        },
-                        "local_id": {
-                            "description": "Primary local identifier.",
-                            "type": "string"
-                        },
-                        "size": {
-                            "description": "Size of the bag in bytes. _(read only)_",
-                            "type": "integer",
-                            "format": "int64"
-                        },
-                        "first_version_uuid": {
-                            "description": "UUID of the first version of this bag. _(read only)_",
-                            "type": "string",
-                            "format": "uuid"
-                        },
-                        "ingest_node": {
-                            "description": "Namespace of the node that originally ingest this bag. _(read only)_",
-                            "type": "string"
-                        },
-                        "admin_node": {
-                            "description": "Namespace of the node that administers this bag.",
-                            "type": "string"
-                        },
-                        "member": {
-                            "description": "UUIDv4 of the member who \"owns\" this bag.",
-                            "type": "string",
-                            "format": "uuid"
-                        },
-                        "version": {
-                            "description": "This bag's version number, beginning with 1. _(read only)_",
-                            "type": "integer",
-                            "format": "int32",
-                            "minimum": 1
-                        },
-                        "bag_type": {
-                            "description": "Single character specifying the type of this bag. 'D'->Data, 'I'->Interpretive, 'R'->Rights.\n",
-                            "type": "string",
-                            "enum": [
-                                "D",
-                                "I",
-                                "R"
-                            ]
-                        },
-                        "interpretive": {
-                            "description": "Empty array or array of uuids of this bag's interpretive bags.",
-                            "type": "array",
-                            "items": {
-                                "type": "string",
-                                "format": "uuid",
-                                "uniqueItems": true
-                            }
-                        },
-                        "rights": {
-                            "description": "Empty array or array of uuids of this bag's rights bags.",
-                            "type": "array",
-                            "items": {
-                                "type": "string",
-                                "format": "uuid",
-                                "uniqueItems": true
-                            }
-                        },
-                        "replicating_nodes": {
-                            "description": "Empty array or array of namespaces of this bag's replicating nodes.",
-                            "type": "array",
-                            "items": {
-                                "type": "string",
-                                "uniqueItems": true
-                            }
-                        }
-                    }
-                },
-                {
-                    "$ref": "#/definitions/Timestamps"
-                }
-            ],
-            "example": { 
-                "uuid": "9998e960-fc6d-44f4-9d73-9a60a8eae609",
-                "ingest_node": "aptrust",
-                "interpretive": [],
-                "rights": [],
-                "replicating_nodes": [],
-                "admin_node": "aptrust",
-                "member": "a58231cd-6573-4451-b767-f380ee08922c",
-                "local_id": "my_bag",
-                "size": 2526492640,
-                "first_version_uuid": "9998e960-fc6d-44f4-9d73-9a60a8eae609",
-                "version": 1,
-                "bag_type": "D",
-                "created_at": "2015-02-25T16:24:02Z",
-                "updated_at": "2015-02-25T16:24:02Z"
+        {
+          "type": "object",
+          "required": [
+            "results"
+          ],
+          "properties": {
+            "results": {
+              "description": "List of ingests",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Ingest"
+              }
             }
+          }
+        }
+      ]
+    },
+    "MemberResultList": {
+      "description": "Container for a list of members",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResultList"
         },
-        "Digest": {
-            "description": "A Digest is a specific fixity algorithm:value pair that is known to be correct. Digests are associated with specific bags. Digests  are uniquely identifiable by their bag and algorithm.  The entire resource is read-only.\n",
-            "type": "object",
-            "required": [
-                "bag",
-                "node",
-                "algorithm",
-                "value",
-                "created_at"
-            ],
-            "properties": {
-                "bag": {
-                    "description": "UUIDv4 of the bag this digest was calculated on. _(read only)_\n",
-                    "type": "string",
-                    "format": "uuid"
-                },
-                "node": {
-                    "description": "namespace of the node that generated this digest. _(read only)_\n",
-                    "type": "string"
-                },
-                "algorithm": {
-                    "description": "Algorithm used to calculate the value. _(read only)_\n",
-                    "type": "string"
-                },
-                "value": {
-                    "description": "Value calculated for the bag. _(read only)_\n",
-                    "type": "string"
-                },
-                "created_at": {
-                    "description": "DPN-formatted date-time when this record was first created.  _(read only)_\n",
-                    "type": "string",
-                    "format": "date-time"
-                }
+        {
+          "type": "object",
+          "required": [
+            "results"
+          ],
+          "properties": {
+            "results": {
+              "description": "List of members",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Member"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "NodeResultList": {
+      "description": "Container for a list of nodes",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResultList"
+        },
+        {
+          "type": "object",
+          "required": [
+            "results"
+          ],
+          "properties": {
+            "results": {
+              "description": "List of nodes",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Node"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ReplicationRequestResultList": {
+      "description": "Container for a list of replication requests",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ResultList"
+        },
+        {
+          "type": "object",
+          "required": [
+            "results"
+          ],
+          "properties": {
+            "results": {
+              "description": "List of replication requests",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ReplicationRequest"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Bag": {
+      "description": "A DPN bag of any type",
+      "type": "object",
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "uuid",
+            "local_id",
+            "size",
+            "first_version_uuid",
+            "ingest_node",
+            "admin_node",
+            "member",
+            "version",
+            "bag_type",
+            "interpretive"
+          ],
+          "properties": {
+            "uuid": {
+              "description": "Unique UUIDv4 identifier for this bag. _(read only)_",
+              "type": "string",
+              "format": "uuid"
             },
-            "example": {
-                "bag": "9998e960-fc6d-44f4-9d73-9a60a8eae609",
-                "node": "hathi",
-                "algorithm": "sha256",
-                "value": "d904c39f9f900d829c4cf61dac35ee2c6aed986caa0223ec832f6dd98c6e70f5",
-                "created_at": "2015-02-25T16:24:02Z"
-            }
-        },
-        "FixityCheck": {
-            "description": "A Fixity Check is a record of a node performing the necessary operations on a bag to ensure that it remains unchanged at the time of the check.  These records are only uniquely identifiable by fixity_check_id.  The entire record is read-only.\n",
-            "type": "object",
-            "required": [
-                "fixity_check_id",
-                "bag",
-                "node",
-                "success",
-                "fixity_at",
-                "created_at"
-            ],
-            "properties": {
-                "fixity_check_id": {
-                    "description": "UUIDv4 that uniquely identifies this fixity check. _(read only)_\n",
-                    "type": "string",
-                    "format": "uuid"
-                },
-                "bag": {
-                    "description": "UUIDv4 of the bag the check was performed on. _(read only)_\n",
-                    "type": "string",
-                    "format": "uuid"
-                },
-                "node": {
-                    "description": "namespace of the node that performed the check. _(read only)_\n",
-                    "type": "string"
-                },
-                "success": {
-                    "description": "A check is successful if the bag remains unchanged, and is unsuccessful otherwise. _(read only)_\n",
-                    "type": "boolean"
-                },
-                "fixity_at": {
-                    "description": "The time the actual check was completed, as opposed to when this record was created.  Must be less than or equal to created_at.  _(read only)_\n",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "created_at": {
-                    "description": "DPN-formatted date-time when this record was first created.  _(read only)_\n",
-                    "type": "string",
-                    "format": "date-time"
-                }
+            "local_id": {
+              "description": "Primary local identifier.",
+              "type": "string"
             },
-            "example": {  
+            "size": {
+              "description": "Size of the bag in bytes. _(read only)_",
+              "type": "integer",
+              "format": "int64"
+            },
+            "first_version_uuid": {
+              "description": "UUID of the first version of this bag. _(read only)_",
+              "type": "string",
+              "format": "uuid"
+            },
+            "ingest_node": {
+              "description": "Namespace of the node that originally ingest this bag. _(read only)_",
+              "type": "string"
+            },
+            "admin_node": {
+              "description": "Namespace of the node that administers this bag.",
+              "type": "string"
+            },
+            "member": {
+              "description": "UUIDv4 of the member who \"owns\" this bag.",
+              "type": "string",
+              "format": "uuid"
+            },
+            "version": {
+              "description": "This bag's version number, beginning with 1. _(read only)_",
+              "type": "integer",
+              "format": "int32",
+              "minimum": 1
+            },
+            "bag_type": {
+              "description": "Single character specifying the type of this bag. 'D'->Data, 'I'->Interpretive, 'R'->Rights.\n",
+              "type": "string",
+              "enum": [
+                "D",
+                "I",
+                "R"
+              ]
+            },
+            "interpretive": {
+              "description": "Empty array or array of uuids of this bag's interpretive bags.",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid",
+                "uniqueItems": true
+              }
+            },
+            "rights": {
+              "description": "Empty array or array of uuids of this bag's rights bags.",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid",
+                "uniqueItems": true
+              }
+            },
+            "replicating_nodes": {
+              "description": "Empty array or array of namespaces of this bag's replicating nodes.",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "uniqueItems": true
+              }
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/Timestamps"
+        }
+      ],
+      "example": { 
+        "uuid": "9998e960-fc6d-44f4-9d73-9a60a8eae609",
+        "ingest_node": "aptrust",
+        "interpretive": [],
+        "rights": [],
+        "replicating_nodes": [],
+        "admin_node": "aptrust",
+        "member": "a58231cd-6573-4451-b767-f380ee08922c",
+        "local_id": "my_bag",
+        "size": 2526492640,
+        "first_version_uuid": "9998e960-fc6d-44f4-9d73-9a60a8eae609",
+        "version": 1,
+        "bag_type": "D",
+        "created_at": "2015-02-25T16:24:02Z",
+        "updated_at": "2015-02-25T16:24:02Z"
+      }
+    },
+    "Digest": {
+      "description": "A Digest is a specific fixity algorithm:value pair that is known to be correct. Digests are associated with specific bags. Digests  are uniquely identifiable by their bag and algorithm.  The entire resource is read-only.\n",
+      "type": "object",
+      "required": [
+        "bag",
+        "node",
+        "algorithm",
+        "value",
+        "created_at"
+      ],
+      "properties": {
+        "bag": {
+          "description": "UUIDv4 of the bag this digest was calculated on. _(read only)_\n",
+          "type": "string",
+          "format": "uuid"
+        },
+        "node": {
+          "description": "namespace of the node that generated this digest. _(read only)_\n",
+          "type": "string"
+        },
+        "algorithm": {
+          "description": "Algorithm used to calculate the value. _(read only)_\n",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value calculated for the bag. _(read only)_\n",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "DPN-formatted date-time when this record was first created.  _(read only)_\n",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "example": {
+        "bag": "9998e960-fc6d-44f4-9d73-9a60a8eae609",
+        "node": "hathi",
+        "algorithm": "sha256",
+        "value": "d904c39f9f900d829c4cf61dac35ee2c6aed986caa0223ec832f6dd98c6e70f5",
+        "created_at": "2015-02-25T16:24:02Z"
+      }
+    },
+    "FixityCheck": {
+      "description": "A Fixity Check is a record of a node performing the necessary operations on a bag to ensure that it remains unchanged at the time of the check.  These records are only uniquely identifiable by fixity_check_id.  The entire record is read-only.\n",
+      "type": "object",
+      "required": [
+        "fixity_check_id",
+        "bag",
+        "node",
+        "success",
+        "fixity_at",
+        "created_at"
+      ],
+      "properties": {
+        "fixity_check_id": {
+          "description": "UUIDv4 that uniquely identifies this fixity check. _(read only)_\n",
+          "type": "string",
+          "format": "uuid"
+        },
+        "bag": {
+          "description": "UUIDv4 of the bag the check was performed on. _(read only)_\n",
+          "type": "string",
+          "format": "uuid"
+        },
+        "node": {
+          "description": "namespace of the node that performed the check. _(read only)_\n",
+          "type": "string"
+        },
+        "success": {
+          "description": "A check is successful if the bag remains unchanged, and is unsuccessful otherwise. _(read only)_\n",
+          "type": "boolean"
+        },
+        "fixity_at": {
+          "description": "The time the actual check was completed, as opposed to when this record was created.  Must be less than or equal to created_at.  _(read only)_\n",
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_at": {
+          "description": "DPN-formatted date-time when this record was first created.  _(read only)_\n",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "example": {  
 		"fixity_check_id": "7998e960-fc6d-44f4-9d73-9a60a8eae609",  
 		"bag": "9998e960-fc6d-44f4-9d73-9a60a8eae609",  
 		"node": "hathi",
@@ -441,179 +441,179 @@
 		"fixity_at": "2015-02-25T16:23:58Z",
 		"created_at": "2015-02-25T16:24:02Z"
 		}
+    },
+    "Ingest": {
+      "description": "An Ingest record is a record of when a bag achieved the ingested  state within DPN. At the time of writing, this is achieved when  there are three(3) or more copies. Ingest records are also created  when this status is lost.  The entire resource is read-only.\n",
+      "type": "object",
+      "required": [
+        "ingest_id",
+        "bag",
+        "ingested",
+        "replicating_nodes",
+        "created_at"
+      ],
+      "properties": {
+        "ingest_id": {
+          "description": "UUIDv4 that uniquely identifies this record. _(read only)_\n",
+          "type": "string",
+          "format": "uuid"
         },
-        "Ingest": {
-            "description": "An Ingest record is a record of when a bag achieved the ingested  state within DPN. At the time of writing, this is achieved when  there are three(3) or more copies. Ingest records are also created  when this status is lost.  The entire resource is read-only.\n",
-            "type": "object",
-            "required": [
-                "ingest_id",
-                "bag",
-                "ingested",
-                "replicating_nodes",
-                "created_at"
-            ],
-            "properties": {
-                "ingest_id": {
-                    "description": "UUIDv4 that uniquely identifies this record. _(read only)_\n",
-                    "type": "string",
-                    "format": "uuid"
-                },
-                "bag": {
-                    "description": "UUIDv4 of the bag this ingest record refers to._(read only)_\n",
-                    "type": "string",
-                    "format": "uuid"
-                },
-                "ingested": {
-                    "description": "Whether the ingested criteria was met or lost _(read only)_\n",
-                    "type": "boolean"
-                },
-                "replicating_nodes": {
-                    "description": "The node namespaces of nodes that were storing the bag at  the time this record was generated. _(read only)_\n",
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "uniqueItems": true
-                    }
-                },
-                "created_at": {
-                    "description": "DPN-formatted date-time when this record was first created.  _(read only)_\n",
-                    "type": "string",
-                    "format": "date-time"
-                }
-            },
-            "example": {
+        "bag": {
+          "description": "UUIDv4 of the bag this ingest record refers to._(read only)_\n",
+          "type": "string",
+          "format": "uuid"
+        },
+        "ingested": {
+          "description": "Whether the ingested criteria was met or lost _(read only)_\n",
+          "type": "boolean"
+        },
+        "replicating_nodes": {
+          "description": "The node namespaces of nodes that were storing the bag at  the time this record was generated. _(read only)_\n",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "uniqueItems": true
+          }
+        },
+        "created_at": {
+          "description": "DPN-formatted date-time when this record was first created.  _(read only)_\n",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "example": {
 		"ingest_id": "1b49a2aa-6a2a-48db-a44b-28b2df1bc0e6",
 		"bag": "9998e960-fc6d-44f4-9d73-9a60a8eae609",
 		"ingested": true,
 		"replicating_nodes": ["hathi", "chron", "aptrust"],
 		"created_at": "2015-02-25T16:24:02Z"
 		}
+    },
+    "Member": {
+      "description": "A Member represents an institution who deposits data into DPN.\n",
+      "type": "object",
+      "required": [
+        "uuid",
+        "name",
+        "email"
+      ],
+      "properties": {
+        "uuid": {
+          "description": "UUIDv4 that identifies this member. _(read only)_",
+          "type": "string",
+          "format": "uuid"
         },
-        "Member": {
-            "description": "A Member represents an institution who deposits data into DPN.\n",
-            "type": "object",
-            "required": [
-                "uuid",
-                "name",
-                "email"
-            ],
-            "properties": {
-                "uuid": {
-                    "description": "UUIDv4 that identifies this member. _(read only)_",
-                    "type": "string",
-                    "format": "uuid"
-                },
-                "name": {
-                    "description": "The name the member goes by.",
-                    "type": "string"
-                },
-                "email": {
-                    "description": "The contact email for the member.",
-                    "type": "string"
-                }
-            },
-            "example": {
+        "name": {
+          "description": "The name the member goes by.",
+          "type": "string"
+        },
+        "email": {
+          "description": "The contact email for the member.",
+          "type": "string"
+        }
+      },
+      "example": {
 		"uuid": "5e4bc824-9be2-44ea-a22c-d1e74afb30c3",
 		"name": "test-lib",
 		"email": "test-lib@library.edu"
 		}
-        },
-        "Node": {
-            "description": "A DPN node",
-            "type": "object",
-            "allOf": [
-                {
-                    "type": "object",
-                    "required": [
-                        "namespace"
-                    ],
-                    "properties": {
-                        "name": {
-                            "description": "Human readable name of this node\n",
-                            "type": "string"
-                        },
-                        "namespace": {
-                            "description": "Lowercase identifier to unambiguously reference this node.\n",
-                            "type": "string"
-                        },
-                        "api_root": {
-                            "description": "null or the root location of this node's server. This field MUST NOT be changed during normal operations; it should only change out of band.\n",
-                            "type": "string",
-                            "format": "url"
-                        },
-                        "ssh_pubkey": {
-                            "description": "null or the ssh public key of this node.\n",
-                            "type": "string"
-                        },
-                        "replicate_from": {
-                            "description": "Array of namespaces of the nodes that this node will replicate from.\n",
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        "replciate_to": {
-                            "description": "Array of namespaces of the nodes that this node will replicate to.\n",
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        "restore_from": {
-                            "description": "Array of namespaces of the nodes that this node will restore from.\n",
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        "restore_to": {
-                            "description": "Array of namespaces of the nodes that this node will restore to.\n",
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        "protocols": {
-                            "description": "Array of currently supported transfer protocols.\n",
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        "fixity_algorithms": {
-                            "description": "Array of currently supported fixity algorithms.\n",
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        "storage": {
-                            "description": "Storage profile for this node.",
-                            "type": "object",
-                            "properties": {
-                                "region": {
-                                    "description": "Region where bags are stored.",
-                                    "type": "string",
-                                    "enum": [
-                                        "default"
-                                    ]
-                                },
-                                "type": {
-                                    "description": "Type of storage used.",
-                                    "type": "string",
-                                    "enum": [
-                                        "default"
-                                    ]
-                                }
-                            }
-                        }
-                    }
+    },
+    "Node": {
+      "description": "A DPN node",
+      "type": "object",
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "namespace"
+          ],
+          "properties": {
+            "name": {
+              "description": "Human readable name of this node\n",
+              "type": "string"
+            },
+            "namespace": {
+              "description": "Lowercase identifier to unambiguously reference this node.\n",
+              "type": "string"
+            },
+            "api_root": {
+              "description": "null or the root location of this node's server. This field MUST NOT be changed during normal operations; it should only change out of band.\n",
+              "type": "string",
+              "format": "url"
+            },
+            "ssh_pubkey": {
+              "description": "null or the ssh public key of this node.\n",
+              "type": "string"
+            },
+            "replicate_from": {
+              "description": "Array of namespaces of the nodes that this node will replicate from.\n",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "replciate_to": {
+              "description": "Array of namespaces of the nodes that this node will replicate to.\n",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "restore_from": {
+              "description": "Array of namespaces of the nodes that this node will restore from.\n",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "restore_to": {
+              "description": "Array of namespaces of the nodes that this node will restore to.\n",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "protocols": {
+              "description": "Array of currently supported transfer protocols.\n",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "fixity_algorithms": {
+              "description": "Array of currently supported fixity algorithms.\n",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "storage": {
+              "description": "Storage profile for this node.",
+              "type": "object",
+              "properties": {
+                "region": {
+                  "description": "Region where bags are stored.",
+                  "type": "string",
+                  "enum": [
+                    "default"
+                  ]
                 },
-                {
-                    "$ref": "#/definitions/Timestamps"
+                "type": {
+                  "description": "Type of storage used.",
+                  "type": "string",
+                  "enum": [
+                    "default"
+                  ]
                 }
-            ],
-            "example": {
+              }
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/Timestamps"
+        }
+      ],
+      "example": {
 		"protocols": ["rsync"],
 		"storage": {
 			"region": "central",
@@ -631,94 +631,94 @@
 		"created_at": "2015-02-25T15:27:39Z",
 		"updated_at": "2015-03-06T14:21:50Z"
 		}
+    },
+    "ReplicationRequest": {
+      "description": "A Replication Request is the control construct that represents and manages the exchange of a bag from an administrative or ingest node to another node, which then becomes a replicating node for  the bag.\n",
+      "type": "object",
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "replication_id",
+            "from_node",
+            "to_node",
+            "uuid",
+            "fixity_algorithm",
+            "protocol",
+            "link"
+          ],
+          "properties": {
+            "replication_id": {
+              "description": "UUIDv4 that uniquely identifies this replication transfer  request. _(read only)_\n",
+              "type": "string",
+              "format": "uuid"
+            },
+            "from_node": {
+              "description": "Namespace of the node sending the bag. This is the node that generated this request. _(read only)_\n",
+              "type": "string"
+            },
+            "to_node": {
+              "description": "Namespace of the node receiving the bag. Must not be a replicating_node for the bag being transferred.\n",
+              "type": "string"
+            },
+            "uuid": {
+              "description": "UUIDv4 of the bag. _(read only)_\n",
+              "type": "string",
+              "format": "uuid"
+            },
+            "fixity_algorithm": {
+              "description": "Name of the fixity algorithm expected for the receipt. _(read only)_\n",
+              "type": "string"
+            },
+            "fixity_nonce": {
+              "description": "null or the nonce to be used for verification. _(read only)_\n",
+              "type": "string"
+            },
+            "fixity_value": {
+              "description": "null or the string of the fixity value calculated by the to_node after transferring the bag to its staging area.  _(Once set to a  value, this field is read only.)_\n",
+              "type": "string"
+            },
+            "protocol": {
+              "description": "Name of the transfer protocol. _(read only)_\n",
+              "type": "string"
+            },
+            "link": {
+              "description": "URL of the bag to be transferred. _(read only)_\n",
+              "type": "string",
+              "format": "url"
+            },
+            "store_requested": {
+              "description": "Set by the from_node after it receives a correct fixity_value to instruct the to_node to complete the replication.  _(Once  set to true, this field is read only.)_\n",
+              "type": "boolean",
+              "default": false
+            },
+            "stored": {
+              "description": "Set by the to_node to indicate the bag has been transferred into its storage repository from the staging area.  The  to_node promises to fulfill replicating node duties by setting this field.  Must not be set before store_requested. _(Once  set to true, this field is read only.)_\n",
+              "type": "boolean",
+              "default": false
+            },
+            "cancelled": {
+              "description": "Set by either node to immediately end the transaction. _(Once  set to true, the entire record is read-only)_\n",
+              "type": "boolean",
+              "default": false
+            },
+            "cancel_reason": {
+              "description": "null or the reason for cancelling.  The cancel_reason must not be  treated as an actionable field; it is only for debugging  and analytics. Can only be set at the same time as cancelled.\n",
+              "type": "string",
+              "enum": [
+                "reject",
+                "bag_invalid",
+                "fixity_reject",
+                "other"
+              ]
+            }
+          }
         },
-        "ReplicationRequest": {
-            "description": "A Replication Request is the control construct that represents and manages the exchange of a bag from an administrative or ingest node to another node, which then becomes a replicating node for  the bag.\n",
-            "type": "object",
-            "allOf": [
-                {
-                    "type": "object",
-                    "required": [
-                        "replication_id",
-                        "from_node",
-                        "to_node",
-                        "uuid",
-                        "fixity_algorithm",
-                        "protocol",
-                        "link"
-                    ],
-                    "properties": {
-                        "replication_id": {
-                            "description": "UUIDv4 that uniquely identifies this replication transfer  request. _(read only)_\n",
-                            "type": "string",
-                            "format": "uuid"
-                        },
-                        "from_node": {
-                            "description": "Namespace of the node sending the bag. This is the node that generated this request. _(read only)_\n",
-                            "type": "string"
-                        },
-                        "to_node": {
-                            "description": "Namespace of the node receiving the bag. Must be neither the admin_node nor a replicating_node for the bag being transferred.\n",
-                            "type": "string"
-                        },
-                        "uuid": {
-                            "description": "UUIDv4 of the bag. _(read only)_\n",
-                            "type": "string",
-                            "format": "uuid"
-                        },
-                        "fixity_algorithm": {
-                            "description": "Name of the fixity algorithm expected for the receipt. _(read only)_\n",
-                            "type": "string"
-                        },
-                        "fixity_nonce": {
-                            "description": "null or the nonce to be used for verification. _(read only)_\n",
-                            "type": "string"
-                        },
-                        "fixity_value": {
-                            "description": "null or the string of the fixity value calculated by the to_node after transferring the bag to its staging area.  _(Once set to a  value, this field is read only.)_\n",
-                            "type": "string"
-                        },
-                        "protocol": {
-                            "description": "Name of the transfer protocol. _(read only)_\n",
-                            "type": "string"
-                        },
-                        "link": {
-                            "description": "URL of the bag to be transferred. _(read only)_\n",
-                            "type": "string",
-                            "format": "url"
-                        },
-                        "store_requested": {
-                            "description": "Set by the from_node after it receives a correct fixity_value to instruct the to_node to complete the replication.  _(Once  set to true, this field is read only.)_\n",
-                            "type": "boolean",
-                            "default": false
-                        },
-                        "stored": {
-                            "description": "Set by the to_node to indicate the bag has been transferred into its storage repository from the staging area.  The  to_node promises to fulfill replicating node duties by setting this field.  Must not be set before store_requested. _(Once  set to true, this field is read only.)_\n",
-                            "type": "boolean",
-                            "default": false
-                        },
-                        "cancelled": {
-                            "description": "Set by either node to immediately end the transaction. _(Once  set to true, the entire record is read-only)_\n",
-                            "type": "boolean",
-                            "default": false
-                        },
-                        "cancel_reason": {
-                            "description": "null or the reason for cancelling.  The cancel_reason must not be  treated as an actionable field; it is only for debugging  and analytics. Can only be set at the same time as cancelled.\n",
-                            "type": "string",
-                            "enum": [
-                                "reject",
-                                "bag_invalid",
-                                "fixity_reject",
-                                "other"
-                            ]
-                        }
-                    }
-                },
-                {
-                    "$ref": "#/definitions/Timestamps"
-                }
-            ],
-            "example": {
+        {
+          "$ref": "#/definitions/Timestamps"
+        }
+      ],
+      "example": {
 		"from_node": "aptrust",
 		"to_node": "chron",
 		"bag": "cfd167a0-baad-4235-b896-041e710e6c62",
@@ -735,1073 +735,1079 @@
 		"created_at": "2015-02-25T15:27:40Z",
 		"updated_at": "2015-02-25T15:27:40Z"
 		}
-        }
+    }
+  },
+  "parameters": {
+    "before": {
+      "name": "before",
+      "in": "query",
+      "description": "Only include records with updated_at **earlier**  than this, inclusive.\n",
+      "required": false,
+      "type": "string",
+      "format": "date-time"
     },
-    "parameters": {
-        "before": {
-            "name": "before",
+    "before_created": {
+      "name": "before",
+      "in": "query",
+      "description": "Only include records with created_at **earlier**  than this, inclusive.\n",
+      "required": false,
+      "type": "string",
+      "format": "date-time"
+    },
+    "after": {
+      "name": "after",
+      "in": "query",
+      "description": "Only include records with updated_at **later**  than this, inclusive.\n",
+      "required": false,
+      "type": "string",
+      "format": "date-time"
+    },
+    "after_created": {
+      "name": "after",
+      "in": "query",
+      "description": "Only include records with created_at **later**  than this, inclusive.\n",
+      "required": false,
+      "type": "string",
+      "format": "date-time"
+    },
+    "page": {
+      "name": "page",
+      "in": "query",
+      "description": "Page number to return, starting at 1.  For use  with page_size.\n",
+      "required": true,
+      "type": "integer",
+      "format": "int32"
+    },
+    "page_size": {
+      "name": "page_size",
+      "in": "query",
+      "description": "Max results per page.\n",
+      "required": true,
+      "type": "integer",
+      "format": "int32"
+    },
+    "bag_uuid_path": {
+      "name": "uuid",
+      "description": "UUIDv4 of the target bag",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "format": "uuid"
+    },
+    "order_by_timestamps": {
+      "name": "order_by",
+      "in": "query",
+      "description": "Comma separated list of string fields by which to order the response.\n",
+      "required": false,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "collectionFormat": "csv",
+        "enum": [
+          "updated_at",
+          "created_at"
+        ]
+      }
+    }
+  },
+  "paths": {
+    "/bag": {
+      "get": {
+        "summary": "List of bags",
+        "description": "Returns a list of Bag records.\n",
+        "tags": [
+          "Bag"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/before"
+          },
+          {
+            "$ref": "#/parameters/after"
+          },
+          {
+            "$ref": "#/parameters/page"
+          },
+          {
+            "$ref": "#/parameters/page_size"
+          },
+          {
+            "$ref": "#/parameters/order_by_timestamps"
+          },
+          {
+            "name": "admin_node",
             "in": "query",
-            "description": "Only include records with updated_at **earlier**  than this, inclusive.\n",
+            "description": "Filter by admin_node namespace.\n",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "member",
+            "in": "query",
+            "description": "Filter by the member_id of the member who owns or manages this bag.\n",
             "required": false,
             "type": "string",
-            "format": "date-time"
-        },
-        "before_created": {
-            "name": "before",
+            "format": "uuid"
+          },
+          {
+            "name": "bag_type",
             "in": "query",
-            "description": "Only include records with created_at **earlier**  than this, inclusive.\n",
+            "description": "Filter by bag type.",
             "required": false,
             "type": "string",
-            "format": "date-time"
-        },
-        "after": {
-            "name": "after",
-            "in": "query",
-            "description": "Only include records with updated_at **later**  than this, inclusive.\n",
-            "required": false,
-            "type": "string",
-            "format": "date-time"
-        },
-        "after_created": {
-            "name": "after",
-            "in": "query",
-            "description": "Only include records with created_at **later**  than this, inclusive.\n",
-            "required": false,
-            "type": "string",
-            "format": "date-time"
-        },
-        "page": {
-            "name": "page",
-            "in": "query",
-            "description": "Page number to return, starting at 1.  For use  with page_size.\n",
+            "enum": [
+              "D",
+              "I",
+              "R"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/BagResultList"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a bag",
+        "description": "This endpoint allows the creation of a single bag through a post body. The post body is the same as the data structure for the bag.  If successful, the response will be identical to that of a GET request.\n",
+        "tags": [
+          "Bag"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
             "required": true,
-            "type": "integer",
-            "format": "int32"
-        },
-        "page_size": {
-            "name": "page_size",
-            "in": "query",
-            "description": "Max results per page.\n",
-            "required": true,
-            "type": "integer",
-            "format": "int32"
-        },
-        "bag_uuid_path": {
+            "schema": {
+              "$ref": "#/definitions/Bag"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Bag"
+            }
+          },
+          "400": {
+            "description": "Bad Resource",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          },
+          "403": {
+            "description": "Authenticated, Not Authorized"
+          },
+          "409": {
+            "description": "Duplicate"
+          }
+        }
+      }
+    },
+    "/bag/{uuid}": {
+      "get": {
+        "summary": "Returns the data for a single bag record matching the uuid.",
+        "description": "Returns the data for a single bag record matching the uuid.",
+        "tags": [
+          "Bag"
+        ],
+        "parameters": [
+          {
             "name": "uuid",
-            "description": "UUIDv4 of the target bag",
             "in": "path",
+            "description": "UUID of the target bag",
             "required": true,
             "type": "string",
             "format": "uuid"
-        },
-        "order_by_timestamps": {
-            "name": "order_by",
-            "in": "query",
-            "description": "Comma separated list of string fields by which to order the response.\n",
-            "required": false,
-            "type": "array",
-            "items": {
-                "type": "string",
-                "collectionFormat": "csv",
-                "enum": [
-                    "updated_at",
-                    "created_at"
-                ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Bag"
             }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          },
+          "404": {
+            "description": "Not Found"
+          }
         }
+      },
+      "put": {
+        "summary": "Update the bag",
+        "description": "Updates a single bag matching the uuid.  The body of the put is the same as the data structure for the bag.  If successful, the response will be identical to that of a GET request.\n",
+        "tags": [
+          "Bag"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "UUID of the target bag.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Bag"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Bag"
+            }
+          },
+          "400": {
+            "description": "Bad Resource or Illegal Change",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          },
+          "403": {
+            "description": "Authenticated, Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
     },
-    "paths": {
-        "/bag": {
-            "get": {
-                "summary": "List of bags",
-                "description": "Returns a list of Bag records.\n",
-                "tags": [
-                    "Bag"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/before"
-                    },
-                    {
-                        "$ref": "#/parameters/after"
-                    },
-                    {
-                        "$ref": "#/parameters/page"
-                    },
-                    {
-                        "$ref": "#/parameters/page_size"
-                    },
-                    {
-                        "$ref": "#/parameters/order_by_timestamps"
-                    },
-                    {
-                        "name": "admin_node",
-                        "in": "query",
-                        "description": "Filter by admin_node namespace.\n",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "member",
-                        "in": "query",
-                        "description": "Filter by the member_id of the member who owns or manages this bag.\n",
-                        "required": false,
-                        "type": "string",
-                        "format": "uuid"
-                    },
-                    {
-                        "name": "bag_type",
-                        "in": "query",
-                        "description": "Filter by bag type.",
-                        "required": false,
-                        "type": "string",
-                        "enum": [
-                            "D",
-                            "I",
-                            "R"
-                        ]
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/BagResultList"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    }
-                }
-            },
-            "post": {
-                "summary": "Create a bag",
-                "description": "This endpoint allows the creation of a single bag through a post body. The post body is the same as the data structure for the bag.  If successful, the response will be identical to that of a GET request.\n",
-                "tags": [
-                    "Bag"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Bag"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/Bag"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Resource",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    },
-                    "403": {
-                        "description": "Authenticated, Not Authorized"
-                    },
-                    "409": {
-                        "description": "Duplicate"
-                    }
-                }
+    "/digest": {
+      "get": {
+        "summary": "List of digests",
+        "description": "This endpoint is meant to facilitate synchronizing of data.  It returns a list of digests.\n",
+        "tags": [
+          "Digest"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/before_created"
+          },
+          {
+            "$ref": "#/parameters/after_created"
+          },
+          {
+            "$ref": "#/parameters/order_by_timestamps"
+          },
+          {
+            "$ref": "#/parameters/page"
+          },
+          {
+            "$ref": "#/parameters/page_size"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DigestResultList"
             }
-        },
-        "/bag/{uuid}": {
-            "get": {
-                "summary": "Returns the data for a single bag record matching the uuid.",
-                "description": "Returns the data for a single bag record matching the uuid.",
-                "tags": [
-                    "Bag"
-                ],
-                "parameters": [
-                    {
-                        "name": "uuid",
-                        "in": "path",
-                        "description": "UUID of the target bag",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/Bag"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "put": {
-                "summary": "Update the bag",
-                "description": "Updates a single bag matching the uuid.  The body of the put is the same as the data structure for the bag.  If successful, the response will be identical to that of a GET request.\n",
-                "tags": [
-                    "Bag"
-                ],
-                "parameters": [
-                    {
-                        "name": "uuid",
-                        "in": "path",
-                        "description": "UUID of the target bag.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Bag"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/Bag"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Resource or Illegal Change",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    },
-                    "403": {
-                        "description": "Authenticated, Not Authorized"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/digest": {
-            "get": {
-                "summary": "List of digests",
-                "description": "This endpoint is meant to facilitate synchronizing of data.  It returns a list of digests.\n",
-                "tags": [
-                    "Digest"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/before_created"
-                    },
-                    {
-                        "$ref": "#/parameters/after_created"
-                    },
-                    {
-                        "$ref": "#/parameters/page"
-                    },
-                    {
-                        "$ref": "#/parameters/page_size"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/DigestResultList"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    }
-                }
-            }
-        },
-        "/bag/{uuid}/digest": {
-            "get": {
-                "summary": "List of digests for the specified bag",
-                "description": "Return a list of message digests for the specified bag.\n",
-                "tags": [
-                    "Digest"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/bag_uuid_path"
-                    },
-                    {
-                        "$ref": "#/parameters/before_created"
-                    },
-                    {
-                        "$ref": "#/parameters/after_created"
-                    },
-                    {
-                        "$ref": "#/parameters/page"
-                    },
-                    {
-                        "$ref": "#/parameters/page_size"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/DigestResultList"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    }
-                }
-            },
-            "post": {
-                "summary": "Create a digest for the specified bag",
-                "description": "This endpoint allows the creation of a single digest through a post body.  The body is the same as the data structure for the Digest. If successful, the response will be identical to that of a GET request.\n",
-                "tags": [
-                    "Digest"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/bag_uuid_path"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Digest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/Digest"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Resource",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    },
-                    "403": {
-                        "description": "Authenticated, Not Authorized"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    },
-                    "409": {
-                        "description": "Duplicate"
-                    }
-                }
-            }
-        },
-        "/bag/{uuid}/digest/{algorithm}": {
-            "get": {
-                "summary": "Show a specific digest record.",
-                "description": "Returns the data for the specific digest record matching  the bag's uuid and the digest algorithm.  These two values always uniquely identify a digest.\n",
-                "tags": [
-                    "Digest"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/bag_uuid_path"
-                    },
-                    {
-                        "name": "algorithm",
-                        "in": "path",
-                        "description": "Name of the algorithm used",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/Digest"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/fixity_check": {
-            "get": {
-                "summary": "List of fixity checks",
-                "description": "Returns a list of fixity checks\n",
-                "tags": [
-                    "Fixity Check"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/before_created"
-                    },
-                    {
-                        "$ref": "#/parameters/after_created"
-                    },
-                    {
-                        "$ref": "#/parameters/page"
-                    },
-                    {
-                        "$ref": "#/parameters/page_size"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/FixityCheckResultList"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    }
-                }
-            },
-            "post": {
-                "summary": "Create a fixity check",
-                "description": "This endpoint allows the creation of a single fixity check record through  a post body.  The body is the same as the data structure for the fixity check.  If successful, the response will contain the created record.\n",
-                "tags": [
-                    "Fixity Check"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/FixityCheck"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/FixityCheck"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Resource",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    },
-                    "403": {
-                        "description": "Authenticated, Not Authorized"
-                    },
-                    "409": {
-                        "description": "Duplicate"
-                    }
-                }
-            }
-        },
-        "/ingest": {
-            "get": {
-                "summary": "List of ingest records",
-                "description": "Returns a list of ingest records\n",
-                "tags": [
-                    "Ingest"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/before_created"
-                    },
-                    {
-                        "$ref": "#/parameters/after_created"
-                    },
-                    {
-                        "$ref": "#/parameters/page"
-                    },
-                    {
-                        "$ref": "#/parameters/page_size"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/IngestResultList"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    }
-                }
-            },
-            "post": {
-                "summary": "Create an ingest",
-                "description": "This endpoint allows the creation of a single ingest record through  a post body.  The body is the same as the data structure for the ingest record.  If successful, the response will contain the created record.\n",
-                "tags": [
-                    "Ingest"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Ingest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/Ingest"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Resource",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    },
-                    "403": {
-                        "description": "Authenticated, Not Authorized"
-                    },
-                    "409": {
-                        "description": "Duplicate"
-                    }
-                }
-            }
-        },
-        "/node": {
-            "get": {
-                "summary": "List of nodes",
-                "description": "Return a list of node records.\n",
-                "tags": [
-                    "Node"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/before"
-                    },
-                    {
-                        "$ref": "#/parameters/after"
-                    },
-                    {
-                        "$ref": "#/parameters/page"
-                    },
-                    {
-                        "$ref": "#/parameters/page_size"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/NodeResultList"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    }
-                }
-            }
-        },
-        "/node/{namespace}": {
-            "get": {
-                "summary": "Returns the data for a single bag matching the namespace.",
-                "description": "Returns the data for a single bag matching the namespace.",
-                "tags": [
-                    "Node"
-                ],
-                "parameters": [
-                    {
-                        "name": "namespace",
-                        "in": "path",
-                        "description": "namespace of the target node",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/Node"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "put": {
-                "summary": "Update the node",
-                "description": "Updates a single Node matching the namespace. The body of the put  is the same as the data structure listed for a single record above.  If successful, the response will be identical to that of a GET request.\n",
-                "tags": [
-                    "Node"
-                ],
-                "parameters": [
-                    {
-                        "name": "namespace",
-                        "in": "path",
-                        "description": "namespace of the target node",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "body",
-                        "description": "Body of the node",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Node"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/Node"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Resource or Illegal Change",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    },
-                    "403": {
-                        "description": "Authenticated, Not Authorized"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/member": {
-            "get": {
-                "summary": "List of members",
-                "description": "Returns a list of members.\n",
-                "tags": [
-                    "Member"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/before"
-                    },
-                    {
-                        "$ref": "#/parameters/after"
-                    },
-                    {
-                        "$ref": "#/parameters/page"
-                    },
-                    {
-                        "$ref": "#/parameters/page_size"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/MemberResultList"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    }
-                }
-            },
-            "post": {
-                "summary": "Create a member",
-                "description": "This endpoint allows the creation of a single member through a post body.  The body is the same as the data structure for the Member. If successful, the response will be identical to that of a GET request.\n",
-                "tags": [
-                    "Member"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Member"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/Member"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Resource",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    },
-                    "403": {
-                        "description": "Authenticated, Not Authorized"
-                    },
-                    "409": {
-                        "description": "Duplicate"
-                    }
-                }
-            }
-        },
-        "/member/{uuid}": {
-            "get": {
-                "summary": "Returns the data for a single member record matching the uuid.",
-                "description": "Returns the data for a single member record matching the uuid.",
-                "tags": [
-                    "Member"
-                ],
-                "parameters": [
-                    {
-                        "name": "uuid",
-                        "in": "path",
-                        "description": "UUID of the target member",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/Member"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "put": {
-                "summary": "Update the member",
-                "description": "Updates a single member matching the uuid.  The body of the put is the same as the data structure for the member.  If successful, the response will be identical to that of a GET request.\n",
-                "tags": [
-                    "Member"
-                ],
-                "parameters": [
-                    {
-                        "name": "uuid",
-                        "in": "path",
-                        "description": "UUID of the target member.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Member"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/Member"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Resource or Illegal Change",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    },
-                    "403": {
-                        "description": "Authenticated, Not Authorized"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
-        },
-        "/member/{uuid}/bags": {
-            "get": {
-                "summary": "Returns the member's bags",
-                "description": "Returns the member's bags.  Behavior should match that  of ```/bags/?member=<member:uuid>```, including querystring options except for ```member```.\n",
-                "tags": [
-                    "Member",
-                    "Bag"
-                ],
-                "parameters": [
-                    {
-                        "name": "uuid",
-                        "in": "path",
-                        "description": "UUID of the target member",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
-                    },
-                    {
-                        "$ref": "#/parameters/page"
-                    },
-                    {
-                        "$ref": "#/parameters/page_size"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/BagResultList"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    }
-                }
-            }
-        },
-        "/replicate": {
-            "get": {
-                "summary": "List of replication requests",
-                "description": "Returns a list of replication transfer requests.\n",
-                "tags": [
-                    "Replicate"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/before"
-                    },
-                    {
-                        "$ref": "#/parameters/after"
-                    },
-                    {
-                        "$ref": "#/parameters/page"
-                    },
-                    {
-                        "$ref": "#/parameters/page_size"
-                    },
-                    {
-                        "$ref": "#/parameters/order_by_timestamps"
-                    },
-                    {
-                        "name": "uuid",
-                        "in": "query",
-                        "description": "Filter by the bag's uuid\n",
-                        "required": false,
-                        "type": "string",
-                        "format": "uuid"
-                    },
-                    {
-                        "name": "store_requested",
-                        "in": "query",
-                        "description": "Filter by store_requested\n",
-                        "required": false,
-                        "type": "boolean"
-                    },
-                    {
-                        "name": "stored",
-                        "in": "query",
-                        "description": "Filter by stored\n",
-                        "required": false,
-                        "type": "boolean"
-                    },
-                    {
-                        "name": "cancelled",
-                        "in": "query",
-                        "description": "Filter by cancelled\n",
-                        "required": false,
-                        "type": "boolean"
-                    },
-                    {
-                        "name": "cancel_reason",
-                        "in": "query",
-                        "description": "Filter by cancel_reason.  Refer to the definition of ReplicationRequest for support values.\n",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "from_node",
-                        "in": "query",
-                        "description": "Filter by from_node namespace.\n",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/ReplicationRequestResultList"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    }
-                }
-            },
-            "post": {
-                "summary": "Create a bag",
-                "description": "This endpoint allows the creation of a single replication request through a post body.  The post body is the same as the data structure  for the replication request.  If successful, the response will be  identical to that of a GET request.\n",
-                "tags": [
-                    "Replicate"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ReplicationRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/ReplicationRequest"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Resource",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    },
-                    "403": {
-                        "description": "Authenticated, Not Authorized"
-                    },
-                    "409": {
-                        "description": "Duplicate"
-                    }
-                }
-            }
-        },
-        "/replicate/{replication_id}": {
-            "get": {
-                "summary": "Returns the data for a single replication request.",
-                "description": "Returns the data for a single replication transfer request record matching the replication_id.\n",
-                "tags": [
-                    "Replicate"
-                ],
-                "parameters": [
-                    {
-                        "name": "replication_id",
-                        "in": "path",
-                        "description": "replication_id of the target record",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/ReplicationRequest"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            },
-            "put": {
-                "summary": "Update the replication request",
-                "description": "Updates a single replication transfer requestmatching the  replication_id.  The body of the put is the same as the data  structure for the replication request.  If successful, the  response will be identical to that of a GET request.\n",
-                "tags": [
-                    "Replicate"
-                ],
-                "parameters": [
-                    {
-                        "name": "replication_id",
-                        "in": "path",
-                        "description": "replication_id of the target record",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ReplicationRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "schema": {
-                            "$ref": "#/definitions/ReplicationRequest"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Resource or Illegal Change",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    },
-                    "401": {
-                        "description": "Authentication Failed"
-                    },
-                    "403": {
-                        "description": "Authenticated, Not Authorized"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                }
-            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          }
         }
+      }
+    },
+    "/bag/{uuid}/digest": {
+      "get": {
+        "summary": "List of digests for the specified bag",
+        "description": "Return a list of message digests for the specified bag.\n",
+        "tags": [
+          "Digest"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/bag_uuid_path"
+          },
+          {
+            "$ref": "#/parameters/before_created"
+          },
+          {
+            "$ref": "#/parameters/after_created"
+          },
+          {
+            "$ref": "#/parameters/order_by_timestamps"
+          },
+          {
+            "$ref": "#/parameters/page"
+          },
+          {
+            "$ref": "#/parameters/page_size"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/DigestResultList"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a digest for the specified bag",
+        "description": "This endpoint allows the creation of a single digest through a post body.  The body is the same as the data structure for the Digest. If successful, the response will be identical to that of a GET request.\n",
+        "tags": [
+          "Digest"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/bag_uuid_path"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Digest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Digest"
+            }
+          },
+          "400": {
+            "description": "Bad Resource",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          },
+          "403": {
+            "description": "Authenticated, Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "409": {
+            "description": "Duplicate"
+          }
+        }
+      }
+    },
+    "/bag/{uuid}/digest/{algorithm}": {
+      "get": {
+        "summary": "Show a specific digest record.",
+        "description": "Returns the data for the specific digest record matching  the bag's uuid and the digest algorithm.  These two values always uniquely identify a digest.\n",
+        "tags": [
+          "Digest"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/bag_uuid_path"
+          },
+          {
+            "name": "algorithm",
+            "in": "path",
+            "description": "Name of the algorithm used",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Digest"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/fixity_check": {
+      "get": {
+        "summary": "List of fixity checks",
+        "description": "Returns a list of fixity checks\n",
+        "tags": [
+          "Fixity Check"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/before_created"
+          },
+          {
+            "$ref": "#/parameters/after_created"
+          },
+          {
+            "$ref": "#/parameters/page"
+          },
+          {
+            "$ref": "#/parameters/page_size"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FixityCheckResultList"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a fixity check",
+        "description": "This endpoint allows the creation of a single fixity check record through  a post body.  The body is the same as the data structure for the fixity check.  If successful, the response will contain the created record.\n",
+        "tags": [
+          "Fixity Check"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FixityCheck"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FixityCheck"
+            }
+          },
+          "400": {
+            "description": "Bad Resource",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          },
+          "403": {
+            "description": "Authenticated, Not Authorized"
+          },
+          "409": {
+            "description": "Duplicate"
+          }
+        }
+      }
+    },
+    "/ingest": {
+      "get": {
+        "summary": "List of ingest records",
+        "description": "Returns a list of ingest records\n",
+        "tags": [
+          "Ingest"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/before_created"
+          },
+          {
+            "$ref": "#/parameters/after_created"
+          },
+          {
+            "$ref": "#/parameters/page"
+          },
+          {
+            "$ref": "#/parameters/page_size"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/IngestResultList"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create an ingest",
+        "description": "This endpoint allows the creation of a single ingest record through  a post body.  The body is the same as the data structure for the ingest record.  If successful, the response will contain the created record.\n",
+        "tags": [
+          "Ingest"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Ingest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Ingest"
+            }
+          },
+          "400": {
+            "description": "Bad Resource",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          },
+          "403": {
+            "description": "Authenticated, Not Authorized"
+          },
+          "409": {
+            "description": "Duplicate"
+          }
+        }
+      }
+    },
+    "/node": {
+      "get": {
+        "summary": "List of nodes",
+        "description": "Return a list of node records.\n",
+        "tags": [
+          "Node"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/before"
+          },
+          {
+            "$ref": "#/parameters/after"
+          },
+          {
+            "$ref": "#/parameters/page"
+          },
+          {
+            "$ref": "#/parameters/page_size"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/NodeResultList"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          }
+        }
+      }
+    },
+    "/node/{namespace}": {
+      "get": {
+        "summary": "Returns the data for a single bag matching the namespace.",
+        "description": "Returns the data for a single bag matching the namespace.",
+        "tags": [
+          "Node"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace of the target node",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update the node",
+        "description": "Updates a single Node matching the namespace. The body of the put  is the same as the data structure listed for a single record above.  If successful, the response will be identical to that of a GET request.\n",
+        "tags": [
+          "Node"
+        ],
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "description": "namespace of the target node",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "description": "Body of the node",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Node"
+            }
+          },
+          "400": {
+            "description": "Bad Resource or Illegal Change",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          },
+          "403": {
+            "description": "Authenticated, Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/member": {
+      "get": {
+        "summary": "List of members",
+        "description": "Returns a list of members.\n",
+        "tags": [
+          "Member"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/before"
+          },
+          {
+            "$ref": "#/parameters/after"
+          },
+          {
+            "$ref": "#/parameters/page"
+          },
+          {
+            "$ref": "#/parameters/page_size"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/MemberResultList"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a member",
+        "description": "This endpoint allows the creation of a single member through a post body.  The body is the same as the data structure for the Member. If successful, the response will be identical to that of a GET request.\n",
+        "tags": [
+          "Member"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Member"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Member"
+            }
+          },
+          "400": {
+            "description": "Bad Resource",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          },
+          "403": {
+            "description": "Authenticated, Not Authorized"
+          },
+          "409": {
+            "description": "Duplicate"
+          }
+        }
+      }
+    },
+    "/member/{uuid}": {
+      "get": {
+        "summary": "Returns the data for a single member record matching the uuid.",
+        "description": "Returns the data for a single member record matching the uuid.",
+        "tags": [
+          "Member"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "UUID of the target member",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Member"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update the member",
+        "description": "Updates a single member matching the uuid.  The body of the put is the same as the data structure for the member.  If successful, the response will be identical to that of a GET request.\n",
+        "tags": [
+          "Member"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "UUID of the target member.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Member"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Member"
+            }
+          },
+          "400": {
+            "description": "Bad Resource or Illegal Change",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          },
+          "403": {
+            "description": "Authenticated, Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/member/{uuid}/bags": {
+      "get": {
+        "summary": "Returns the member's bags",
+        "description": "Returns the member's bags.  Behavior should match that  of ```/bags/?member=<member:uuid>```, including querystring options except for ```member```.\n",
+        "tags": [
+          "Member",
+          "Bag"
+        ],
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "description": "UUID of the target member",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "$ref": "#/parameters/page"
+          },
+          {
+            "$ref": "#/parameters/page_size"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/BagResultList"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          }
+        }
+      }
+    },
+    "/replicate": {
+      "get": {
+        "summary": "List of replication requests",
+        "description": "Returns a list of replication transfer requests.\n",
+        "tags": [
+          "Replicate"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/before"
+          },
+          {
+            "$ref": "#/parameters/after"
+          },
+          {
+            "$ref": "#/parameters/page"
+          },
+          {
+            "$ref": "#/parameters/page_size"
+          },
+          {
+            "$ref": "#/parameters/order_by_timestamps"
+          },
+          {
+            "name": "uuid",
+            "in": "query",
+            "description": "Filter by the bag's uuid\n",
+            "required": false,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "store_requested",
+            "in": "query",
+            "description": "Filter by store_requested\n",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "stored",
+            "in": "query",
+            "description": "Filter by stored\n",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "cancelled",
+            "in": "query",
+            "description": "Filter by cancelled\n",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "cancel_reason",
+            "in": "query",
+            "description": "Filter by cancel_reason.  Refer to the definition of ReplicationRequest for support values.\n",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "from_node",
+            "in": "query",
+            "description": "Filter by from_node namespace.\n",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ReplicationRequestResultList"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a bag",
+        "description": "This endpoint allows the creation of a single replication request through a post body.  The post body is the same as the data structure  for the replication request.  If successful, the response will be  identical to that of a GET request.\n",
+        "tags": [
+          "Replicate"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReplicationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ReplicationRequest"
+            }
+          },
+          "400": {
+            "description": "Bad Resource",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          },
+          "403": {
+            "description": "Authenticated, Not Authorized"
+          },
+          "409": {
+            "description": "Duplicate"
+          }
+        }
+      }
+    },
+    "/replicate/{replication_id}": {
+      "get": {
+        "summary": "Returns the data for a single replication request.",
+        "description": "Returns the data for a single replication transfer request record matching the replication_id.\n",
+        "tags": [
+          "Replicate"
+        ],
+        "parameters": [
+          {
+            "name": "replication_id",
+            "in": "path",
+            "description": "replication_id of the target record",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ReplicationRequest"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update the replication request",
+        "description": "Updates a single replication transfer requestmatching the  replication_id.  The body of the put is the same as the data  structure for the replication request.  If successful, the  response will be identical to that of a GET request.\n",
+        "tags": [
+          "Replicate"
+        ],
+        "parameters": [
+          {
+            "name": "replication_id",
+            "in": "path",
+            "description": "replication_id of the target record",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReplicationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ReplicationRequest"
+            }
+          },
+          "400": {
+            "description": "Bad Resource or Illegal Change",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed"
+          },
+          "403": {
+            "description": "Authenticated, Not Authorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
     }
+  }
 }
