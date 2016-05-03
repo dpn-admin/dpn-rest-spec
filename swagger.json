@@ -8,7 +8,7 @@
     "schemes": [
         "https"
     ],
-    "basePath": "/api-v1",
+    "basePath": "/api-v2",
     "consumes": [
         "application/json"
     ],
@@ -658,7 +658,7 @@
                             "type": "string"
                         },
                         "to_node": {
-                            "description": "Namespace of the node receiving the bag. Must be neither the admin_node nor a replicating_node for the bag being transferred.\n",
+                            "description": "Namespace of the node receiving the bag. Must not be a replicating_node for the bag being transferred.\n",
                             "type": "string"
                         },
                         "uuid": {
