@@ -1,0 +1,18 @@
+description: Generic list of results
+type: object
+required:
+  - count
+  - next
+  - previous
+properties:
+  count:
+    description: Count of total results
+    type: integer
+    format: int32
+    minimum: 0
+  next:
+    description: URL of next page, or null. Note that null (correct) is not "null" (incorrect).
+    type: string
+  previous:
+    description: URL of previous page, or null. Note that null (correct) is not "null" (incorrect).
+    type: string

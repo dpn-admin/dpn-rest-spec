@@ -1,0 +1,26 @@
+summary: Create a member
+description: >
+  This endpoint allows the creation of a single member through a post
+  body.  The body is the same as the data structure for the Member.
+  If successful, the response will be identical to that of a GET request.
+tags:
+  - Member
+parameters:
+  - name: body
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/Member'
+responses:
+  "201":
+    description: Success
+    schema:
+      $ref: '#/definitions/Member'
+  "400":
+    $ref: '#/responses/400'
+  "401":
+    $ref: '#/responses/401'
+  "403":
+    $ref: '#/responses/403'
+  "409":
+    $ref: '#/responses/409'

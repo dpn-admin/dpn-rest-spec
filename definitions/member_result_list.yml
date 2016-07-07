@@ -1,0 +1,24 @@
+description: Container for a list of members
+type: object
+allOf:
+  - $ref: '#/definitions/ResultList'
+  - type: object
+    required:
+      - results
+    properties:
+      results:
+        description: List of members
+        type: array
+        items:
+          $ref: '#/definitions/Member'
+example:
+  count: 2
+  next: http://localhost:8000/api_v1/member/?page=3&page_size=2
+  previous: http://localhost:8000/api_v1/member/?page=1&page_size=2
+  results:
+    - uuid: 5e4bc824-9be2-44ea-a22c-d1e74afb30c3
+      name: test-user
+      email: test@test.calm
+    - uuid: a58231cd-6573-4451-b767-f380ee08922c
+      name: HathiTrust
+      email: bhock@umich.edu

@@ -1,0 +1,17 @@
+summary: List of members
+description: >
+  Returns a list of members.
+tags:
+  - Member
+parameters:
+  - $ref: '#/parameters/before'
+  - $ref: '#/parameters/after'
+  - $ref: '#/parameters/page'
+  - $ref: '#/parameters/page_size'
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/MemberResultList'
+  "401":
+    $ref: '#/responses/401'

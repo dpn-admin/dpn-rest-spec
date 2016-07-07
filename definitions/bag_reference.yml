@@ -1,0 +1,8 @@
+required:
+  - bag
+properties:
+  bag:
+    description: >
+      UUIDv4 of the associated bag. _(read only)_
+    type: string
+    format: uuid

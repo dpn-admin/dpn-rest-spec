@@ -1,0 +1,29 @@
+summary: Create a digest for the specified bag
+description: >
+  This endpoint allows the creation of a single digest through a post
+  body.  The body is the same as the data structure for the Digest.
+  If successful, the response will be identical to that of a GET request.
+tags:
+  - Digest
+parameters:
+  - $ref: '#/parameters/bag_uuid_path'
+  - name: body
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/Digest'
+responses:
+  "201":
+    description: Success
+    schema:
+      $ref: '#/definitions/Digest'
+  "400":
+    $ref: '#/responses/400'
+  "401":
+    $ref: '#/responses/401'
+  "403":
+    $ref: '#/responses/403'
+  "404":
+    $ref: '#/responses/404'
+  "409":
+    $ref: '#/responses/409'

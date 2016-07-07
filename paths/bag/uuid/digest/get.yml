@@ -1,0 +1,19 @@
+summary: List of digests for the specified bag
+description: >
+  Return a list of message digests for the specified bag.
+tags:
+  - Digest
+parameters:
+  - $ref: '#/parameters/bag_uuid_path'
+  - $ref: '#/parameters/before_created'
+  - $ref: '#/parameters/after_created'
+  - $ref: '#/parameters/page'
+  - $ref: '#/parameters/page_size'
+  - $ref: '#/parameters/order_by_timestamps'
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/DigestResultList'
+  "401":
+    $ref: '#/responses/401'
