@@ -29,7 +29,7 @@ A basic redirect can be used to push the compiled schema to a file:
 2. Use npm to install dependencies and run swagger-ui
   * `npm install`
   * `npm run serve`
-3. Copy the compiled spec to `swagger-ui/dist/html/swagger.yaml`
+3. Copy the compiled spec to `swagger-ui/dist/html/yaml/swagger.yaml`
 4. Check the swagger ui
   1. Navigate to localhost:8080
   2. Explore `http://localhost:8080/yaml/swagger.yaml`
