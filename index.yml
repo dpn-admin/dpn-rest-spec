@@ -11,211 +11,47 @@ produces:
   - application/json
   
 definitions:
-  Error:
-    $ref: ./definitions/error.yml
-  Timestamps:
-    $ref: ./definitions/timestamps.yml
-  ReadOnlyTimestamps:
-    $ref: ./definitions/read_only_timestamps.yml
-  ResultList:
-    $ref: ./definitions/result_list.yml
-  BagReference:
-    $ref: ./definitions/bag_reference.yml
-  BagResultList:
-    $ref: definitions/bag_result_list.yml
-  DigestResultList:
-    $ref: ./definitions/digest_result_list.yml
-  FixityCheckResultList:
-    $ref: ./definitions/fixity_check_result_list.yml
-  IngestResultList:
-    $ref: ./definitions/ingest_result_list.yml
-  MemberResultList:
-    $ref: ./definitions/member_result_list.yml
-  NodeResultList:
-    $ref: ./definitions/node_result_list.yml
-  ReplicationRequestResultList:
-    $ref: ./definitions/replication_request_result_list.yml
-  RestoreRequestResultList:
-    $ref: ./definitions/restore_request_result_list.yml
-  Bag:
-    $ref: ./definitions/bag.yml
-  Digest:
-    $ref: ./definitions/digest.yml
-  FixityCheck:
-    $ref: ./definitions/fixity_check.yml
-  Ingest:
-    $ref: ./definitions/ingest.yml
-  Member:
-    $ref: ./definitions/member.yml
-  Node:
-    $ref: ./definitions/node.yml
-  ReplicationRequest:
-    $ref: ./definitions/replication_request.yml
-  RestoreRequest:
-    $ref: ./definitions/restore_request.yml
+  $ref: definitions/index.yaml
 
 responses:
   '400':
-    $ref: ./responses/400.yml
+    $ref: responses/400.yml
   '401':
-    $ref: ./responses/401.yml
+    $ref: responses/401.yml
   '403':
-    $ref: ./responses/403.yml
+    $ref: responses/403.yml
   '404':
-    $ref: ./responses/404.yml
+    $ref: responses/404.yml
   '409':
-    $ref: ./responses/409.yml
+    $ref: responses/409.yml
     
 parameters:
   before:
-    $ref: ./parameters/before.yml
+    $ref: parameters/before.yml
   before_created:
-    $ref: ./parameters/before_created.yml
+    $ref: parameters/before_created.yml
   after:
-    $ref: ./parameters/after.yml
+    $ref: parameters/after.yml
   after_created:
-    $ref: ./parameters/after_created.yml
+    $ref: parameters/after_created.yml
   page:
-    $ref: ./parameters/page.yml
+    $ref: parameters/page.yml
   page_size:
-    $ref: ./parameters/page_size.yml
+    $ref: parameters/page_size.yml
   bag_uuid_path:
-    $ref: ./parameters/bag_uuid_path.yml
+    $ref: parameters/bag_uuid_path.yml
   order_by_timestamps:
-    $ref: ./parameters/order_by_timestamps.yml
+    $ref: parameters/order_by_timestamps.yml
   bag:
-    $ref: ./parameters/bag.yml
+    $ref: parameters/bag.yml
   cancelled:
-    $ref: ./parameters/cancelled.yml
+    $ref: parameters/cancelled.yml
   cancel_reason:
-    $ref: ./parameters/cancel_reason.yml
+    $ref: parameters/cancel_reason.yml
   to_node:
-    $ref: ./parameters/to_node.yml
+    $ref: parameters/to_node.yml
   from_node:
-    $ref: ./parameters/from_node.yml
+    $ref: parameters/from_node.yml
 
 paths:
-  /bag:
-    get:
-      summary: List of bags
-      description: >
-        Returns a list of Bag records.
-      tags:
-        - Bag
-      parameters:
-        - $ref: '#/parameters/before'
-        - $ref: '#/parameters/after'
-        - $ref: '#/parameters/page'
-        - $ref: '#/parameters/page_size'
-        - $ref: '#/parameters/order_by_timestamps'
-        - name: admin_node
-          in: query
-          description: |
-            Filter by admin_node namespace.
-          required: false
-          type: string
-        - name: member
-          in: query
-          description: |
-            Filter by the member_id of the member who owns or manages this bag.
-          required: false
-          type: string
-          format: uuid
-        - name: bag_type
-          in: query
-          description: >
-            Filter by bag type.  Consult the Bag definitions for
-            the supported values.
-          required: false
-          type: string
-        - name: first_version_uuid
-          in: query
-          description: >
-            Filter by first_version_uuid.
-          required: false
-          type: string
-          format: uuid
-      responses:
-        '200':
-          description: Success
-          schema:
-            $ref: '#/definitions/BagResultList'
-        '401':
-          $ref: '#/responses/401'
-
-
-#  /bag:
-#    $ref: ./paths/bag.yml
-#  /bag:
-#    get:
-#     $ref: ./paths/bag/get.yml
-#    post:
-#      $ref: ./paths/bag/post.yml
-#  /bag/{uuid}:
-#    get:
-#      $ref: ./paths/bag/uuid/get.yml
-#    put:
-#      $ref: ./paths/bag/uuid/put.yml
-#  /bag/{uuid}/digest:
-#    get:
-#      $ref: ./paths/bag/uuid/digest/get.yml
-#    post:
-#      $ref: ./paths/bag/uuid/digest/post.yml
-#  /bag/{uuid}/digest/{algorithm}:
-#    get:
-#      $ref: ./paths/bag/uuid/digest/algorithm/get.yml
-#  /digest:
-#    get:
-#      $ref: ./paths/digest/get.yml
-#  /fixity_check:
-#    get:
-#      $ref: ./paths/fixity_check/get.yml
-#    post:
-#      $ref: ./paths/fixity_check/post.yml
-#  /ingest:
-#    get:
-#      $ref: ./paths/ingest/get.yml
-#    post:
-#      $ref: ./paths/ingest/post.yml
-#  /node:
-#    get:
-#      $ref: ./paths/node/get.yml
-#  /node/{namespace}:
-#    get:
-#      $ref: ./paths/node/namespace/get.yml
-#    put:
-#      $ref: ./paths/node/namespace/put.yml
-#  /member:
-#    get:
-#      $ref: ./paths/member/get.yml
-#    post:
-#      $ref: ./paths/member/post.yml
-#  /member/{uuid}:
-#    get:
-#      $ref: ./paths/member/uuid/get.yml
-#    put:
-#      $ref: ./paths/member/uuid/put.yml
-#  /member/{uuid}/bags:
-#    get:
-#      $ref: ./paths/member/uuid/bags/get.yml
-#  /replicate:
-#    get:
-#      $ref: ./paths/replicate/get.yml
-#    post:
-#      $ref: ./paths/replicate/post.yml
-#  /replicate/{replication_id}:
-#    get:
-#      $ref: ./paths/replicate/replication_id/get.yml
-#    put:
-#      $ref: ./paths/replicate/replication_id/put.yml
-#  /restore:
-#    get:
-#      $ref: ./paths/restore/get.yml
-#    post:
-#      $ref: ./paths/restore/post.yml
-#  /restore/{restore_id}:
-#    get:
-#      $ref: ./paths/restore/restore_id/get.yml
-#    put:
-#      $ref: ./paths/restore/restore_id/put.yml
-
+  $ref: paths/index.yml 
