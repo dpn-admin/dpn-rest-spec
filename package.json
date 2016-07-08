@@ -1,0 +1,23 @@
+{
+  "name": "dpn-rest-api",
+  "version": "2.0.0",
+  "description": "DPN Restful API Spec",
+  "main": "resolve.js",
+  "scripts": {
+    "start": "node resolve.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dpn-admin/DPN-REST-Wiki.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dpn-admin/DPN-REST-Wiki/issues"
+  },
+  "dependencies": {
+    "json-refs": "~2.1.6",
+    "yaml-js": "~0.1.3",
+    "json-schema-ref-parser": "~3.1.2"
+  }
+}
