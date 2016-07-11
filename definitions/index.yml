@@ -1,42 +1,42 @@
 Error:
-  $ref: './error.yml'
+  $ref: error.yml
 Timestamps:
-  $ref: './timestamps.yml'
+  $ref: timestamps.yml
 ReadOnlyTimestamps:
-  $ref: './read_only_timestamps.yml'
+  $ref: read_only_timestamps.yml
 ResultList:
-  $ref: './result_list.yml'
+  $ref: result_list.yml
 BagReference:
-  $ref: './bag_reference.yml'
+  $ref: bag_reference.yml
 BagResultList:
-  $ref: './bag_result_list.yml'
+  $ref: bag_result_list.yml
 DigestResultList:
-  $ref: './digest_result_list.yml'
+  $ref: digest_result_list.yml
 FixityCheckResultList:
-  $ref: './fixity_check_result_list.yml'
+  $ref: fixity_check_result_list.yml
 IngestResultList:
-  $ref: './ingest_result_list.yml'
+  $ref: ingest_result_list.yml
 MemberResultList:
-  $ref: './member_result_list.yml'
+  $ref: member_result_list.yml
 NodeResultList:
-  $ref: './node_result_list.yml'
+  $ref: node_result_list.yml
 ReplicationRequestResultList:
-  $ref: './replication_request_result_list.yml'
+  $ref: replication_request_result_list.yml
 RestoreRequestResultList:
-  $ref: './restore_request_result_list.yml'
+  $ref: restore_request_result_list.yml
 Bag:
-  $ref: './bag.yml'
+  $ref: bag.yml
 Digest:
-  $ref: './digest.yml'
+  $ref: digest.yml
 FixityCheck:
-  $ref: './fixity_check.yml'
+  $ref: fixity_check.yml
 Ingest:
-  $ref: './ingest.yml'
+  $ref: ingest.yml
 Member:
-  $ref: './member.yml'
+  $ref: member.yml
 Node:
-  $ref: './node.yml'
+  $ref: node.yml
 ReplicationRequest:
-  $ref: './replication_request.yml'
+  $ref: replication_request.yml
 RestoreRequest:
-  $ref: './restore_request.yml'
+  $ref: restore_request.yml
