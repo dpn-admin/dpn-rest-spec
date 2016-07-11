@@ -22,7 +22,10 @@ npm start
 
 There's a `build` script in the package.json that lets us build the spec into the dist
 directory. As it's a script it needs to be called from the `run` command.
-`npm run build`
+
+```
+npm run build
+```
 
 ### Running with a local swagger
 
