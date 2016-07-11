@@ -14,11 +14,11 @@ definitions:
     description: Timestamps for DPN objects
     type: object
     properties:
-      created_at: {description: 'ISO-8601 date-time in UTC when this record was first
+      created_at: {description: 'DPN-formatted date-time when this record was first
           created. _(read only)_
 
           ', type: string, format: date-time}
-      updated_at: {description: 'ISO-8601 date-time in UTC when this record was las
+      updated_at: {description: 'DPN-formatted date-time when this record was las
           updated.
 
           ', type: string, format: date-time}
@@ -26,8 +26,8 @@ definitions:
     description: Timestamps for read-only DPN objects
     type: object
     properties:
-      created_at: {description: 'ISO08601 formatted date-time in UTC when this record
-          was first created. _(read only)_
+      created_at: {description: 'DPN-formatted date-time when this record was first
+          created. _(read only)_
 
           ', type: string, format: date-time}
   ResultList:
@@ -216,13 +216,14 @@ definitions:
       results:
       - {from_node: aptrust, to_node: chron, bag: cfd167a0-baad-4235-b896-041e710e6c62,
         replication_id: 722947bb-d370-46d6-b64e-8428d3bc3181, fixity_algorithm: sha256,
-        fixity_nonce: YQR5BL1V, fixity_value: fixity-value, protocol: rsync, link: 'dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar',
-        stored: false, store_requested: false, cancelled: false, cancel_reason: null-reason,
+        fixity_nonce: YQR5BL1V, fixity_value: some-fixity-val, protocol: rsync, link: 'dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar',
+        stored: false, store_requested: false, cancelled: false, cancel_reason: not-really-a-reason,
         created_at: !!timestamp '2015-02-25T15:27:40.000Z', updated_at: !!timestamp '2015-02-25T15:27:40.000Z'}
       - {from_node: aptrust, to_node: hathi, bag: bfd167a0-baad-4235-b896-041e710e6c55,
         replication_id: 442947bb-d370-46d6-b64e-8428d3bc3142, fixity_algorithm: sha256,
-        fixity_nonce: null-nonce, fixity_value: fixity-value-2, protocol: rsync, link: 'dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar',
-        stored: false, store_requested: false, cancelled: true, cancel_reason: rejected,
+        fixity_nonce: actually-a-null-nonce, fixity_value: some-other-fixity, protocol: rsync,
+        link: 'dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar',
+        stored: false, store_requested: false, cancelled: true, cancel_reason: reject,
         created_at: !!timestamp '2015-03-19T15:27:40.000Z', updated_at: !!timestamp '2015-03-22T15:27:40.000Z'}
   RestoreRequestResultList:
     description: Container for a list of restore requests
@@ -320,6 +321,40 @@ definitions:
     example: {bag: 9998e960-fc6d-44f4-9d73-9a60a8eae609, node: hathi, algorithm: sha256,
       value: d904c39f9f900d829c4cf61dac35ee2c6aed986caa0223ec832f6dd98c6e70f5, created_at: !!timestamp '2015-02-25T16:24:02.000Z'}
   FixityCheck:
+    description: 'A Fixity Check is a record of a node performing the necessary operations
+      on a bag to ensure that it remains unchanged at the time of the check.  These
+      records are only uniquely identifiable by fixity_check_id.  The entire record
+      is read-only.
+
+      '
+    type: object
+    allOf:
+    - {$ref: '#/definitions/BagReference'}
+    - type: object
+      required: [fixity_check_id, node, success, fixity_at]
+      properties:
+        fixity_check_id: {description: 'UUIDv4 that uniquely identifies this fixity
+            check. _(read only)_
+
+            ', type: string, format: uuid}
+        node: {description: 'namespace of the node that performed the check. _(read
+            only)_
+
+            ', type: string}
+        success: {description: 'A check is successful if the bag remains unchanged,
+            and is unsuccessful otherwise. _(read only)_
+
+            ', type: boolean}
+        fixity_at: {description: 'The time the actual check was completed, as opposed
+            to when this record was created.  Must be less than or equal to created_at.  _(read
+            only)_
+
+            ', type: string, format: date-time}
+    - {$ref: '#/definitions/ReadOnlyTimestamps'}
+    example: {fixity_check_id: 7998e960-fc6d-44f4-9d73-9a60a8eae609, bag: 9998e960-fc6d-44f4-9d73-9a60a8eae609,
+      node: hathi, success: true, fixity_at: !!timestamp '2015-02-25T16:23:58.000Z',
+      created_at: !!timestamp '2015-02-25T16:24:02.000Z'}
+  Ingest:
     description: 'An Ingest record is a record of when a bag achieved the ingested
       state within DPN. At the time of writing, this is achieved when there are three(3)
       or more copies. Ingest records are also created when this status is lost.  The
@@ -525,9 +560,11 @@ definitions:
     - {$ref: '#/definitions/Timestamps'}
     example: {from_node: aptrust, to_node: chron, bag: cfd167a0-baad-4235-b896-041e710e6c62,
       replication_id: 722947bb-d370-46d6-b64e-8428d3bc3181, fixity_algorithm: sha256,
-      fixity_nonce: YQR5BL1V, fixity_value: fixity-value, protocol: rsync, link: 'dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar',
-      stored: false, store_requested: false, cancelled: false, cancel_reason: cancel-reason,
-      created_at: !!timestamp '2015-02-25T15:27:40.000Z', updated_at: !!timestamp '2015-02-25T15:27:40.000Z'}
+      fixity_nonce: YQR5BL1V, fixity_value: fixity-value-goes-here, protocol: rsync,
+      link: 'dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar',
+      stored: false, store_requested: false, cancelled: false, cancel_reason: this
+        isn't actually cancelled, created_at: !!timestamp '2015-02-25T15:27:40.000Z',
+      updated_at: !!timestamp '2015-02-25T15:27:40.000Z'}
   RestoreRequest:
     description: 'A Restore Request is the control construct that represents and manages
       the exchange of a bag from a replicating node to to the admin_node or another
