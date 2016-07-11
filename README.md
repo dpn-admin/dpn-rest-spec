@@ -15,7 +15,7 @@ We use npm to do both pull dependencies and compile the spec. There's a `resolve
 in package.json which is used to compile the script and print it to stdout.
 ```
 npm install
-npm start
+npm run resolve
 ```
 
 ### Outputting to a file
