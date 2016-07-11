@@ -8,6 +8,6 @@ gulp.task('connect', function() {
     root: ['node_modules/swagger-ui/dist', 'dist/'],
     livereload: true
   });
-})
+});
 
 gulp.task('serve', ['connect']);
