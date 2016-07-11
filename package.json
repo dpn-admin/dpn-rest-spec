@@ -4,7 +4,8 @@
   "description": "DPN Restful API Spec",
   "main": "resolve.js",
   "scripts": {
-    "start": "node resolve.js"
+    "start": "node resolve.js",
+    "build": "node resolve.js > dist/swagger.yaml"
   },
   "repository": {
     "type": "git",
