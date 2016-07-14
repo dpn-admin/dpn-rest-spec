@@ -1,0 +1,22 @@
+summary: Returns the data for a single restore request.
+description: >
+  Returns the data for a single restore transfer request
+  record matching the restore_id.
+tags:
+  - Restore
+parameters:
+  - name: restore_id
+    in: path
+    description: restore_id of the target record
+    required: true
+    type: string
+    format: uuid
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/RestoreRequest'
+  "401":
+    $ref: '#/responses/401'
+  "404":
+    $ref: '#/responses/404'

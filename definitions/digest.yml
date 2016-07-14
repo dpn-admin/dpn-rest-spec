@@ -1,0 +1,33 @@
+description: >
+  A Digest is a specific fixity algorithm:value pair that is known
+  to be correct. Digests are associated with specific bags. Digests
+  are uniquely identifiable by their bag and algorithm.  The entire
+  resource is read-only.
+type: object
+allOf:
+  - $ref: '#/definitions/BagReference'
+  - type: object
+    required:
+      - node
+      - algorithm
+      - value
+    properties:
+      node:
+        description: >
+          namespace of the node that generated this digest. _(read only)_
+        type: string
+      algorithm:
+        description: >
+          Algorithm used to calculate the value. _(read only)_
+        type: string
+      value:
+        description: >
+          Value calculated for the bag. _(read only)_
+        type: string
+  - $ref: '#/definitions/ReadOnlyTimestamps'
+example:
+  bag: 9998e960-fc6d-44f4-9d73-9a60a8eae609
+  node: hathi
+  algorithm: sha256
+  value: d904c39f9f900d829c4cf61dac35ee2c6aed986caa0223ec832f6dd98c6e70f5
+  created_at: 2015-02-25T16:24:02Z

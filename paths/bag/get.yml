@@ -1,0 +1,45 @@
+summary: List of bags
+description: >
+  Returns a list of Bag records.
+tags:
+  - Bag
+parameters:
+  - $ref: '#/parameters/before'
+  - $ref: '#/parameters/after'
+  - $ref: '#/parameters/page'
+  - $ref: '#/parameters/page_size'
+  - $ref: '#/parameters/order_by_timestamps'
+  - name: admin_node
+    in: query
+    description: |
+      Filter by admin_node namespace.
+    required: false
+    type: string
+  - name: member
+    in: query
+    description: |
+      Filter by the member_id of the member who owns or manages this bag.
+    required: false
+    type: string
+    format: uuid
+  - name: bag_type
+    in: query
+    description: >
+      Filter by bag type.  Consult the Bag definitions for
+      the supported values.
+    required: false
+    type: string
+  - name: first_version_uuid
+    in: query
+    description: >
+      Filter by first_version_uuid.
+    required: false
+    type: string
+    format: uuid
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/BagResultList'
+  '401':
+    $ref: '#/responses/401'

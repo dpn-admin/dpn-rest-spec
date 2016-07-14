@@ -1,0 +1,57 @@
+swagger: '2.0'
+info:
+  title: DPN API
+  description: Digital Preservation Network
+  version: 2.0.0
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+  
+definitions:
+  $ref: definitions/index.yml
+
+responses:
+  '400':
+    $ref: responses/400.yml
+  '401':
+    $ref: responses/401.yml
+  '403':
+    $ref: responses/403.yml
+  '404':
+    $ref: responses/404.yml
+  '409':
+    $ref: responses/409.yml
+    
+parameters:
+  before:
+    $ref: parameters/before.yml
+  before_created:
+    $ref: parameters/before_created.yml
+  after:
+    $ref: parameters/after.yml
+  after_created:
+    $ref: parameters/after_created.yml
+  page:
+    $ref: parameters/page.yml
+  page_size:
+    $ref: parameters/page_size.yml
+  bag_uuid_path:
+    $ref: parameters/bag_uuid_path.yml
+  order_by_timestamps:
+    $ref: parameters/order_by_timestamps.yml
+  bag:
+    $ref: parameters/bag.yml
+  cancelled:
+    $ref: parameters/cancelled.yml
+  cancel_reason:
+    $ref: parameters/cancel_reason.yml
+  to_node:
+    $ref: parameters/to_node.yml
+  from_node:
+    $ref: parameters/from_node.yml
+
+paths:
+  $ref: paths/index.yml 

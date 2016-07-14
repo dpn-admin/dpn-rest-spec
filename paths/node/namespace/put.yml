@@ -1,0 +1,32 @@
+summary: Update the node
+description: >
+  Updates a single Node matching the namespace. The body of the put
+  is the same as the data structure listed for a single record above.
+  If successful, the response will be identical to that of a GET request.
+tags:
+  - Node
+parameters:
+  - name: namespace
+    in: path
+    description: namespace of the target node
+    required: true
+    type: string
+  - name: body
+    description: Body of the node
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/Node'
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/Node'
+  "400":
+    $ref: '#/responses/400'
+  "401":
+    $ref: '#/responses/401'
+  "403":
+    $ref: '#/responses/403'
+  "404":
+    $ref: '#/responses/404'

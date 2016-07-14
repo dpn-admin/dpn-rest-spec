@@ -1,0 +1,23 @@
+summary: Show a specific digest record.
+description: >
+  Returns the data for the specific digest record matching
+  the bag's uuid and the digest algorithm.  These two values
+  always uniquely identify a digest.
+tags:
+  - Digest
+parameters:
+  - $ref: '#/parameters/bag_uuid_path'
+  - name: algorithm
+    in: path
+    description: Name of the algorithm used
+    required: true
+    type: string
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/Digest'
+  "401":
+    $ref: '#/responses/401'
+  "404":
+    $ref: '#/responses/404'

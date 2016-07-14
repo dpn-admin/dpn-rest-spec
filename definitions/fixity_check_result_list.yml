@@ -1,0 +1,30 @@
+description: Container for a list of fixity checks
+type: object
+allOf:
+  - $ref: '#/definitions/ResultList'
+  - type: object
+    required:
+      - results
+    properties:
+      results:
+        description: List of fixity checks
+        type: array
+        items:
+          $ref: '#/definitions/FixityCheck'
+example:
+  count: 2
+  next: http://localhost:8000/api_v1/fixity_check/?page=3&page_size=2
+  previous: http://localhost:8000/api_v1/fixity_check/?page=1&page_size=2
+  results:
+    - fixity_check_id: 7998e960-fc6d-44f4-9d73-9a60a8eae609
+      bag: 9998e960-fc6d-44f4-9d73-9a60a8eae609
+      node: hathi
+      success: true
+      fixity_at: 2015-02-25T16:23:58Z
+      created_at: 2015-02-25T16:24:02Z
+    - fixity_check_id: 4444e960-fc6d-44f4-9d73-4a60a8eae333
+      bag: 2938e441-fc6d-44f4-9d73-9a60a8eae609
+      node: aptrust
+      success: true
+      fixity_at: 2015-02-25T16:23:58Z
+      created_at: 2016-02-25T16:24:02Z

@@ -1,0 +1,25 @@
+summary: List of fixity checks
+description: >
+  Returns a list of fixity checks
+tags:
+  - Fixity Check
+parameters:
+  - $ref: '#/parameters/before_created'
+  - $ref: '#/parameters/after_created'
+  - $ref: '#/parameters/page'
+  - $ref: '#/parameters/page_size'
+  - $ref: '#/parameters/bag'
+  - name: node
+    description: >
+      Filter by the namespace of the node
+      that performed the check.
+    in: query
+    required: false
+    type: string
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/FixityCheckResultList'
+  '401':
+    description: Authentication Failed

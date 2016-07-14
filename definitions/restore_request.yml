@@ -1,0 +1,69 @@
+description: >
+  A Restore Request is the control construct that represents
+  and manages the exchange of a bag from a replicating node to
+  to the admin_node or another replicating_node.
+type: object
+allOf:
+  - $ref: '#/definitions/BagReference'
+  - type: object
+    required:
+      - restore_id
+      - from_node
+      - to_node
+      - protocol
+    properties:
+      restore_id:
+        description: >
+          UUIDv4 that uniquely identifies this restore transfer
+          request. _(read only)_
+        type: string
+        format: uuid
+      from_node:
+        description: >
+          Namespace of the node sending the bag. _(read only)_
+        type: string
+      to_node:
+        description: >
+          Namespace of the node receiving the bag.  This is the node
+          that generated this request. _(read only)_
+        type: string
+      protocol:
+        description: >
+          Name of the transfer protocol. _(read only)_
+        type: string
+      link:
+        description: >
+          null or URL of the bag to be transferred.  Set by the
+          from_node. _(Once set, this field is read only.)_
+        type: string
+        format: url
+      accepted:
+        description: >
+          Set by the from_node to indicate that it has
+          accept,ed the request. _(Once set to true, this
+          field is read only.)_
+        type: boolean
+        default: false
+      finished:
+        description: >
+          Set by the to_node to indicate the transfer completed
+          successfully.  _(Once set to true, the entire record
+          is read-only.)_
+        type: boolean
+        default: false
+      cancelled:
+        description: >
+          Set by either node to immediately end the transaction. _(Once
+          set to true, the entire record is read-only.)_
+        type: boolean
+        default: false
+      cancel_reason:
+        description: >
+          null or the reason for cancelling.  The cancel_reason must not be
+          treated as an actionable field; it is only for debugging
+          and analytics. Can only be set at the same time as cancelled.
+        type: string
+        enum:
+          - reject
+          - other
+  - $ref: '#/definitions/Timestamps'

@@ -1,0 +1,86 @@
+# Bag Endpoints
+/bag:
+  get:
+    $ref: bag/get.yml
+  post:
+    $ref: bag/post.yml
+/bag/{uuid}:
+  get:
+    $ref: bag/uuid/get.yml
+  put:
+    $ref: bag/uuid/put.yml
+/bag/{uuid}/digest:
+  get:
+    $ref: bag/uuid/digest/get.yml
+  post:
+    $ref: bag/uuid/digest/post.yml
+/bag/{uuid}/digest/algorithm:
+  get:
+    $ref: bag/uuid/digest/algorithm/get.yml
+
+# Digest Endpoint
+/digest:
+  $ref: digest/digest.yml
+
+# Fixity Endpoint
+/fixity_check:
+  get: 
+    $ref: fixity_check/get.yml  
+  post:
+    $ref: fixity_check/post.yml
+
+# Member Endpoints
+/member:
+  get: 
+    $ref: member/get.yml  
+  post:
+    $ref: member/post.yml
+/member/{uuid}:
+  get:
+    $ref: member/uuid/get.yml
+  put:
+    $ref: member/uuid/put.yml
+/member/{uuid}/bags:
+  get:
+    $ref: member/uuid/bags/get.yml
+
+# Ingest Endpoint
+/ingest:
+  get: 
+    $ref: ingest/get.yml  
+  post:
+    $ref: ingest/post.yml
+
+# Node Endpoint
+/node: 
+  get: 
+    $ref: node/get.yml  
+/node/{namespace}:
+  get:
+    $ref: node/namespace/get.yml
+  put:
+    $ref: node/namespace/put.yml
+
+# Replicate Endpoints
+/replicate:
+  get: 
+    $ref: replicate/get.yml  
+  post:
+    $ref: replicate/post.yml
+/replicate/{uuid}:
+  get:
+    $ref: replicate/uuid/get.yml
+  put:
+    $ref: replicate/uuid/put.yml
+
+# Restore Endpoints
+/restore:
+  get: 
+    $ref: restore/get.yml  
+  post:
+    $ref: restore/post.yml
+/restore/{uuid}:
+  get:
+    $ref: restore/uuid/get.yml
+  put:
+    $ref: restore/uuid/put.yml

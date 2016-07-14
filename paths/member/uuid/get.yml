@@ -1,0 +1,20 @@
+summary: Returns the data for a single member record matching the uuid.
+description: Returns the data for a single member record matching the uuid.
+tags:
+- Member
+parameters:
+  - name: uuid
+    in: path
+    description: UUID of the target member
+    required: true
+    type: string
+    format: uuid
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/Member'
+  "401":
+    $ref: '#/responses/401'
+  "404":
+    $ref: '#/responses/404'

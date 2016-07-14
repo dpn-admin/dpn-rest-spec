@@ -1,0 +1,27 @@
+summary: Create a restore request
+description: >
+  This endpoint allows the creation of a single restore request
+  through a post body.  The post body is the same as the data structure
+  for the restore request.  If successful, the response will be
+  identical to that of a GET request.
+tags:
+  - Restore
+parameters:
+  - name: body
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/RestoreRequest'
+responses:
+  "201":
+    description: Success
+    schema:
+      $ref: '#/definitions/RestoreRequest'
+  "400":
+    $ref: '#/responses/400'
+  "401":
+    $ref: '#/responses/401'
+  "403":
+    $ref: '#/responses/403'
+  "409":
+    $ref: '#/responses/409'

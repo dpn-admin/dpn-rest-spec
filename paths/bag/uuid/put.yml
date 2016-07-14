@@ -1,0 +1,32 @@
+summary: Update the bag
+description: >
+  Updates a single bag matching the uuid.  The body of the put
+  is the same as the data structure for the bag.  If successful,
+  the response will be identical to that of a GET request.
+tags:
+  - Bag
+parameters:
+  - name: uuid
+    in: path
+    description: UUID of the target bag.
+    required: true
+    type: string
+    format: uuid
+  - name: body
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/Bag'
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/Bag'
+  "400":
+    $ref: '#/responses/400'
+  "401":
+    $ref: '#/responses/401'
+  "403":
+    $ref: '#/responses/403'
+  "404":
+    $ref: '#/responses/404'

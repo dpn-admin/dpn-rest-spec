@@ -1,0 +1,19 @@
+summary: Show a specific node
+description: Returns the data for a single node matching the namespace.
+tags:
+  - Node
+parameters:
+  - name: namespace
+    in: path
+    description: namespace of the target node
+    required: true
+    type: string
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/Node'
+  "401":
+    $ref: '#/responses/401'
+  "404":
+    $ref: '#/responses/404'

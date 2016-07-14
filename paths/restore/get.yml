@@ -1,0 +1,35 @@
+summary: List of restore requests
+description: >
+  Returns a list of restore transfer requests.
+tags:
+  - Restore
+parameters:
+  - $ref: '#/parameters/before'
+  - $ref: '#/parameters/after'
+  - $ref: '#/parameters/page'
+  - $ref: '#/parameters/page_size'
+  - $ref: '#/parameters/order_by_timestamps'
+  - $ref: '#/parameters/bag'
+  - $ref: '#/parameters/to_node'
+  - $ref: '#/parameters/from_node'
+  - name: accepted
+    in: query
+    description: >
+      Filter by accepted
+    required: false
+    type: boolean
+  - name: finished
+    in: query
+    description: >
+      Filter by finished
+    required: false
+    type: boolean
+  - $ref: '#/parameters/cancelled'
+  - $ref: '#/parameters/cancel_reason'
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/RestoreRequestResultList'
+  '401':
+    description: Authentication Failed
