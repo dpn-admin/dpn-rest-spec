@@ -1,0 +1,7 @@
+name: bag_type
+in: query
+description: >
+  Filter by bag type. Consule the Bag definitions for
+  the supported values.
+required: false
+type: string

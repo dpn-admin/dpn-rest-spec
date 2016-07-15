@@ -1,0 +1,6 @@
+name: member_uuid
+in: query
+description: UUID of the member
+required: false
+type: string
+format: uuid

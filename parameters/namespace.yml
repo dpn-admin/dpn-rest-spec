@@ -1,0 +1,5 @@
+name: namespace
+in: path
+description: namespace of the target node
+required: true
+type: string
