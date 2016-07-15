@@ -1,0 +1,15 @@
+summary: Lost of restore requests for a given member
+description: Returns a list of restore requests for a member matching the given uuid
+tags:
+  - Reporting/Member
+parameters:
+  - $ref: '#/parameters/after_created'
+  - $ref: '#/parameters/before_created'
+  # - $ref: '#/parameters/restore_status'
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/RestoreRequestResultList'
+  '401':
+    $ref: '#/responses/401'

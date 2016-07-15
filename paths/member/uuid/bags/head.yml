@@ -1,0 +1,17 @@
+summary: Report how many bags a member has deposited
+description: >
+  Returns the size and count of bags that belong to a member
+tags:
+  - Reporting/Member
+parameters:
+  - $ref: '#/parameters/after'
+  - $ref: '#/parameters/before'
+  - $ref: '#/parameters/bag_type'
+  - $ref: '#/parameters/ingest_node'
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/BagAggregate'
+  '401':
+    $ref: '#/responses/401'
