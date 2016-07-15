@@ -1,0 +1,14 @@
+summary: Return aggregate information about replications in dpn
+description: Return aggregate information about replications in dpn
+tags:
+  - Reporting/DPN
+parameters:
+  - $ref: '#/parameters/after_created'
+  - $ref: '#/parameters/before_created'
+  - $ref: '#/parameters/member_uuid'
+  - $ref: '#/parameters/node_uuid'
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/defintions/ReplicationAggregate'
