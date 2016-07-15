@@ -43,6 +43,20 @@
 /member/{uuid}/bags:
   get:
     $ref: member/uuid/bags/get.yml
+  head:
+    $ref: member/uuid/bags/head.yml
+/member/{uuid}/{bag_uuid}/bag:
+  get:
+    $ref: member/uuid/bag_uuid/bag/get.yml
+# /member/{uuid}/{bag_uuid}/audit:
+#   get:
+#     $ref: member/uuid/bag_uuid/audit/get.yml
+/member/{uuid}/{bag_uuid}/fixity:
+  get:
+    $ref: member/uuid/bag_uuid/fixity/get.yml
+/member/{uuid}/restore:
+  get:
+    $ref: member/uuid/restore/get.yml
 
 # Ingest Endpoint
 /ingest:
@@ -60,6 +74,20 @@
     $ref: node/namespace/get.yml
   put:
     $ref: node/namespace/put.yml
+/node/{namespace}/{role}/bags:
+  get:
+    $ref: node/namespace/role/bags/get.yml
+  head:
+    $ref: node/namespace/role/bags/head.yml
+/node/{namespace}/{bag_uuid}/bag:
+  get:
+    $ref: node/namespace/bag_uuid/bag/get.yml
+/node/{namespace}/replicas:
+  get:
+    $ref: node/namespace/replicas/get.yml
+/node/{namespace}/restore:
+  get:
+    $ref: node/namespace/restore/get.yml
 
 # Replicate Endpoints
 /replicate:
@@ -84,3 +112,11 @@
     $ref: restore/uuid/get.yml
   put:
     $ref: restore/uuid/put.yml
+
+# DPN Endpoints
+/dpn/bags:
+  head:
+    $ref: dpn/bags/head.yml
+/dpn/replicas:
+  head:
+    $ref: dpn/replicas/head.yml
