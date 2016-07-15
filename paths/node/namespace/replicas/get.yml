@@ -1,0 +1,14 @@
+summary: List of replication requests for a given node
+description: Returns a list of replication requests matching the namespace
+tags:
+  - Reporting/Node
+parameters:
+  - $ref: '#/parameters/namespace'
+  - $ref: '#/parameters/after_created'
+  - $ref: '#/parameters/before_created'
+  # TODO: node_function
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/ReplicationRequestResultList'

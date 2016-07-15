@@ -1,0 +1,21 @@
+summary: Returns the aggregate count of bags for a given node
+description: Returns the aggregate count of bags for a given node
+tags:
+  - Reporting/Node
+parameters:
+  - name: namespace
+    in: path
+    description: namespace of the target node
+    required: true
+    type: string
+  - name: role
+    in: path
+    description: >
+      role of the target node (one of ingest/admin/replica)
+    required: true
+    type: string
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/BagAggregate'

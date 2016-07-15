@@ -1,0 +1,21 @@
+summary: Returns a list of bags by node
+description: Returns a list of bags by node
+tags:
+  - Reporting/Node
+parameters:
+  - name: namespace
+    in: path
+    description: namespace of the target node
+    required: true
+    type: string
+  - name: role
+    in: path
+    description: >
+      Role of the node. One of ingest, admin, or replica.
+    required: true
+    type: string
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/BagResultList'
