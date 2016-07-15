@@ -1,7 +1,7 @@
 summary: Returns the data for a single member record matching the uuid.
 description: Returns the data for a single member record matching the uuid.
 tags:
-- Member
+  - Member
 parameters:
   - name: uuid
     in: path
@@ -14,7 +14,7 @@ responses:
     description: Success
     schema:
       $ref: '#/definitions/Member'
-  "401":
+  '401':
     $ref: '#/responses/401'
-  "404":
+  '404':
     $ref: '#/responses/404'

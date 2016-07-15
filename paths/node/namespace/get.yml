@@ -13,7 +13,7 @@ responses:
     description: Success
     schema:
       $ref: '#/definitions/Node'
-  "401":
+  '401':
     $ref: '#/responses/401'
-  "404":
+  '404':
     $ref: '#/responses/404'
