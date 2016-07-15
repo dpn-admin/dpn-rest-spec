@@ -295,6 +295,18 @@ definitions:
       bag_type: D
       created_at: 2015-02-25T16:24:02.000Z
       updated_at: 2015-02-25T16:24:02.000Z
+  BagAggregate:
+    description: Aggregate data of bags in DPN for reporting
+    type: object
+    allOf:
+    - type: object
+      required: [total_bag_size, total_bag_count]
+      properties:
+        total_bag_size: {description: The sum of all bag sizes., type: integer, format: int64}
+        total_bag_count: {description: The count of all bags., type: integer, format: int64}
+    headers:
+      X-Total-Bag-Size: {description: The sum of all bag sizes, type: integer}
+      X-Total-Bag-Count: {description: The count of all bags, type: integer}
   Digest:
     description: 'A Digest is a specific fixity algorithm:value pair that is known
       to be correct. Digests are associated with specific bags. Digests are uniquely
@@ -670,6 +682,10 @@ parameters:
   bag: {name: bag, in: query, description: 'Filter by the associated bag''s uuid
 
       ', required: false, type: string, format: uuid}
+  bag_type: {name: bag_type, in: query, description: 'Filter by bag type. Consule
+      the Bag definitions for the supported values.
+
+      ', required: false, type: string}
   cancelled: {name: cancelled, description: 'Filter by cancelled
 
       ', in: query, required: false, type: boolean}
@@ -683,6 +699,21 @@ parameters:
   from_node: {name: from_node, description: 'Filter by from_node namespace.
 
       ', in: query, required: false, type: string}
+  admin_node: {name: admin_node, in: query, description: 'Filter by admin_node namespace
+
+      ', required: false, type: string}
+  ingest_node: {name: ingest_node, in: query, description: 'Filter by ingest_node
+      namespace
+
+      ', required: false, type: string}
+  member_uuid: {name: member_uuid, in: query, description: UUID of the member, required: false,
+    type: string, format: uuid}
+  node_uuid: {name: node_uuid, in: query, description: UUID of the node, required: false,
+    type: string, format: uuid}
+  member_uuid_path: {name: member_uuid, in: path, description: UUID of the member,
+    required: true, type: string, format: uuid}
+  namespace: {name: namespace, in: path, description: namespace of the target node,
+    required: true, type: string}
 paths:
   /bag:
     get:
@@ -971,6 +1002,68 @@ paths:
           schema: {$ref: '#/definitions/BagResultList'}
         '401': {$ref: '#/responses/401'}
         '404': {$ref: '#/responses/404'}
+    head:
+      summary: Report how many bags a member has deposited
+      description: 'Returns the size and count of bags that belong to a member
+
+        '
+      tags: [Reporting/Member]
+      parameters:
+      - {$ref: '#/parameters/after'}
+      - {$ref: '#/parameters/before'}
+      - {$ref: '#/parameters/bag_type'}
+      - {$ref: '#/parameters/ingest_node'}
+      responses:
+        '200':
+          description: Success
+          schema: {$ref: '#/definitions/BagAggregate'}
+        '401': {$ref: '#/responses/401'}
+  /member/{uuid}/{bag_uuid}/bag:
+    get:
+      summary: Returns a list of bag details matching the uuid
+      description: Returns a list of bag details matching the uuid
+      tags: [Reporting/Member]
+      parameters:
+      - {name: uuid, in: path, description: UUID of the target member, required: true,
+        type: string, format: uuid}
+      - {name: bag_uuid, in: path, description: UUID of the target bag, required: true,
+        type: string, format: uuid}
+      responses:
+        '200':
+          description: Success
+          schema: {$ref: '#/definitions/BagDescriptive'}
+        '401': {$ref: '#/responses/401'}
+        '404': {$ref: '#/responses/404'}
+  /member/{uuid}/{bag_uuid}/fixity:
+    get:
+      summary: List of fixity checks for a bag
+      description: Returns a list of fixity checks done by replicating nodes for a
+        given bag
+      tags: [Reporting/Member]
+      parameters:
+      - {name: uuid, in: path, description: UUID of the target member, required: true,
+        type: string, format: uuid}
+      - {name: bag_uuid, description: UUID of the target bag, required: true, type: string,
+        format: uuid}
+      responses:
+        '200':
+          description: Success
+          schema: {$ref: '#/definitions/FixityCheckResultList'}
+        '401': {$ref: '#/responses/401'}
+  /member/{uuid}/restore:
+    get:
+      summary: Lost of restore requests for a given member
+      description: Returns a list of restore requests for a member matching the given
+        uuid
+      tags: [Reporting/Member]
+      parameters:
+      - {$ref: '#/parameters/after_created'}
+      - {$ref: '#/parameters/before_created'}
+      responses:
+        '200':
+          description: Success
+          schema: {$ref: '#/definitions/RestoreRequestResultList'}
+        '401': {$ref: '#/responses/401'}
   /ingest:
     get:
       summary: List of ingest records
@@ -1066,6 +1159,76 @@ paths:
         '401': {$ref: '#/responses/401'}
         '403': {$ref: '#/responses/403'}
         '404': {$ref: '#/responses/404'}
+  /node/{namespace}/{role}/bags:
+    get:
+      summary: Returns a list of bags by node
+      description: Returns a list of bags by node
+      tags: [Reporting/Node]
+      parameters:
+      - {name: namespace, in: path, description: namespace of the target node, required: true,
+        type: string}
+      - {name: role, in: path, description: 'Role of the node. One of ingest, admin,
+          or replica.
+
+          ', required: true, type: string}
+      responses:
+        '200':
+          description: Success
+          schema: {$ref: '#/definitions/BagResultList'}
+    head:
+      summary: Returns the aggregate count of bags for a given node
+      description: Returns the aggregate count of bags for a given node
+      tags: [Reporting/Node]
+      parameters:
+      - {name: namespace, in: path, description: namespace of the target node, required: true,
+        type: string}
+      - {name: role, in: path, description: 'role of the target node (one of ingest/admin/replica)
+
+          ', required: true, type: string}
+      responses:
+        '200':
+          description: Success
+          schema: {$ref: '#/definitions/BagAggregate'}
+  /node/{namespace}/{bag_uuid}/bag:
+    get:
+      summary: Get a bag?
+      description: Lost of fixity checks by replicating node???
+      tags: [Reporting/Node]
+      parameters:
+      - {name: namespace, in: path, description: namespace of the target node, required: true,
+        type: string}
+      - {name: bag_uuid, in: path, description: uuid of the target bag, required: true,
+        type: string, format: uuid}
+      responses:
+        '200':
+          description: Success
+          schema: {$ref: '#/definitions/Bag'}
+  /node/{namespace}/replicas:
+    get:
+      summary: List of replication requests for a given node
+      description: Returns a list of replication requests matching the namespace
+      tags: [Reporting/Node]
+      parameters:
+      - {$ref: '#/parameters/namespace'}
+      - {$ref: '#/parameters/after_created'}
+      - {$ref: '#/parameters/before_created'}
+      responses:
+        '200':
+          description: Success
+          schema: {$ref: '#/definitions/ReplicationRequestResultList'}
+  /node/{namespace}/restore:
+    get:
+      summary: List of restoration requests handled by a node namespace
+      description: List of restoration requests handled by a node namespace
+      tags: [Reporting/Node]
+      parameters:
+      - {$ref: '#/parameters/namespace'}
+      - {$ref: '#/parameters/after_created'}
+      - {$ref: '#/parameters/before_created'}
+      responses:
+        '200':
+          description: Success
+          schema: {$ref: '#/definitions/RestoreRequestResultList'}
   /replicate:
     get:
       summary: List of replication requests
@@ -1248,4 +1411,33 @@ paths:
         '401': {$ref: '#/responses/401'}
         '403': {$ref: '#/responses/403'}
         '404': {$ref: '#/responses/404'}
+  /dpn/bags:
+    head:
+      summary: Report of aggregate information about bags in dpn
+      description: Report of aggregate information about bags in dpn
+      tags: [Reporting/DPN]
+      parameters:
+      - {$ref: '#/parameters/after_created'}
+      - {$ref: '#/parameters/before_created'}
+      - {$ref: '#/parameters/member_uuid'}
+      - {$ref: '#/parameters/ingest_node'}
+      - {$ref: '#/parameters/bag_type'}
+      responses:
+        '200':
+          description: Successk
+          schema: {$ref: '#/definitions/BagAggregate'}
+  /dpn/replicas:
+    head:
+      summary: Return aggregate information about replications in dpn
+      description: Return aggregate information about replications in dpn
+      tags: [Reporting/DPN]
+      parameters:
+      - {$ref: '#/parameters/after_created'}
+      - {$ref: '#/parameters/before_created'}
+      - {$ref: '#/parameters/member_uuid'}
+      - {$ref: '#/parameters/node_uuid'}
+      responses:
+        '200':
+          description: Success
+          schema: {$ref: '#/defintions/ReplicationAggregate'}
 
