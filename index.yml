@@ -44,6 +44,8 @@ parameters:
     $ref: parameters/order_by_timestamps.yml
   bag:
     $ref: parameters/bag.yml
+  bag_type:
+    $ref: parameters/bag_type.yml
   cancelled:
     $ref: parameters/cancelled.yml
   cancel_reason:
@@ -52,6 +54,18 @@ parameters:
     $ref: parameters/to_node.yml
   from_node:
     $ref: parameters/from_node.yml
+  admin_node:
+    $ref: parameters/admin_node.yml
+  ingest_node: 
+    $ref: parameters/ingest_node.yml
+  member_uuid: 
+    $ref: parameters/member_uuid.yml
+  node_uuid: 
+    $ref: parameters/node_uuid.yml
+  member_uuid_path: 
+    $ref: parameters/member_uuid_path.yml
+  namespace: 
+    $ref: parameters/namespace.yml
 
 paths:
   $ref: paths/index.yml 
