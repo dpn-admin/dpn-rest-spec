@@ -8,27 +8,12 @@ parameters:
   - $ref: '#/parameters/after'
   - $ref: '#/parameters/page'
   - $ref: '#/parameters/page_size'
+  - $ref: '#/parameters/bag_type'
+  - $ref: '#/parameters/admin_node'
+  - $ref: '#/parameters/ingest_node'
+  - $ref: '#/parameters/member_uuid'
+  - $ref: '#/parameters/replicating_node'
   - $ref: '#/parameters/order_by_timestamps'
-  - name: admin_node
-    in: query
-    description: |
-      Filter by admin_node namespace.
-    required: false
-    type: string
-  - name: member
-    in: query
-    description: |
-      Filter by the member_id of the member who owns or manages this bag.
-    required: false
-    type: string
-    format: uuid
-  - name: bag_type
-    in: query
-    description: >
-      Filter by bag type.  Consult the Bag definitions for
-      the supported values.
-    required: false
-    type: string
   - name: first_version_uuid
     in: query
     description: >
