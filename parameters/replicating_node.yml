@@ -1,0 +1,6 @@
+name: replicating_node
+in: query
+description: >
+  The replicating node to filter on. Multiple can be used with an OR operator.
+required: false
+type: string

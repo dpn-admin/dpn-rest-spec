@@ -66,6 +66,8 @@ parameters:
     $ref: parameters/member_uuid_path.yml
   namespace: 
     $ref: parameters/namespace.yml
+  replicating_node: 
+    $ref: parameters/replicating_node.yml
 
 paths:
   $ref: paths/index.yml 
