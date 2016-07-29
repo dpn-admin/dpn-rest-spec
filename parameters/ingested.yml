@@ -1,0 +1,5 @@
+name: ingested
+in: query
+description: Retrieve ingested event which are true
+required: false
+type: boolean
