@@ -9,6 +9,8 @@ parameters:
   - $ref: '#/parameters/page'
   - $ref: '#/parameters/page_size'
   - $ref: '#/parameters/bag'
+  - $ref: '#/parameters/ingested'
+  - $ref: '#/parameters/latest'
 responses:
   '200':
     description: Success
