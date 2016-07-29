@@ -72,7 +72,7 @@ allOf:
         items:
           type: string
           uniqueItems: true
-#  - $ref: "#/definitions/Timestamps"
+  - $ref: "#/definitions/Timestamps"
 example:
   uuid: 9998e960-fc6d-44f4-9d73-9a60a8eae609
   ingest_node: aptrust
