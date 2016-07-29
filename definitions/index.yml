@@ -26,8 +26,6 @@ RestoreRequestResultList:
   $ref: restore_request_result_list.yml
 Bag:
   $ref: bag.yml
-BagAggregate:
-  $ref: bag_aggregate.yml
 Digest:
   $ref: digest.yml
 FixityCheck:
