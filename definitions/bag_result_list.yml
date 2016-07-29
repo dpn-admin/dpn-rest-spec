@@ -5,16 +5,23 @@ allOf:
   - type: object
     required:
       - results
+      - total_size
     properties:
       results:
         description: List of bags
         type: array
         items:
           $ref: '#/definitions/Bag'
+      total_size:
+        description: Total size of bags from query
+        type: integer
+        format: int32
+        minimum: 0
 example:
   count: 2
   next: http://localhost:8000/api_v1/bag/?page=3&page_size=2
   previous: http://localhost:8000/api_v1/bag/?page=1&page_size=2
+  total_size: 2526492640 
   results:
     - uuid: 9998e960-fc6d-44f4-9d73-9a60a8eae609
       ingest_node: aptrust
