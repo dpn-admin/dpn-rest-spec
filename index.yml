@@ -68,6 +68,10 @@ parameters:
     $ref: parameters/namespace.yml
   replicating_node: 
     $ref: parameters/replicating_node.yml
+  ingested: 
+    $ref: parameters/ingested.yml
+  latest: 
+    $ref: parameters/latest.yml
 
 paths:
   $ref: paths/index.yml 
