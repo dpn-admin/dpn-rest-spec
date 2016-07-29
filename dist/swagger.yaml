@@ -283,6 +283,7 @@ definitions:
             nodes.
           type: array
           items: {type: string, uniqueItems: true}
+    - {$ref: '#/definitions/Timestamps'}
     example:
       uuid: 9998e960-fc6d-44f4-9d73-9a60a8eae609
       ingest_node: aptrust
@@ -298,18 +299,6 @@ definitions:
       bag_type: D
       created_at: 2015-02-25T16:24:02.000Z
       updated_at: 2015-02-25T16:24:02.000Z
-  BagAggregate:
-    description: Aggregate data of bags in DPN for reporting
-    type: object
-    allOf:
-    - type: object
-      required: [total_bag_size, total_bag_count]
-      properties:
-        total_bag_size: {description: The sum of all bag sizes., type: integer, format: int64}
-        total_bag_count: {description: The count of all bags., type: integer, format: int64}
-    headers:
-      X-Total-Bag-Size: {description: The sum of all bag sizes, type: integer}
-      X-Total-Bag-Count: {description: The count of all bags, type: integer}
   Digest:
     description: 'A Digest is a specific fixity algorithm:value pair that is known
       to be correct. Digests are associated with specific bags. Digests are uniquely
