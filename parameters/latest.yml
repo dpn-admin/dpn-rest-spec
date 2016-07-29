@@ -1,0 +1,5 @@
+name: latest
+in: query
+description: Get the latest entry of an event
+required: false
+type: boolean
