@@ -52,16 +52,19 @@ definitions:
     allOf:
     - {$ref: '#/definitions/ResultList'}
     - type: object
-      required: [results]
+      required: [results, total_size]
       properties:
         results:
           description: List of bags
           type: array
           items: {$ref: '#/definitions/Bag'}
+        total_size: {description: Total size of bags from query, type: integer, format: int32,
+          minimum: 0}
     example:
       count: 2
       next: http://localhost:8000/api_v1/bag/?page=3&page_size=2
       previous: http://localhost:8000/api_v1/bag/?page=1&page_size=2
+      total_size: 2526492640
       results:
       - uuid: 9998e960-fc6d-44f4-9d73-9a60a8eae609
         ingest_node: aptrust
@@ -714,6 +717,14 @@ parameters:
     required: true, type: string, format: uuid}
   namespace: {name: namespace, in: path, description: namespace of the target node,
     required: true, type: string}
+  replicating_node: {name: replicating_node, in: query, description: 'The replicating
+      node to filter on. Multiple can be used with an OR operator.
+
+      ', required: false, type: string}
+  ingested: {name: ingested, in: query, description: Retrieve ingested event which
+      are true, required: false, type: boolean}
+  latest: {name: latest, in: query, description: Get the latest entry of an event,
+    required: false, type: boolean}
 paths:
   /bag:
     get:
@@ -727,18 +738,12 @@ paths:
       - {$ref: '#/parameters/after'}
       - {$ref: '#/parameters/page'}
       - {$ref: '#/parameters/page_size'}
+      - {$ref: '#/parameters/bag_type'}
+      - {$ref: '#/parameters/admin_node'}
+      - {$ref: '#/parameters/ingest_node'}
+      - {$ref: '#/parameters/member_uuid'}
+      - {$ref: '#/parameters/replicating_node'}
       - {$ref: '#/parameters/order_by_timestamps'}
-      - {name: admin_node, in: query, description: 'Filter by admin_node namespace.
-
-          ', required: false, type: string}
-      - {name: member, in: query, description: 'Filter by the member_id of the member
-          who owns or manages this bag.
-
-          ', required: false, type: string, format: uuid}
-      - {name: bag_type, in: query, description: 'Filter by bag type.  Consult the
-          Bag definitions for the supported values.
-
-          ', required: false, type: string}
       - {name: first_version_uuid, in: query, description: 'Filter by first_version_uuid.
 
           ', required: false, type: string, format: uuid}
@@ -880,6 +885,7 @@ paths:
       - {$ref: '#/parameters/page'}
       - {$ref: '#/parameters/page_size'}
       - {$ref: '#/parameters/bag'}
+      - {$ref: '#/parameters/latest'}
       - {name: node, description: 'Filter by the namespace of the node that performed
           the check.
 
@@ -1015,6 +1021,8 @@ paths:
       - {$ref: '#/parameters/page'}
       - {$ref: '#/parameters/page_size'}
       - {$ref: '#/parameters/bag'}
+      - {$ref: '#/parameters/ingested'}
+      - {$ref: '#/parameters/latest'}
       responses:
         '200':
           description: Success
@@ -1279,21 +1287,4 @@ paths:
         '401': {$ref: '#/responses/401'}
         '403': {$ref: '#/responses/403'}
         '404': {$ref: '#/responses/404'}
-  /report/stats/bags:
-    get:
-      summary: Bag Statistics
-      description: Return information about the total number and size of bags held
-        in dpn
-      tags: [Reporting]
-      parameters:
-      - {$ref: '#/parameters/before_created'}
-      - {$ref: '#/parameters/after_created'}
-      - {$ref: '#/parameters/admin_node'}
-      - {$ref: '#/parameters/ingest_node'}
-      - {$ref: '#/parameters/member_uuid'}
-      - {$ref: '#/parameters/bag_type'}
-      responses:
-        '200':
-          description: Success
-          schema: {$ref: '#/definitions/BagAggregate'}
 
