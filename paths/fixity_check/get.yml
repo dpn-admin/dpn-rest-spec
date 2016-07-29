@@ -9,6 +9,7 @@ parameters:
   - $ref: '#/parameters/page'
   - $ref: '#/parameters/page_size'
   - $ref: '#/parameters/bag'
+  - $ref: '#/parameters/latest'
   - name: node
     description: >
       Filter by the namespace of the node
