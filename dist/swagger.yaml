@@ -893,6 +893,7 @@ paths:
       - {$ref: '#/parameters/after_created'}
       - {$ref: '#/parameters/page'}
       - {$ref: '#/parameters/page_size'}
+      - {$ref: '#/parameters/order_by_created_at'}
       responses:
         '200':
           description: Success
