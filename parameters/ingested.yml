@@ -1,5 +1,6 @@
 name: ingested
 in: query
-description: Retrieve ingested event which are true
+description: >
+  Filter results by the value of their ingested field.
 required: false
 type: boolean

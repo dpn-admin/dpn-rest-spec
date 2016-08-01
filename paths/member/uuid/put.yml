@@ -6,12 +6,7 @@ description: >
 tags:
   - Member
 parameters:
-  - name: uuid
-    in: path
-    description: UUID of the target member.
-    required: true
-    type: string
-    format: uuid
+  - $ref: '#/parameters/member_uuid_path'
   - name: body
     in: body
     required: true

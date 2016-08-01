@@ -2,13 +2,8 @@ summary: Returns the data for a single member record matching the uuid.
 description: Returns the data for a single member record matching the uuid.
 tags:
   - Member
-parameters:
-  - name: uuid
-    in: path
-    description: UUID of the target member
-    required: true
-    type: string
-    format: uuid
+parameters: 
+  - $ref: '#/parameters/member_uuid_path'
 responses:
   '200':
     description: Success

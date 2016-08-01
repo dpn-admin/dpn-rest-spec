@@ -1,5 +1,8 @@
 name: latest
 in: query
-description: Get the latest entry of an event
+description: >
+  For each set of results that differ only by
+  timestamp, include only the most recent result.
+  This filter is applied after other filters.
 required: false
 type: boolean

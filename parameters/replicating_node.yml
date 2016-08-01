@@ -1,6 +1,9 @@
 name: replicating_node
 in: query
 description: >
-  The replicating node to filter on. Multiple can be used with an OR operator.
+  The namespace of the replicating node on which 
+  to filter.  Multiple filters can be used, separated
+  by comma.  The result will include the union (OR) 
+  of the filtered results.
 required: false
 type: string

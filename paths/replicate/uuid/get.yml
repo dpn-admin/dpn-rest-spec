@@ -5,12 +5,7 @@ description: >
 tags:
   - Replicate
 parameters:
-  - name: replication_id
-    in: path
-    description: replication_id of the target record
-    required: true
-    type: string
-    format: uuid
+  - $ref: '#/parameters/replication_id_path'
 responses:
   '200':
     description: Success

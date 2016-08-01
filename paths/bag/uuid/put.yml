@@ -6,12 +6,7 @@ description: >
 tags:
   - Bag
 parameters:
-  - name: uuid
-    in: path
-    description: UUID of the target bag.
-    required: true
-    type: string
-    format: uuid
+  - $ref: '#/parameters/bag_uuid_path'
   - name: body
     in: body
     required: true

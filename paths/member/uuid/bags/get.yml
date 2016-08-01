@@ -7,12 +7,7 @@ tags:
   - Member
   - Bag
 parameters:
-  - name: uuid
-    in: path
-    description: UUID of the target member
-    required: true
-    type: string
-    format: uuid
+  - $ref: '#/parameters/member_uuid_path'
 responses:
   '200':
     description: Success

@@ -6,12 +6,7 @@ description: >
 tags:
   - Node
 parameters:
-  - name: namespace
-    in: path
-    description: namespace of the target node
-    required: true
-    type: string
-  - name: body
+  - $ref: '#/parameters/namespace'
     description: Body of the node
     in: body
     required: true

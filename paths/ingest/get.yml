@@ -17,4 +17,4 @@ responses:
     schema:
       $ref: '#/definitions/IngestResultList'
   '401':
-    description: Authentication Failed
+    $ref: '#/responses/401'

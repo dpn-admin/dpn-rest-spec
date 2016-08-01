@@ -1,6 +1,0 @@
-name: node_uuid
-in: query
-description: UUID of the node
-required: false
-type: string
-format: uuid

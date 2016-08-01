@@ -3,11 +3,7 @@ description: Returns the data for a single node matching the namespace.
 tags:
   - Node
 parameters:
-  - name: namespace
-    in: path
-    description: namespace of the target node
-    required: true
-    type: string
+  - $ref: '#/parameters/namespace'
 responses:
   '200':
     description: Success
