@@ -20,19 +20,20 @@
 
 # Digest Endpoint
 /digest:
-  $ref: digest/digest.yml
+  get:
+    $ref: digest/get.yml
 
 # Fixity Endpoint
 /fixity_check:
-  get: 
-    $ref: fixity_check/get.yml  
+  get:
+    $ref: fixity_check/get.yml
   post:
     $ref: fixity_check/post.yml
 
 # Member Endpoints
 /member:
-  get: 
-    $ref: member/get.yml  
+  get:
+    $ref: member/get.yml
   post:
     $ref: member/post.yml
 /member/{uuid}:
@@ -46,15 +47,15 @@
 
 # Ingest Endpoint
 /ingest:
-  get: 
-    $ref: ingest/get.yml  
+  get:
+    $ref: ingest/get.yml
   post:
     $ref: ingest/post.yml
 
 # Node Endpoint
-/node: 
-  get: 
-    $ref: node/get.yml  
+/node:
+  get:
+    $ref: node/get.yml
 /node/{namespace}:
   get:
     $ref: node/namespace/get.yml
@@ -63,24 +64,24 @@
 
 # Replicate Endpoints
 /replicate:
-  get: 
-    $ref: replicate/get.yml  
+  get:
+    $ref: replicate/get.yml
   post:
     $ref: replicate/post.yml
-/replicate/{uuid}:
+/replicate/{replication_id}:
   get:
-    $ref: replicate/uuid/get.yml
+    $ref: replicate/replication_id/get.yml
   put:
-    $ref: replicate/uuid/put.yml
+    $ref: replicate/replication_id/put.yml
 
 # Restore Endpoints
 /restore:
-  get: 
-    $ref: restore/get.yml  
+  get:
+    $ref: restore/get.yml
   post:
     $ref: restore/post.yml
-/restore/{uuid}:
+/restore/{restore_id}:
   get:
-    $ref: restore/uuid/get.yml
+    $ref: restore/restore_id/get.yml
   put:
-    $ref: restore/uuid/put.yml
+    $ref: restore/restore_id/put.yml

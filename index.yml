@@ -14,64 +14,10 @@ definitions:
   $ref: definitions/index.yml
 
 responses:
-  '400':
-    $ref: responses/400.yml
-  '401':
-    $ref: responses/401.yml
-  '403':
-    $ref: responses/403.yml
-  '404':
-    $ref: responses/404.yml
-  '409':
-    $ref: responses/409.yml
+  $ref: responses/index.yml
     
 parameters:
-  before:
-    $ref: parameters/before.yml
-  before_created:
-    $ref: parameters/before_created.yml
-  after:
-    $ref: parameters/after.yml
-  after_created:
-    $ref: parameters/after_created.yml
-  page:
-    $ref: parameters/page.yml
-  page_size:
-    $ref: parameters/page_size.yml
-  bag_uuid_path:
-    $ref: parameters/bag_uuid_path.yml
-  order_by_timestamps:
-    $ref: parameters/order_by_timestamps.yml
-  bag:
-    $ref: parameters/bag.yml
-  bag_type:
-    $ref: parameters/bag_type.yml
-  cancelled:
-    $ref: parameters/cancelled.yml
-  cancel_reason:
-    $ref: parameters/cancel_reason.yml
-  to_node:
-    $ref: parameters/to_node.yml
-  from_node:
-    $ref: parameters/from_node.yml
-  admin_node:
-    $ref: parameters/admin_node.yml
-  ingest_node: 
-    $ref: parameters/ingest_node.yml
-  member_uuid: 
-    $ref: parameters/member_uuid.yml
-  node_uuid: 
-    $ref: parameters/node_uuid.yml
-  member_uuid_path: 
-    $ref: parameters/member_uuid_path.yml
-  namespace: 
-    $ref: parameters/namespace.yml
-  replicating_node: 
-    $ref: parameters/replicating_node.yml
-  ingested: 
-    $ref: parameters/ingested.yml
-  latest: 
-    $ref: parameters/latest.yml
+  $ref: parameters/index.yml
 
 paths:
   $ref: paths/index.yml 

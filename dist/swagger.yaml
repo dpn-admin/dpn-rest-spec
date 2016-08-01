@@ -659,6 +659,18 @@ parameters:
       ', required: true, type: integer, format: int32}
   bag_uuid_path: {name: uuid, description: UUIDv4 of the target bag, in: path, required: true,
     type: string, format: uuid}
+  order_by_created_at:
+    name: order_by
+    in: query
+    description: 'Comma separated list of string fields by which to order the response.
+
+      '
+    required: false
+    type: array
+    items:
+      type: string
+      collectionFormat: csv
+      enum: [created_at]
   order_by_timestamps:
     name: order_by
     in: query
@@ -674,7 +686,7 @@ parameters:
   bag: {name: bag, in: query, description: 'Filter by the associated bag''s uuid
 
       ', required: false, type: string, format: uuid}
-  bag_type: {name: bag_type, in: query, description: 'Filter by bag type. Consule
+  bag_type: {name: bag_type, in: query, description: 'Filter by bag type. Consult
       the Bag definitions for the supported values.
 
       ', required: false, type: string}
@@ -700,20 +712,30 @@ parameters:
       ', required: false, type: string}
   member_uuid: {name: member_uuid, in: query, description: UUID of the member, required: false,
     type: string, format: uuid}
-  node_uuid: {name: node_uuid, in: query, description: UUID of the node, required: false,
-    type: string, format: uuid}
+  node_uuid: {$ref: node_uuid.yml}
   member_uuid_path: {name: member_uuid, in: path, description: UUID of the member,
     required: true, type: string, format: uuid}
   namespace: {name: namespace, in: path, description: namespace of the target node,
     required: true, type: string}
-  replicating_node: {name: replicating_node, in: query, description: 'The replicating
-      node to filter on. Multiple can be used with an OR operator.
+  replicating_node: {name: replicating_node, in: query, description: 'The namespace
+      of the replicating node on which  to filter.  Multiple filters can be used,
+      separated by comma.  The result will include the union (OR)  of the filtered
+      results.
 
       ', required: false, type: string}
-  ingested: {name: ingested, in: query, description: Retrieve ingested event which
-      are true, required: false, type: boolean}
-  latest: {name: latest, in: query, description: Get the latest entry of an event,
-    required: false, type: boolean}
+  ingested: {name: ingested, in: query, description: 'Filter results by the value
+      of their ingested field.
+
+      ', required: false, type: boolean}
+  latest: {name: latest, in: query, description: 'For each set of results that differ
+      only by timestamp, include only the most recent result. This filter is applied
+      after other filters.
+
+      ', required: false, type: boolean}
+  replication_id_path: {name: replication_id, in: path, description: replication_id
+      of the target record, required: true, type: string, format: uuid}
+  restore_id_path: {name: restore_id, in: path, description: restore_id of the target
+      record, required: true, type: string, format: uuid}
 paths:
   /bag:
     get:
@@ -768,14 +790,13 @@ paths:
       description: Returns the data for a single bag record matching the uuid.
       tags: [Bag]
       parameters:
-      - {name: uuid, in: path, description: UUID of the target bag, required: true,
-        type: string, format: uuid}
+      - {$ref: '#/parameters/bag_uuid_path'}
       responses:
         '200':
           description: Success
           schema: {$ref: '#/definitions/Bag'}
-        '401': {description: Authentication Failed}
-        '404': {description: Not Found}
+        '401': {$ref: '#/responses/401'}
+        '404': {$ref: '#/responses/404'}
     put:
       summary: Update the bag
       description: 'Updates a single bag matching the uuid.  The body of the put is
@@ -785,8 +806,7 @@ paths:
         '
       tags: [Bag]
       parameters:
-      - {name: uuid, in: path, description: UUID of the target bag., required: true,
-        type: string, format: uuid}
+      - {$ref: '#/parameters/bag_uuid_path'}
       - name: body
         in: body
         required: true
@@ -812,7 +832,7 @@ paths:
       - {$ref: '#/parameters/after_created'}
       - {$ref: '#/parameters/page'}
       - {$ref: '#/parameters/page_size'}
-      - {$ref: '#/parameters/order_by_timestamps'}
+      - {$ref: '#/parameters/order_by_created_at'}
       responses:
         '200':
           description: Success
@@ -860,7 +880,24 @@ paths:
           schema: {$ref: '#/definitions/Digest'}
         '401': {$ref: '#/responses/401'}
         '404': {$ref: '#/responses/404'}
-  /digest: {$ref: digest/digest.yml}
+  /digest:
+    get:
+      summary: List of digests
+      description: 'This endpoint is meant to facilitate synchronizing of data.  It
+        returns a list of digests.
+
+        '
+      tags: [Digest]
+      parameters:
+      - {$ref: '#/parameters/before_created'}
+      - {$ref: '#/parameters/after_created'}
+      - {$ref: '#/parameters/page'}
+      - {$ref: '#/parameters/page_size'}
+      responses:
+        '200':
+          description: Success
+          schema: {$ref: '#/definitions/DigestResultList'}
+        '401': {$ref: '#/responses/401'}
   /fixity_check:
     get:
       summary: List of fixity checks
@@ -875,6 +912,7 @@ paths:
       - {$ref: '#/parameters/page_size'}
       - {$ref: '#/parameters/bag'}
       - {$ref: '#/parameters/latest'}
+      - {$ref: '#/parameters/order_by_created_at'}
       - {name: node, description: 'Filter by the namespace of the node that performed
           the check.
 
@@ -917,6 +955,7 @@ paths:
       - {$ref: '#/parameters/after'}
       - {$ref: '#/parameters/page'}
       - {$ref: '#/parameters/page_size'}
+      - {$ref: '#/parameters/order_by_timestamps'}
       responses:
         '200':
           description: Success
@@ -949,8 +988,7 @@ paths:
       description: Returns the data for a single member record matching the uuid.
       tags: [Member]
       parameters:
-      - {name: uuid, in: path, description: UUID of the target member, required: true,
-        type: string, format: uuid}
+      - {$ref: '#/parameters/member_uuid_path'}
       responses:
         '200':
           description: Success
@@ -966,8 +1004,7 @@ paths:
         '
       tags: [Member]
       parameters:
-      - {name: uuid, in: path, description: UUID of the target member., required: true,
-        type: string, format: uuid}
+      - {$ref: '#/parameters/member_uuid_path'}
       - name: body
         in: body
         required: true
@@ -989,8 +1026,7 @@ paths:
         '
       tags: [Member, Bag]
       parameters:
-      - {name: uuid, in: path, description: UUID of the target member, required: true,
-        type: string, format: uuid}
+      - {$ref: '#/parameters/member_uuid_path'}
       responses:
         '200':
           description: Success
@@ -1012,11 +1048,12 @@ paths:
       - {$ref: '#/parameters/bag'}
       - {$ref: '#/parameters/ingested'}
       - {$ref: '#/parameters/latest'}
+      - {$ref: '#/parameters/order_by_created_at'}
       responses:
         '200':
           description: Success
           schema: {$ref: '#/definitions/IngestResultList'}
-        '401': {description: Authentication Failed}
+        '401': {$ref: '#/responses/401'}
     post:
       summary: Create an ingest
       description: 'This endpoint allows the creation of a single ingest record through
@@ -1051,6 +1088,7 @@ paths:
       - {$ref: '#/parameters/after'}
       - {$ref: '#/parameters/page'}
       - {$ref: '#/parameters/page_size'}
+      - {$ref: '#/parameters/order_by_timestamps'}
       responses:
         '200':
           description: Success
@@ -1062,8 +1100,7 @@ paths:
       description: Returns the data for a single node matching the namespace.
       tags: [Node]
       parameters:
-      - {name: namespace, in: path, description: namespace of the target node, required: true,
-        type: string}
+      - {$ref: '#/parameters/namespace'}
       responses:
         '200':
           description: Success
@@ -1079,9 +1116,7 @@ paths:
         '
       tags: [Node]
       parameters:
-      - {name: namespace, in: path, description: namespace of the target node, required: true,
-        type: string}
-      - name: body
+      - $ref: '#/parameters/namespace'
         description: Body of the node
         in: body
         required: true
@@ -1145,7 +1180,7 @@ paths:
         '401': {$ref: '#/responses/401'}
         '403': {$ref: '#/responses/403'}
         '409': {$ref: '#/responses/409'}
-  /replicate/{uuid}:
+  /replicate/{replication_id}:
     get:
       summary: Returns the data for a single replication request.
       description: 'Returns the data for a single replication transfer request record
@@ -1154,8 +1189,7 @@ paths:
         '
       tags: [Replicate]
       parameters:
-      - {name: replication_id, in: path, description: replication_id of the target
-          record, required: true, type: string, format: uuid}
+      - {$ref: '#/parameters/replication_id_path'}
       responses:
         '200':
           description: Success
@@ -1171,8 +1205,7 @@ paths:
         '
       tags: [Replicate]
       parameters:
-      - {name: replication_id, in: path, description: replication_id of the target
-          record, required: true, type: string, format: uuid}
+      - {$ref: '#/parameters/replication_id_path'}
       - name: body
         in: body
         required: true
@@ -1236,7 +1269,7 @@ paths:
         '401': {$ref: '#/responses/401'}
         '403': {$ref: '#/responses/403'}
         '409': {$ref: '#/responses/409'}
-  /restore/{uuid}:
+  /restore/{restore_id}:
     get:
       summary: Returns the data for a single restore request.
       description: 'Returns the data for a single restore transfer request record
@@ -1245,8 +1278,7 @@ paths:
         '
       tags: [Restore]
       parameters:
-      - {name: restore_id, in: path, description: restore_id of the target record,
-        required: true, type: string, format: uuid}
+      - {$ref: '#/parameters/restore_id_path'}
       responses:
         '200':
           description: Success
@@ -1262,8 +1294,7 @@ paths:
         '
       tags: [Restore]
       parameters:
-      - {name: restore_id, in: path, description: restore_id of the target record,
-        required: true, type: string, format: uuid}
+      - {$ref: '#/parameters/restore_id_path'}
       - name: body
         in: body
         required: true
