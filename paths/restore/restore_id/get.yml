@@ -5,12 +5,7 @@ description: >
 tags:
   - Restore
 parameters:
-  - name: restore_id
-    in: path
-    description: restore_id of the target record
-    required: true
-    type: string
-    format: uuid
+  - $ref: '#/parameters/restore_id_path'
 responses:
   '200':
     description: Success
