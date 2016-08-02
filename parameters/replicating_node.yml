@@ -1,4 +1,4 @@
-name: replicating_node
+name: replicated_by
 in: query
 description: >
   The namespace of the replicating node on which 
