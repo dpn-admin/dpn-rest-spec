@@ -14,6 +14,9 @@ allOf:
       - fixity_algorithm
       - protocol
       - link
+      - store_requested
+      - stored
+      - cancelled
     properties:
       replication_id:
         description: >

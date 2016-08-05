@@ -11,6 +11,9 @@ allOf:
       - from_node
       - to_node
       - protocol
+      - accepted
+      - finished
+      - cancelled
     properties:
       restore_id:
         description: >
