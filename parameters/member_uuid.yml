@@ -1,6 +1,6 @@
-name: member_uuid
+name: member
 in: query
-description: UUID of the member
+description: Filter by member_id
 required: false
 type: string
 format: uuid

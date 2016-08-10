@@ -1,6 +1,6 @@
 name: member_uuid
 in: path
-description: UUID of the member
+description: member_id of the member
 required: true
 type: string
 format: uuid

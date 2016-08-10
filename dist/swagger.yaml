@@ -711,10 +711,10 @@ parameters:
       namespace
 
       ', required: false, type: string}
-  member_uuid: {name: member_uuid, in: query, description: UUID of the member, required: false,
+  member_uuid: {name: member, in: query, description: Filter by member_id, required: false,
     type: string, format: uuid}
   node_uuid: {$ref: node_uuid.yml}
-  member_uuid_path: {name: member_uuid, in: path, description: UUID of the member,
+  member_uuid_path: {name: member_uuid, in: path, description: member_id of the member,
     required: true, type: string, format: uuid}
   namespace: {name: namespace, in: path, description: namespace of the target node,
     required: true, type: string}
