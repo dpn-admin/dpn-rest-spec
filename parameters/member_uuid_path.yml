@@ -1,4 +1,4 @@
-name: member_uuid
+name: member_id
 in: path
 description: member_id of the member
 required: true

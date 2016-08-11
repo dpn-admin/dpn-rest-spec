@@ -2,11 +2,11 @@ description: >
   A Member represents an institution who deposits data into DPN.
 type: object
 required:
-  - uuid
+  - member_id
   - name
   - email
 properties:
-  uuid:
+  member_id:
     description: UUIDv4 that identifies this member. _(read only)_
     type: string
     format: uuid
@@ -17,6 +17,6 @@ properties:
     description: The contact email for the member.
     type: string
 example:
-  uuid: 5e4bc824-9be2-44ea-a22c-d1e74afb30c3
+  member_id: 5e4bc824-9be2-44ea-a22c-d1e74afb30c3
   name: test-lib
   email: test-lib@library.edu

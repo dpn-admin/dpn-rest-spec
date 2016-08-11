@@ -1,6 +1,6 @@
 summary: Update the member
 description: >
-  Updates a single member matching the uuid.  The body of the put
+  Updates a single member matching the member_id.  The body of the put
   is the same as the data structure for the member.  If successful,
   the response will be identical to that of a GET request.
 tags:

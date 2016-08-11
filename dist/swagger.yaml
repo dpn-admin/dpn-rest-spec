@@ -168,8 +168,8 @@ definitions:
       next: http://localhost:8000/api_v1/member/?page=3&page_size=2
       previous: http://localhost:8000/api_v1/member/?page=1&page_size=2
       results:
-      - {uuid: 5e4bc824-9be2-44ea-a22c-d1e74afb30c3, name: test-user, email: test@test.calm}
-      - {uuid: a58231cd-6573-4451-b767-f380ee08922c, name: HathiTrust, email: bhock@umich.edu}
+      - {member_id: 5e4bc824-9be2-44ea-a22c-d1e74afb30c3, name: test-user, email: test@test.calm}
+      - {member_id: a58231cd-6573-4451-b767-f380ee08922c, name: HathiTrust, email: bhock@umich.edu}
   NodeResultList:
     description: Container for a list of nodes
     type: object
@@ -399,13 +399,13 @@ definitions:
 
       '
     type: object
-    required: [uuid, name, email]
+    required: [member_id, name, email]
     properties:
-      uuid: {description: UUIDv4 that identifies this member. _(read only)_, type: string,
-        format: uuid}
+      member_id: {description: UUIDv4 that identifies this member. _(read only)_,
+        type: string, format: uuid}
       name: {description: The name the member goes by., type: string}
       email: {description: The contact email for the member., type: string}
-    example: {uuid: 5e4bc824-9be2-44ea-a22c-d1e74afb30c3, name: test-lib, email: test-lib@library.edu}
+    example: {member_id: 5e4bc824-9be2-44ea-a22c-d1e74afb30c3, name: test-lib, email: test-lib@library.edu}
   Node:
     description: A DPN node
     type: object
@@ -714,7 +714,7 @@ parameters:
   member_uuid: {name: member, in: query, description: Filter by member_id, required: false,
     type: string, format: uuid}
   node_uuid: {$ref: node_uuid.yml}
-  member_uuid_path: {name: member_uuid, in: path, description: member_id of the member,
+  member_uuid_path: {name: member_id, in: path, description: member_id of the member,
     required: true, type: string, format: uuid}
   namespace: {name: namespace, in: path, description: namespace of the target node,
     required: true, type: string}
@@ -983,10 +983,10 @@ paths:
         '401': {$ref: '#/responses/401'}
         '403': {$ref: '#/responses/403'}
         '409': {$ref: '#/responses/409'}
-  /member/{uuid}:
+  /member/{member_id}:
     get:
-      summary: Returns the data for a single member record matching the uuid.
-      description: Returns the data for a single member record matching the uuid.
+      summary: Returns the data for a single member record matching the member_id.
+      description: Returns the data for a single member record matching the member_id.
       tags: [Member]
       parameters:
       - {$ref: '#/parameters/member_uuid_path'}
@@ -998,9 +998,9 @@ paths:
         '404': {$ref: '#/responses/404'}
     put:
       summary: Update the member
-      description: 'Updates a single member matching the uuid.  The body of the put
-        is the same as the data structure for the member.  If successful, the response
-        will be identical to that of a GET request.
+      description: 'Updates a single member matching the member_id.  The body of the
+        put is the same as the data structure for the member.  If successful, the
+        response will be identical to that of a GET request.
 
         '
       tags: [Member]
@@ -1018,10 +1018,10 @@ paths:
         '401': {$ref: '#/responses/401'}
         '403': {$ref: '#/responses/403'}
         '404': {$ref: '#/responses/404'}
-  /member/{uuid}/bags:
+  /member/{member_id}/bags:
     get:
       summary: Returns the member's bags
-      description: 'Returns the member''s bags.  Behavior should match that of ```/bags/?member=<member:uuid>```,
+      description: 'Returns the member''s bags.  Behavior should match that of ```/bags/?member=<member:member_id>```,
         including querystring options except for ```member```.
 
         '

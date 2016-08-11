@@ -36,14 +36,14 @@
     $ref: member/get.yml
   post:
     $ref: member/post.yml
-/member/{uuid}:
+/member/{member_id}:
   get:
-    $ref: member/uuid/get.yml
+    $ref: member/member_id/get.yml
   put:
-    $ref: member/uuid/put.yml
-/member/{uuid}/bags:
+    $ref: member/member_id/put.yml
+/member/{member_id}/bags:
   get:
-    $ref: member/uuid/bags/get.yml
+    $ref: member/member_id/bags/get.yml
 
 # Ingest Endpoint
 /ingest:
