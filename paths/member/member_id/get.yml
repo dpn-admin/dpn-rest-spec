@@ -1,5 +1,5 @@
-summary: Returns the data for a single member record matching the uuid.
-description: Returns the data for a single member record matching the uuid.
+summary: Returns the data for a single member record matching the member_id.
+description: Returns the data for a single member record matching the member_id.
 tags:
   - Member
 parameters: 

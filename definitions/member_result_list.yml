@@ -16,9 +16,9 @@ example:
   next: http://localhost:8000/api_v1/member/?page=3&page_size=2
   previous: http://localhost:8000/api_v1/member/?page=1&page_size=2
   results:
-    - uuid: 5e4bc824-9be2-44ea-a22c-d1e74afb30c3
+    - member_id: 5e4bc824-9be2-44ea-a22c-d1e74afb30c3
       name: test-user
       email: test@test.calm
-    - uuid: a58231cd-6573-4451-b767-f380ee08922c
+    - member_id: a58231cd-6573-4451-b767-f380ee08922c
       name: HathiTrust
       email: bhock@umich.edu

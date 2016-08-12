@@ -1,8 +1,8 @@
 summary: Returns the member's bags
 description: >
   Returns the member's bags.  Behavior should match that
-  of ```/bags/?member=<member:uuid>```, including querystring
-  options except for ```member```.
+  of ```/bags/?member=<member:member_id>```, including
+  querystring options except for ```member```.
 tags:
   - Member
   - Bag
