@@ -3,6 +3,29 @@
 A Replication Transfer represents the exchange of a bag from an administrative 
 node to another node, which then becomes a replicating node for the bag.
 
+## Notes:
+* Does our model for replication requests track status changes?  
+* + Not in the replication request table**
+* + Entry placed in the audit log of the to_node**
+
+* How long may incomplete transactions persist before they are considered failed?
+* + On replication failure
+* + + node retries/reposts the request
+* + + Under what conditions are we able to retry?
+* + + Under what conditions do we select a new to_node?
+
+## Replication Request states
+
+| Ingest/Admin Node| to_node | end state |
+| --- | --- | --- |
+| requested | requested| |
+| | received | rejected |
+| | confirmed | rejected |
+| stored | stored | stored |
+| cancelled | cancelled | cancelled |
+
+
+
 ## Replication Transfer Data Structure
 
 The following is the data structure for an individual transfer:
@@ -23,15 +46,15 @@ The following is the data structure for an individual transfer:
 * **bag_valid** - null or boolean set by to_node to record results of bag validation. 
 * **status** - String status of the transfer.
     * 'requested' - set by the from_node to indicate the bag is staged for transfer 
-      and awaiting response from to_node.
-    * 'rejected' - set by the to_node to indicate it will not perform the transfer.
-    * 'received' - set by the to_node to indicate it has performed the transfer.
+      and awaiting response from to_node. 
+    * 'rejected' - set by the to_node to indicate it will not perform the transfer. This can be set for any reason by the to_node, when a transfer is refused.
+    * 'received' - set by the to_node to indicate it has performed the transfer. Optional: Data transmission is complete, but payload has not been verified. May be used to verify that the object is intact post transfer.
     * 'confirmed' - set by the from_node after it receives all data to confirm a 
-      good transfer.
+      good transfer. Transferred object passed a bag validity check.
     * 'stored' - set by the to_node to indicate the bag has been transferred into 
       its storage repository from the staging area.  The to_node promises to fulfill 
       replicating node duties by setting this status.
-    * 'cancelled' - set by either node to indicate the transfer was cancelled.
+    * 'cancelled' - set by either node to indicate the transfer was cancelled. This can be set for any reason by the to_node, when a transfer is incomplete.
 * **protocol** - String used to identify the transfer protocol. _(read_only)_
 * **link** - String of transfer link to be used for the specified protocol. _(read_only)_
 * **created_at** - String in DPN DateTime Format of the record creation date. _(read_only)_
