@@ -34,8 +34,6 @@ ingest_node:
   $ref: ingest_node.yml
 member_uuid:
   $ref: member_uuid.yml
-node_uuid:
-  $ref: node_uuid.yml
 member_uuid_path:
   $ref: member_uuid_path.yml
 namespace:
