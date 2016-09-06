@@ -14,7 +14,7 @@
     $ref: bag/uuid/digest/get.yml
   post:
     $ref: bag/uuid/digest/post.yml
-/bag/{uuid}/digest/algorithm:
+/bag/{uuid}/digest/{algorithm}:
   get:
     $ref: bag/uuid/digest/algorithm/get.yml
 
