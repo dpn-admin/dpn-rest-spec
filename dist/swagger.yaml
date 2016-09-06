@@ -624,12 +624,7 @@ definitions:
 responses:
   '400':
     description: Bad Resource or Illegal Change
-    schema:
-      type: object
-      properties:
-        errors: {description: 'String of the encountered errors, *possibly* json formatted.
-
-            ', type: string, format: json}
+    schema: {$ref: '#/definitions/Error'}
   '401': {description: Authentication Failed}
   '403': {description: 'Authenticated, Not Authorized'}
   '404': {description: Not Found}
@@ -860,7 +855,7 @@ paths:
         '403': {$ref: '#/responses/403'}
         '404': {$ref: '#/responses/404'}
         '409': {$ref: '#/responses/409'}
-  /bag/{uuid}/digest/algorithm:
+  /bag/{uuid}/digest/{algorithm}:
     get:
       summary: Show a specific digest record.
       description: 'Returns the data for the specific digest record matching the bag''s
