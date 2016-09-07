@@ -13,8 +13,8 @@ allOf:
           $ref: '#/definitions/Digest'
 example:
   count: 2
-  next: http://localhost:8000/api_v1/digest/?page=3&page_size=2
-  previous: http://localhost:8000/api_v1/digest/?page=1&page_size=2
+  next: http://localhost:8000/api-v2/digest/?page=3&page_size=2
+  previous: http://localhost:8000/api-v2/digest/?page=1&page_size=2
   results:
     - bag: 7778e960-fc6d-44f4-9d73-9a60a8eae609
       algorithm: sha256

@@ -13,8 +13,8 @@ allOf:
           $ref: '#/definitions/FixityCheck'
 example:
   count: 2
-  next: http://localhost:8000/api_v1/fixity_check/?page=3&page_size=2
-  previous: http://localhost:8000/api_v1/fixity_check/?page=1&page_size=2
+  next: http://localhost:8000/api-v2/fixity_check/?page=3&page_size=2
+  previous: http://localhost:8000/api-v2/fixity_check/?page=1&page_size=2
   results:
     - fixity_check_id: 7998e960-fc6d-44f4-9d73-9a60a8eae609
       bag: 9998e960-fc6d-44f4-9d73-9a60a8eae609

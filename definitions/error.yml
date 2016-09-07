@@ -1,7 +1,6 @@
 type: object
 properties:
   errors:
-    description: >
-      String of the encountered errors, *possibly* json formatted.
+    description: String of the encountered errors, possibly json formatted.
     type: string
     format: json

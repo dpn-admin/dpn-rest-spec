@@ -13,8 +13,8 @@ allOf:
           $ref: '#/definitions/Member'
 example:
   count: 2
-  next: http://localhost:8000/api_v1/member/?page=3&page_size=2
-  previous: http://localhost:8000/api_v1/member/?page=1&page_size=2
+  next: http://localhost:8000/api-v2/member/?page=3&page_size=2
+  previous: http://localhost:8000/api-v2/member/?page=1&page_size=2
   results:
     - member_id: 5e4bc824-9be2-44ea-a22c-d1e74afb30c3
       name: test-user

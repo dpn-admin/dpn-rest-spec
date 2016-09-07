@@ -13,8 +13,8 @@ allOf:
           $ref: '#/definitions/Node'
 example:
   count: 1
-  next: http://localhost:8000/api_v1/node/?page=3&page_size=2
-  previous: http://localhost:8000/api_v1/node/?page=1&page_size=2
+  next: http://localhost:8000/api-v2/node/?page=3&page_size=2
+  previous: http://localhost:8000/api-v2/node/?page=1&page_size=2
   results:
    - name: Chronopolis
      namespace: chron

@@ -13,8 +13,8 @@ allOf:
           $ref: '#/definitions/ReplicationRequest'
 example:
   count: 8
-  next: http://localhost:8000/api_v1/replicate/?page=3&page_size=2
-  previous: http://localhost:8000/api_v1/replicate/?page=1&page_size=2
+  next: http://localhost:8000/api-v2/replicate/?page=3&page_size=2
+  previous: http://localhost:8000/api-v2/replicate/?page=1&page_size=2
   results:
     - from_node: aptrust
       to_node: chron
