@@ -5,10 +5,12 @@ info:
   version: 2.0.0
 schemes:
   - https
+  - http
 consumes:
   - application/json
 produces:
   - application/json
+basePath: /api-v2
   
 definitions:
   $ref: definitions/index.yml
