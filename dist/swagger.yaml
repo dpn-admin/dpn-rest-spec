@@ -4,6 +4,11 @@ schemes: [https, http]
 consumes: [application/json]
 produces: [application/json]
 basePath: /api-v2
+securityDefinitions:
+  TokenSecurity: {in: header, type: apiKey, name: dpn_token, description: DPN Authorization
+      Token}
+security:
+- TokenSecurity: []
 definitions:
   Error:
     type: object
@@ -570,8 +575,8 @@ parameters:
   after_created: {name: after, in: query, description: 'Only include records with
       created_at later than this, inclusive.', required: false, type: string, format: date-time}
   page: {name: page, in: query, description: 'Page number to return, starting at 1.  For
-      use  with page_size.', required: true, type: integer, format: int32}
-  page_size: {name: page_size, in: query, description: Max results per page., required: true,
+      use  with page_size.', required: false, type: integer, format: int32}
+  page_size: {name: page_size, in: query, description: Max results per page., required: false,
     type: integer, format: int32}
   bag_uuid_path: {name: uuid, description: UUIDv4 of the target bag, in: path, required: true,
     type: string, format: uuid}
