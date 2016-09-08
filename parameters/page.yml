@@ -1,6 +1,6 @@
 name: page
 in: query
 description: Page number to return, starting at 1.  For use  with page_size.
-required: true
+required: false
 type: integer
 format: int32
