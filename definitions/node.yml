@@ -6,12 +6,10 @@ allOf:
       - namespace
     properties:
       name:
-        description: >
-          Human readable name of this node
+        description: Human readable name of this node
         type: string
       namespace:
-        description: >
-          Lowercase identifier to unambiguously reference this node.
+        description: Lowercase identifier to unambiguously reference this node.
         type: string
       api_root:
         description: >
@@ -21,42 +19,35 @@ allOf:
         type: string
         format: url
       ssh_pubkey:
-        description: >
-          null or the ssh public key of this node.
+        description: null or the ssh public key of this node.
         type: string
       replicate_from:
-        description: >
-          Array of namespaces of the nodes that this node will replicate from.
+        description: Array of namespaces of the nodes that this node will replicate from.
         type: array
         items:
           type: string
       replciate_to:
-        description: >
-          Array of namespaces of the nodes that this node will replicate to.
+        description: Array of namespaces of the nodes that this node will replicate to.
         type: array
         items:
           type: string
       restore_from:
-        description: >
-          Array of namespaces of the nodes that this node will restore from.
+        description: Array of namespaces of the nodes that this node will restore from.
         type: array
         items:
           type: string
       restore_to:
-        description: >
-          Array of namespaces of the nodes that this node will restore to.
+        description: Array of namespaces of the nodes that this node will restore to.
         type: array
         items:
           type: string
       protocols:
-        description: >
-          Array of currently supported transfer protocols.
+        description: Array of currently supported transfer protocols.
         type: array
         items:
           type: string
       fixity_algorithms:
-        description: >
-          Array of currently supported fixity algorithms.
+        description: Array of currently supported fixity algorithms.
         type: array
         items:
           type: string

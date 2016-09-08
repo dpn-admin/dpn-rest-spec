@@ -1,6 +1,5 @@
 summary: List of fixity checks
-description: >
-  Returns a list of fixity checks
+description: Returns a list of fixity checks
 tags:
   - Fixity Check
 parameters:
@@ -12,9 +11,7 @@ parameters:
   - $ref: '#/parameters/latest'
   - $ref: '#/parameters/order_by_created_at'
   - name: node
-    description: >
-      Filter by the namespace of the node
-      that performed the check.
+    description: Filter by the namespace of the node that performed the check.
     in: query
     required: false
     type: string

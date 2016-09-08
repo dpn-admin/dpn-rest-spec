@@ -13,13 +13,11 @@ allOf:
       - replicating_nodes
     properties:
       ingest_id:
-        description: >
-          UUIDv4 that uniquely identifies this record. _(read only)_
+        description: UUIDv4 that uniquely identifies this record. _(read only)_
         type: string
         format: uuid
       ingested:
-        description: >
-          Whether the ingested criteria was met or lost _(read only)_
+        description: Whether the ingested criteria was met or lost _(read only)_
         type: boolean
       replicating_nodes:
         description: >

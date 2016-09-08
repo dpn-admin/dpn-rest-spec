@@ -45,8 +45,7 @@ allOf:
         format: int32
         minimum: 1
       bag_type:
-        description: >
-          Single character specifying the type of this bag. 'D'->Data, 'I'->Interpretive, 'R'->Rights.
+        description: Single character specifying the type of this bag. 'D'->Data, 'I'->Interpretive, 'R'->Rights.
         type: string
         enum:
           - D

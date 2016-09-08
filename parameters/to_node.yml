@@ -1,6 +1,5 @@
 name: to_node
-description: >
-  Filter by to_node namespace.
+description: Filter by to_node namespace.
 in: query
 required: false
 type: string

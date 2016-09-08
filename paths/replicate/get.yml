@@ -1,6 +1,5 @@
 summary: List of replication requests
-description: >
-  Returns a list of replication transfer requests.
+description: Returns a list of replication transfer requests.
 tags:
   - Replicate
 parameters:
@@ -14,14 +13,12 @@ parameters:
   - $ref: '#/parameters/from_node'
   - name: store_requested
     in: query
-    description: >
-      Filter by store_requested
+    description: Filter by store_requested
     required: false
     type: boolean
   - name: stored
     in: query
-    description: >
-      Filter by stored
+    description: Filter by stored
     required: false
     type: boolean
   - $ref: '#/parameters/cancelled'

@@ -1,8 +1,6 @@
 name: order_by
 in: query
-description: >
-  Comma separated list of string fields by which to order the
-  response.
+description: Comma separated list of string fields by which to order the response.
 required: false
 type: array
 items:

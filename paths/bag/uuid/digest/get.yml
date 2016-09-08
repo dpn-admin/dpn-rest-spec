@@ -1,6 +1,5 @@
 summary: List of digests for the specified bag
-description: >
-  Return a list of message digests for the specified bag.
+description: Return a list of message digests for the specified bag.
 tags:
   - Digest
 parameters:

@@ -19,30 +19,21 @@ allOf:
       - cancelled
     properties:
       replication_id:
-        description: >
-          UUIDv4 that uniquely identifies this replication transfer
-          request. _(read only)_
+        description: UUIDv4 that uniquely identifies this replication transfer  request. _(read only)_
         type: string
         format: uuid
       from_node:
-        description: >
-          Namespace of the node sending the bag. This is the node
-          that generated this request. _(read only)_
+        description: Namespace of the node sending the bag. This is the node that generated this request. _(read only)_
         type: string
       to_node:
-        description: >
-          Namespace of the node receiving the bag. Must not be a
-          replicating_node for the bag being transferred.
+        description: Namespace of the node receiving the bag. Must not be a replicating_node for the bag being transferred.
         type: string
         format: uuid
       fixity_algorithm:
-        description: >
-          Name of the fixity algorithm expected for the receipt.
-          _(read only)_
+        description: Name of the fixity algorithm expected for the receipt. _(read only)_
         type: string
       fixity_nonce:
-        description: >
-          null or the nonce to be used for verification. _(read only)_
+        description: null or the nonce to be used for verification. _(read only)_
         type: string
       fixity_value:
         description: >
@@ -51,12 +42,10 @@ allOf:
           value, this field is read only.)_
         type: string
       protocol:
-        description: >
-          Name of the transfer protocol. _(read only)_
+        description: Name of the transfer protocol. _(read only)_
         type: string
       link:
-        description: >
-          URL of the bag to be transferred. _(read only)_
+        description: URL of the bag to be transferred. _(read only)_
         type: string
         format: url
       store_requested:

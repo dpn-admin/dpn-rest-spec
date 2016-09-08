@@ -1,7 +1,6 @@
 name: bag
 in: query
-description: >
-  Filter by the associated bag's uuid
+description:  Filter by the associated bag's uuid
 required: false
 type: string
 format: uuid

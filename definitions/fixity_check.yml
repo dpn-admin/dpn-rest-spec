@@ -14,18 +14,14 @@ allOf:
       - fixity_at
     properties:
       fixity_check_id:
-        description: >
-          UUIDv4 that uniquely identifies this fixity check. _(read only)_
+        description: UUIDv4 that uniquely identifies this fixity check. _(read only)_
         type: string
         format: uuid
       node:
-        description: >
-          namespace of the node that performed the check. _(read only)_
+        description: namespace of the node that performed the check. _(read only)_
         type: string
       success:
-        description: >
-          A check is successful if the bag remains unchanged,
-          and is unsuccessful otherwise. _(read only)_
+        description: A check is successful if the bag remains unchanged, and is unsuccessful otherwise. _(read only)_
         type: boolean
       fixity_at:
         description: >

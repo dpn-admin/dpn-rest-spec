@@ -2,12 +2,10 @@ description: Timestamps for DPN objects
 type: object
 properties:
   created_at:
-    description: >
-      DPN-formatted date-time when this record was first
-      created. _(read only)_
+    description: DPN-formatted date-time when this record was first created. _(read only)_
     type: string
     format: date-time
   updated_at:
-    description: DPN-formatted date-time when this record was las updated.
+    description: DPN-formatted date-time when this record was last updated.
     type: string
     format: date-time

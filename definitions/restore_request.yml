@@ -16,48 +16,32 @@ allOf:
       - cancelled
     properties:
       restore_id:
-        description: >
-          UUIDv4 that uniquely identifies this restore transfer
-          request. _(read only)_
+        description: UUIDv4 that uniquely identifies this restore transfer request. _(read only)_
         type: string
         format: uuid
       from_node:
-        description: >
-          Namespace of the node sending the bag. _(read only)_
+        description: Namespace of the node sending the bag. _(read only)_
         type: string
       to_node:
-        description: >
-          Namespace of the node receiving the bag.  This is the node
-          that generated this request. _(read only)_
+        description: Namespace of the node receiving the bag. This is the node that generated this request. _(read only)_
         type: string
       protocol:
-        description: >
-          Name of the transfer protocol. _(read only)_
+        description: Name of the transfer protocol. _(read only)_
         type: string
       link:
-        description: >
-          null or URL of the bag to be transferred.  Set by the
-          from_node. _(Once set, this field is read only.)_
+        description: null or URL of the bag to be transferred. Set by the from_node. _(Once set, this field is read only.)_
         type: string
         format: url
       accepted:
-        description: >
-          Set by the from_node to indicate that it has
-          accept,ed the request. _(Once set to true, this
-          field is read only.)_
+        description: Set by the from_node to indicate that it has accepted the request. _(Once set to true, this field is read only.)_
         type: boolean
         default: false
       finished:
-        description: >
-          Set by the to_node to indicate the transfer completed
-          successfully.  _(Once set to true, the entire record
-          is read-only.)_
+        description: Set by the to_node to indicate the transfer completed successfully.  _(Once set to true, the entire record is read-only.)_
         type: boolean
         default: false
       cancelled:
-        description: >
-          Set by either node to immediately end the transaction. _(Once
-          set to true, the entire record is read-only.)_
+        description: Set by either node to immediately end the transaction. _(Once set to true, the entire record is read-only.)_
         type: boolean
         default: false
       cancel_reason:

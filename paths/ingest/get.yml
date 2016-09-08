@@ -1,6 +1,5 @@
 summary: List of ingest records
-description: >
-  Returns a list of ingest records
+description: Returns a list of ingest records
 tags:
   - Ingest
 parameters:

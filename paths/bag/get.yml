@@ -1,6 +1,5 @@
 summary: List of bags
-description: >
-  Returns a list of Bag records.
+description: Returns a list of Bag records.
 tags:
   - Bag
 parameters:
@@ -16,8 +15,7 @@ parameters:
   - $ref: '#/parameters/order_by_timestamps'
   - name: first_version_uuid
     in: query
-    description: >
-      Filter by first_version_uuid.
+    description: Filter by first_version_uuid.
     required: false
     type: string
     format: uuid

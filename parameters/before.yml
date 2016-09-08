@@ -1,7 +1,6 @@
 name: before
 in: query
-description: >
-  Only include records with updated_at **earlier**  than this, inclusive.
+description: Only include records with updated_at earlier than this, inclusive.
 required: false
 type: string
 format: date-time

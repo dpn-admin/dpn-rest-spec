@@ -1,8 +1,7 @@
 summary: List of nodes
 deprecated: true # Nodes must be added out of band, so this
                  # endpoint does nothing.
-description: >
-  Return a list of node records.
+description: Return a list of node records.
 tags:
   - Node
 parameters:

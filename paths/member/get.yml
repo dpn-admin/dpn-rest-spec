@@ -1,6 +1,5 @@
 summary: List of members
-description: >
-  Returns a list of members.
+description: Returns a list of members.
 tags:
   - Member
 parameters:

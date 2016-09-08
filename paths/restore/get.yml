@@ -1,6 +1,5 @@
 summary: List of restore requests
-description: >
-  Returns a list of restore transfer requests.
+description: Returns a list of restore transfer requests.
 tags:
   - Restore
 parameters:
@@ -14,14 +13,12 @@ parameters:
   - $ref: '#/parameters/from_node'
   - name: accepted
     in: query
-    description: >
-      Filter by accepted
+    description: Filter by accepted
     required: false
     type: boolean
   - name: finished
     in: query
-    description: >
-      Filter by finished
+    description: Filter by finished
     required: false
     type: boolean
   - $ref: '#/parameters/cancelled'

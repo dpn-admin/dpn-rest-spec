@@ -13,16 +13,13 @@ allOf:
       - value
     properties:
       node:
-        description: >
-          namespace of the node that generated this digest. _(read only)_
+        description: namespace of the node that generated this digest. _(read only)_
         type: string
       algorithm:
-        description: >
-          Algorithm used to calculate the value. _(read only)_
+        description: Algorithm used to calculate the value. _(read only)_
         type: string
       value:
-        description: >
-          Value calculated for the bag. _(read only)_
+        description: Value calculated for the bag. _(read only)_
         type: string
   - $ref: '#/definitions/ReadOnlyTimestamps'
 example:

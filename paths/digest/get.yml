@@ -1,7 +1,5 @@
 summary: List of digests
-description: >
-  This endpoint is meant to facilitate synchronizing of data.  It
-  returns a list of digests.
+description: This endpoint is meant to facilitate synchronizing of data. It returns a list of digests.
 tags:
   - Digest
 parameters:

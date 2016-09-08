@@ -1,7 +1,5 @@
 summary: Returns the data for a single restore request.
-description: >
-  Returns the data for a single restore transfer request
-  record matching the restore_id.
+description: Returns the data for a single restore transfer request record matching the restore_id.
 tags:
   - Restore
 parameters:

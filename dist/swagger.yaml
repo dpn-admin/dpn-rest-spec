@@ -14,20 +14,16 @@ definitions:
     description: Timestamps for DPN objects
     type: object
     properties:
-      created_at: {description: 'DPN-formatted date-time when this record was first
-          created. _(read only)_
-
-          ', type: string, format: date-time}
-      updated_at: {description: DPN-formatted date-time when this record was las updated.,
-        type: string, format: date-time}
+      created_at: {description: DPN-formatted date-time when this record was first
+          created. _(read only)_, type: string, format: date-time}
+      updated_at: {description: DPN-formatted date-time when this record was last
+          updated., type: string, format: date-time}
   ReadOnlyTimestamps:
     description: Timestamps for read-only DPN objects
     type: object
     properties:
-      created_at: {description: 'DPN-formatted date-time when this record was first
-          created. _(read only)_
-
-          ', type: string, format: date-time}
+      created_at: {description: DPN-formatted date-time when this record was first
+          created. _(read only)_, type: string, format: date-time}
   ResultList:
     description: Generic list of results
     type: object
@@ -261,10 +257,8 @@ definitions:
         version: {description: 'This bag''s version number, beginning with 1. _(read
             only)_', type: integer, format: int32, minimum: 1}
         bag_type:
-          description: 'Single character specifying the type of this bag. ''D''->Data,
-            ''I''->Interpretive, ''R''->Rights.
-
-            '
+          description: Single character specifying the type of this bag. 'D'->Data,
+            'I'->Interpretive, 'R'->Rights.
           type: string
           enum: [D, I, R]
         interpretive:
@@ -308,16 +302,11 @@ definitions:
     - type: object
       required: [node, algorithm, value]
       properties:
-        node: {description: 'namespace of the node that generated this digest. _(read
-            only)_
-
-            ', type: string}
-        algorithm: {description: 'Algorithm used to calculate the value. _(read only)_
-
-            ', type: string}
-        value: {description: 'Value calculated for the bag. _(read only)_
-
-            ', type: string}
+        node: {description: namespace of the node that generated this digest. _(read
+            only)_, type: string}
+        algorithm: {description: Algorithm used to calculate the value. _(read only)_,
+          type: string}
+        value: {description: Value calculated for the bag. _(read only)_, type: string}
     - {$ref: '#/definitions/ReadOnlyTimestamps'}
     example: {bag: 9998e960-fc6d-44f4-9d73-9a60a8eae609, node: hathi, algorithm: sha256,
       value: d904c39f9f900d829c4cf61dac35ee2c6aed986caa0223ec832f6dd98c6e70f5, created_at: !!timestamp '2015-02-25T16:24:02.000Z'}
@@ -334,18 +323,12 @@ definitions:
     - type: object
       required: [fixity_check_id, node, success, fixity_at]
       properties:
-        fixity_check_id: {description: 'UUIDv4 that uniquely identifies this fixity
-            check. _(read only)_
-
-            ', type: string, format: uuid}
-        node: {description: 'namespace of the node that performed the check. _(read
-            only)_
-
-            ', type: string}
+        fixity_check_id: {description: UUIDv4 that uniquely identifies this fixity
+            check. _(read only)_, type: string, format: uuid}
+        node: {description: namespace of the node that performed the check. _(read
+            only)_, type: string}
         success: {description: 'A check is successful if the bag remains unchanged,
-            and is unsuccessful otherwise. _(read only)_
-
-            ', type: boolean}
+            and is unsuccessful otherwise. _(read only)_', type: boolean}
         fixity_at: {description: 'The time the actual check was completed, as opposed
             to when this record was created.  Must be less than or equal to created_at.  _(read
             only)_
@@ -368,14 +351,10 @@ definitions:
     - type: object
       required: [ingest_id, ingested, replicating_nodes]
       properties:
-        ingest_id: {description: 'UUIDv4 that uniquely identifies this record. _(read
-            only)_
-
-            ', type: string, format: uuid}
-        ingested: {description: 'Whether the ingested criteria was met or lost _(read
-            only)_
-
-            ', type: boolean}
+        ingest_id: {description: UUIDv4 that uniquely identifies this record. _(read
+            only)_, type: string, format: uuid}
+        ingested: {description: Whether the ingested criteria was met or lost _(read
+            only)_, type: boolean}
         replicating_nodes:
           description: 'The node namespaces of nodes that were storing the bag at
             the time this record was generated. Note that this list should include
@@ -392,9 +371,7 @@ definitions:
       replicating_nodes: [hathi, chron, aptrust]
       created_at: 2015-02-25T16:24:02.000Z
   Member:
-    description: 'A Member represents an institution who deposits data into DPN.
-
-      '
+    description: A Member represents an institution who deposits data into DPN.
     type: object
     required: [member_id, name, email]
     properties:
@@ -410,59 +387,41 @@ definitions:
     - type: object
       required: [namespace]
       properties:
-        name: {description: 'Human readable name of this node
-
-            ', type: string}
-        namespace: {description: 'Lowercase identifier to unambiguously reference
-            this node.
-
-            ', type: string}
+        name: {description: Human readable name of this node, type: string}
+        namespace: {description: Lowercase identifier to unambiguously reference this
+            node., type: string}
         api_root: {description: 'null or the root location of this node''s server.
             This field MUST NOT be changed during normal operations; it should only
             change out of band.
 
             ', type: string, format: url}
-        ssh_pubkey: {description: 'null or the ssh public key of this node.
-
-            ', type: string}
+        ssh_pubkey: {description: null or the ssh public key of this node., type: string}
         replicate_from:
-          description: 'Array of namespaces of the nodes that this node will replicate
+          description: Array of namespaces of the nodes that this node will replicate
             from.
-
-            '
           type: array
           items: {type: string}
         replciate_to:
-          description: 'Array of namespaces of the nodes that this node will replicate
+          description: Array of namespaces of the nodes that this node will replicate
             to.
-
-            '
           type: array
           items: {type: string}
         restore_from:
-          description: 'Array of namespaces of the nodes that this node will restore
+          description: Array of namespaces of the nodes that this node will restore
             from.
-
-            '
           type: array
           items: {type: string}
         restore_to:
-          description: 'Array of namespaces of the nodes that this node will restore
+          description: Array of namespaces of the nodes that this node will restore
             to.
-
-            '
           type: array
           items: {type: string}
         protocols:
-          description: 'Array of currently supported transfer protocols.
-
-            '
+          description: Array of currently supported transfer protocols.
           type: array
           items: {type: string}
         fixity_algorithms:
-          description: 'Array of currently supported fixity algorithms.
-
-            '
+          description: Array of currently supported fixity algorithms.
           type: array
           items: {type: string}
         storage:
@@ -505,37 +464,24 @@ definitions:
       required: [replication_id, from_node, to_node, fixity_algorithm, protocol, link,
         store_requested, stored, cancelled]
       properties:
-        replication_id: {description: 'UUIDv4 that uniquely identifies this replication
-            transfer request. _(read only)_
-
-            ', type: string, format: uuid}
-        from_node: {description: 'Namespace of the node sending the bag. This is the
-            node that generated this request. _(read only)_
-
-            ', type: string}
-        to_node: {description: 'Namespace of the node receiving the bag. Must not
-            be a replicating_node for the bag being transferred.
-
-            ', type: string, format: uuid}
-        fixity_algorithm: {description: 'Name of the fixity algorithm expected for
-            the receipt. _(read only)_
-
-            ', type: string}
-        fixity_nonce: {description: 'null or the nonce to be used for verification.
-            _(read only)_
-
-            ', type: string}
+        replication_id: {description: UUIDv4 that uniquely identifies this replication
+            transfer  request. _(read only)_, type: string, format: uuid}
+        from_node: {description: Namespace of the node sending the bag. This is the
+            node that generated this request. _(read only)_, type: string}
+        to_node: {description: Namespace of the node receiving the bag. Must not be
+            a replicating_node for the bag being transferred., type: string, format: uuid}
+        fixity_algorithm: {description: Name of the fixity algorithm expected for
+            the receipt. _(read only)_, type: string}
+        fixity_nonce: {description: null or the nonce to be used for verification.
+            _(read only)_, type: string}
         fixity_value: {description: 'null or the string of the fixity value calculated
             by the to_node after transferring the bag to its staging area.  _(Once
             set to a value, this field is read only.)_
 
             ', type: string}
-        protocol: {description: 'Name of the transfer protocol. _(read only)_
-
-            ', type: string}
-        link: {description: 'URL of the bag to be transferred. _(read only)_
-
-            ', type: string, format: url}
+        protocol: {description: Name of the transfer protocol. _(read only)_, type: string}
+        link: {description: URL of the bag to be transferred. _(read only)_, type: string,
+          format: url}
         store_requested: {description: 'Set by the from_node after it receives a correct
             fixity_value to instruct the to_node to complete the replication.  _(Once
             set to true, this field is read only.)_
@@ -579,36 +525,24 @@ definitions:
     - type: object
       required: [restore_id, from_node, to_node, protocol, accepted, finished, cancelled]
       properties:
-        restore_id: {description: 'UUIDv4 that uniquely identifies this restore transfer
-            request. _(read only)_
-
-            ', type: string, format: uuid}
-        from_node: {description: 'Namespace of the node sending the bag. _(read only)_
-
-            ', type: string}
-        to_node: {description: 'Namespace of the node receiving the bag.  This is
-            the node that generated this request. _(read only)_
-
-            ', type: string}
-        protocol: {description: 'Name of the transfer protocol. _(read only)_
-
-            ', type: string}
-        link: {description: 'null or URL of the bag to be transferred.  Set by the
-            from_node. _(Once set, this field is read only.)_
-
-            ', type: string, format: url}
-        accepted: {description: 'Set by the from_node to indicate that it has accept,ed
-            the request. _(Once set to true, this field is read only.)_
-
-            ', type: boolean, default: false}
+        restore_id: {description: UUIDv4 that uniquely identifies this restore transfer
+            request. _(read only)_, type: string, format: uuid}
+        from_node: {description: Namespace of the node sending the bag. _(read only)_,
+          type: string}
+        to_node: {description: Namespace of the node receiving the bag. This is the
+            node that generated this request. _(read only)_, type: string}
+        protocol: {description: Name of the transfer protocol. _(read only)_, type: string}
+        link: {description: 'null or URL of the bag to be transferred. Set by the
+            from_node. _(Once set, this field is read only.)_', type: string, format: url}
+        accepted: {description: 'Set by the from_node to indicate that it has accepted
+            the request. _(Once set to true, this field is read only.)_', type: boolean,
+          default: false}
         finished: {description: 'Set by the to_node to indicate the transfer completed
-            successfully.  _(Once set to true, the entire record is read-only.)_
-
-            ', type: boolean, default: false}
+            successfully.  _(Once set to true, the entire record is read-only.)_',
+          type: boolean, default: false}
         cancelled: {description: 'Set by either node to immediately end the transaction.
-            _(Once set to true, the entire record is read-only.)_
-
-            ', type: boolean, default: false}
+            _(Once set to true, the entire record is read-only.)_', type: boolean,
+          default: false}
         cancel_reason:
           description: 'null or the reason for cancelling.  The cancel_reason must
             not be treated as an actionable field; it is only for debugging and analytics.
@@ -628,36 +562,23 @@ responses:
   '409': {description: Duplicate}
 parameters:
   before: {name: before, in: query, description: 'Only include records with updated_at
-      **earlier**  than this, inclusive.
-
-      ', required: false, type: string, format: date-time}
+      earlier than this, inclusive.', required: false, type: string, format: date-time}
   before_created: {name: before, in: query, description: 'Only include records with
-      created_at **earlier**  than this, inclusive.
-
-      ', required: false, type: string, format: date-time}
+      created_at earlier than this, inclusive.', required: false, type: string, format: date-time}
   after: {name: after, in: query, description: 'Only include records with updated_at
-      **later**  than this, inclusive.
-
-      ', required: false, type: string, format: date-time}
+      later than this, inclusive.', required: false, type: string, format: date-time}
   after_created: {name: after, in: query, description: 'Only include records with
-      created_at **later**  than this, inclusive.
-
-      ', required: false, type: string, format: date-time}
+      created_at later than this, inclusive.', required: false, type: string, format: date-time}
   page: {name: page, in: query, description: 'Page number to return, starting at 1.  For
-      use  with page_size.
-
-      ', required: true, type: integer, format: int32}
-  page_size: {name: page_size, in: query, description: 'Max results per page.
-
-      ', required: true, type: integer, format: int32}
+      use  with page_size.', required: true, type: integer, format: int32}
+  page_size: {name: page_size, in: query, description: Max results per page., required: true,
+    type: integer, format: int32}
   bag_uuid_path: {name: uuid, description: UUIDv4 of the target bag, in: path, required: true,
     type: string, format: uuid}
   order_by_created_at:
     name: order_by
     in: query
-    description: 'Comma separated list of string fields by which to order the response.
-
-      '
+    description: Comma separated list of string fields by which to order the response.
     required: false
     type: array
     items:
@@ -667,42 +588,30 @@ parameters:
   order_by_timestamps:
     name: order_by
     in: query
-    description: 'Comma separated list of string fields by which to order the response.
-
-      '
+    description: Comma separated list of string fields by which to order the response.
     required: false
     type: array
     items:
       type: string
       collectionFormat: csv
       enum: [updated_at, created_at]
-  bag: {name: bag, in: query, description: 'Filter by the associated bag''s uuid
-
-      ', required: false, type: string, format: uuid}
-  bag_type: {name: bag_type, in: query, description: 'Filter by bag type. Consult
-      the Bag definitions for the supported values.
-
-      ', required: false, type: string}
-  cancelled: {name: cancelled, description: 'Filter by cancelled
-
-      ', in: query, required: false, type: boolean}
-  cancel_reason: {name: cancel_reason, description: 'Filter by cancel_reason.  Refer
-      to the object definition for supported values.
-
-      ', in: query, required: false, type: string}
-  to_node: {name: to_node, description: 'Filter by to_node namespace.
-
-      ', in: query, required: false, type: string}
-  from_node: {name: from_node, description: 'Filter by from_node namespace.
-
-      ', in: query, required: false, type: string}
-  admin_node: {name: admin_node, in: query, description: 'Filter by admin_node namespace
-
-      ', required: false, type: string}
-  ingest_node: {name: ingest_node, in: query, description: 'Filter by ingest_node
-      namespace
-
-      ', required: false, type: string}
+  bag: {name: bag, in: query, description: Filter by the associated bag's uuid, required: false,
+    type: string, format: uuid}
+  bag_type: {name: bag_type, in: query, description: Filter by bag type. Consult the
+      Bag definitions for the supported values., required: false, type: string}
+  cancelled: {name: cancelled, description: Filter by cancelled, in: query, required: false,
+    type: boolean}
+  cancel_reason: {name: cancel_reason, description: Filter by cancel_reason. Refer
+      to the object definition for supported values., in: query, required: false,
+    type: string}
+  to_node: {name: to_node, description: Filter by to_node namespace., in: query, required: false,
+    type: string}
+  from_node: {name: from_node, description: Filter by from_node namespace., in: query,
+    required: false, type: string}
+  admin_node: {name: admin_node, in: query, description: Filter by admin_node namespace,
+    required: false, type: string}
+  ingest_node: {name: ingest_node, in: query, description: Filter by ingest_node namespace,
+    required: false, type: string}
   member_uuid: {name: member, in: query, description: Filter by member_id, required: false,
     type: string, format: uuid}
   member_uuid_path: {name: member_id, in: path, description: member_id of the member,
@@ -714,10 +623,8 @@ parameters:
       by comma.  The result will include the union (OR)  of the filtered results.
 
       ', required: false, type: string}
-  ingested: {name: ingested, in: query, description: 'Filter results by the value
-      of their ingested field.
-
-      ', required: false, type: boolean}
+  ingested: {name: ingested, in: query, description: Filter results by the value of
+      their ingested field., required: false, type: boolean}
   latest: {name: latest, in: query, description: 'For each set of results that differ
       only by timestamp, include only the most recent result. This filter is applied
       after other filters.
@@ -731,9 +638,7 @@ paths:
   /bag:
     get:
       summary: List of bags
-      description: 'Returns a list of Bag records.
-
-        '
+      description: Returns a list of Bag records.
       tags: [Bag]
       parameters:
       - {$ref: '#/parameters/before'}
@@ -746,9 +651,8 @@ paths:
       - {$ref: '#/parameters/member_uuid'}
       - {$ref: '#/parameters/replicating_node'}
       - {$ref: '#/parameters/order_by_timestamps'}
-      - {name: first_version_uuid, in: query, description: 'Filter by first_version_uuid.
-
-          ', required: false, type: string, format: uuid}
+      - {name: first_version_uuid, in: query, description: Filter by first_version_uuid.,
+        required: false, type: string, format: uuid}
       responses:
         '200':
           description: Success
@@ -813,9 +717,7 @@ paths:
   /bag/{uuid}/digest:
     get:
       summary: List of digests for the specified bag
-      description: 'Return a list of message digests for the specified bag.
-
-        '
+      description: Return a list of message digests for the specified bag.
       tags: [Digest]
       parameters:
       - {$ref: '#/parameters/bag_uuid_path'}
@@ -874,10 +776,8 @@ paths:
   /digest:
     get:
       summary: List of digests
-      description: 'This endpoint is meant to facilitate synchronizing of data.  It
+      description: This endpoint is meant to facilitate synchronizing of data. It
         returns a list of digests.
-
-        '
       tags: [Digest]
       parameters:
       - {$ref: '#/parameters/before_created'}
@@ -893,9 +793,7 @@ paths:
   /fixity_check:
     get:
       summary: List of fixity checks
-      description: 'Returns a list of fixity checks
-
-        '
+      description: Returns a list of fixity checks
       tags: [Fixity Check]
       parameters:
       - {$ref: '#/parameters/before_created'}
@@ -905,10 +803,8 @@ paths:
       - {$ref: '#/parameters/bag'}
       - {$ref: '#/parameters/latest'}
       - {$ref: '#/parameters/order_by_created_at'}
-      - {name: node, description: 'Filter by the namespace of the node that performed
-          the check.
-
-          ', in: query, required: false, type: string}
+      - {name: node, description: Filter by the namespace of the node that performed
+          the check., in: query, required: false, type: string}
       responses:
         '200':
           description: Success
@@ -938,9 +834,7 @@ paths:
   /member:
     get:
       summary: List of members
-      description: 'Returns a list of members.
-
-        '
+      description: Returns a list of members.
       tags: [Member]
       parameters:
       - {$ref: '#/parameters/before'}
@@ -1012,10 +906,8 @@ paths:
   /member/{member_id}/bags:
     get:
       summary: Returns the member's bags
-      description: 'Returns the member''s bags.  Behavior should match that of ```/bags/?member=<member:member_id>```,
+      description: Returns the member's bags. Behavior should match that of ```/bags/?member=<member:member_id>```,
         including querystring options except for ```member```.
-
-        '
       tags: [Member, Bag]
       parameters:
       - {$ref: '#/parameters/member_uuid_path'}
@@ -1028,9 +920,7 @@ paths:
   /ingest:
     get:
       summary: List of ingest records
-      description: 'Returns a list of ingest records
-
-        '
+      description: Returns a list of ingest records
       tags: [Ingest]
       parameters:
       - {$ref: '#/parameters/before_created'}
@@ -1071,9 +961,7 @@ paths:
     get:
       summary: List of nodes
       deprecated: true
-      description: 'Return a list of node records.
-
-        '
+      description: Return a list of node records.
       tags: [Node]
       parameters:
       - {$ref: '#/parameters/before'}
@@ -1125,9 +1013,7 @@ paths:
   /replicate:
     get:
       summary: List of replication requests
-      description: 'Returns a list of replication transfer requests.
-
-        '
+      description: Returns a list of replication transfer requests.
       tags: [Replicate]
       parameters:
       - {$ref: '#/parameters/before'}
@@ -1138,12 +1024,10 @@ paths:
       - {$ref: '#/parameters/bag'}
       - {$ref: '#/parameters/to_node'}
       - {$ref: '#/parameters/from_node'}
-      - {name: store_requested, in: query, description: 'Filter by store_requested
-
-          ', required: false, type: boolean}
-      - {name: stored, in: query, description: 'Filter by stored
-
-          ', required: false, type: boolean}
+      - {name: store_requested, in: query, description: Filter by store_requested,
+        required: false, type: boolean}
+      - {name: stored, in: query, description: Filter by stored, required: false,
+        type: boolean}
       - {$ref: '#/parameters/cancelled'}
       - {$ref: '#/parameters/cancel_reason'}
       responses:
@@ -1176,10 +1060,8 @@ paths:
   /replicate/{replication_id}:
     get:
       summary: Returns the data for a single replication request.
-      description: 'Returns the data for a single replication transfer request record
+      description: Returns the data for a single replication transfer request record
         matching the replication_id.
-
-        '
       tags: [Replicate]
       parameters:
       - {$ref: '#/parameters/replication_id_path'}
@@ -1214,9 +1096,7 @@ paths:
   /restore:
     get:
       summary: List of restore requests
-      description: 'Returns a list of restore transfer requests.
-
-        '
+      description: Returns a list of restore transfer requests.
       tags: [Restore]
       parameters:
       - {$ref: '#/parameters/before'}
@@ -1227,12 +1107,10 @@ paths:
       - {$ref: '#/parameters/bag'}
       - {$ref: '#/parameters/to_node'}
       - {$ref: '#/parameters/from_node'}
-      - {name: accepted, in: query, description: 'Filter by accepted
-
-          ', required: false, type: boolean}
-      - {name: finished, in: query, description: 'Filter by finished
-
-          ', required: false, type: boolean}
+      - {name: accepted, in: query, description: Filter by accepted, required: false,
+        type: boolean}
+      - {name: finished, in: query, description: Filter by finished, required: false,
+        type: boolean}
       - {$ref: '#/parameters/cancelled'}
       - {$ref: '#/parameters/cancel_reason'}
       responses:
@@ -1265,10 +1143,8 @@ paths:
   /restore/{restore_id}:
     get:
       summary: Returns the data for a single restore request.
-      description: 'Returns the data for a single restore transfer request record
-        matching the restore_id.
-
-        '
+      description: Returns the data for a single restore transfer request record matching
+        the restore_id.
       tags: [Restore]
       parameters:
       - {$ref: '#/parameters/restore_id_path'}
