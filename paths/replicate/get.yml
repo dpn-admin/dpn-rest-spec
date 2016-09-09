@@ -5,9 +5,6 @@ tags:
 parameters:
   - $ref: '#/parameters/before'
   - $ref: '#/parameters/after'
-  - $ref: '#/parameters/page'
-  - $ref: '#/parameters/page_size'
-  - $ref: '#/parameters/order_by_timestamps'
   - $ref: '#/parameters/bag'
   - $ref: '#/parameters/to_node'
   - $ref: '#/parameters/from_node'
@@ -23,6 +20,9 @@ parameters:
     type: boolean
   - $ref: '#/parameters/cancelled'
   - $ref: '#/parameters/cancel_reason'
+  - $ref: '#/parameters/page'
+  - $ref: '#/parameters/page_size'
+  - $ref: '#/parameters/order_by_timestamps'
 responses:
   '200':
     description: Success
