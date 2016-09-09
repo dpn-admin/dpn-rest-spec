@@ -3,9 +3,9 @@ info:
   title: DPN API
   description: Digital Preservation Network
   version: 2.0.0
-schemes:
-  - http
-  - https
+# schemes:
+#   - http
+#   - https
 consumes:
   - application/json
 produces:

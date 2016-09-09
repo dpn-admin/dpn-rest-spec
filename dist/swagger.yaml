@@ -1,6 +1,5 @@
 swagger: '2.0'
 info: {title: DPN API, description: Digital Preservation Network, version: 2.0.0}
-schemes: [http, https]
 consumes: [application/json]
 produces: [application/json]
 basePath: /api-v2
@@ -648,16 +647,16 @@ paths:
       parameters:
       - {$ref: '#/parameters/before'}
       - {$ref: '#/parameters/after'}
-      - {$ref: '#/parameters/page'}
-      - {$ref: '#/parameters/page_size'}
       - {$ref: '#/parameters/bag_type'}
       - {$ref: '#/parameters/admin_node'}
       - {$ref: '#/parameters/ingest_node'}
       - {$ref: '#/parameters/member_uuid'}
       - {$ref: '#/parameters/replicating_node'}
-      - {$ref: '#/parameters/order_by_timestamps'}
       - {name: first_version_uuid, in: query, description: Filter by first_version_uuid.,
         required: false, type: string, format: uuid}
+      - {$ref: '#/parameters/page'}
+      - {$ref: '#/parameters/page_size'}
+      - {$ref: '#/parameters/order_by_timestamps'}
       responses:
         '200':
           description: Success
@@ -803,13 +802,13 @@ paths:
       parameters:
       - {$ref: '#/parameters/before_created'}
       - {$ref: '#/parameters/after_created'}
-      - {$ref: '#/parameters/page'}
-      - {$ref: '#/parameters/page_size'}
       - {$ref: '#/parameters/bag'}
       - {$ref: '#/parameters/latest'}
-      - {$ref: '#/parameters/order_by_created_at'}
       - {name: node, description: Filter by the namespace of the node that performed
           the check., in: query, required: false, type: string}
+      - {$ref: '#/parameters/page'}
+      - {$ref: '#/parameters/page_size'}
+      - {$ref: '#/parameters/order_by_created_at'}
       responses:
         '200':
           description: Success
@@ -930,11 +929,11 @@ paths:
       parameters:
       - {$ref: '#/parameters/before_created'}
       - {$ref: '#/parameters/after_created'}
-      - {$ref: '#/parameters/page'}
-      - {$ref: '#/parameters/page_size'}
       - {$ref: '#/parameters/bag'}
       - {$ref: '#/parameters/ingested'}
       - {$ref: '#/parameters/latest'}
+      - {$ref: '#/parameters/page'}
+      - {$ref: '#/parameters/page_size'}
       - {$ref: '#/parameters/order_by_created_at'}
       responses:
         '200':
@@ -1023,9 +1022,6 @@ paths:
       parameters:
       - {$ref: '#/parameters/before'}
       - {$ref: '#/parameters/after'}
-      - {$ref: '#/parameters/page'}
-      - {$ref: '#/parameters/page_size'}
-      - {$ref: '#/parameters/order_by_timestamps'}
       - {$ref: '#/parameters/bag'}
       - {$ref: '#/parameters/to_node'}
       - {$ref: '#/parameters/from_node'}
@@ -1035,6 +1031,9 @@ paths:
         type: boolean}
       - {$ref: '#/parameters/cancelled'}
       - {$ref: '#/parameters/cancel_reason'}
+      - {$ref: '#/parameters/page'}
+      - {$ref: '#/parameters/page_size'}
+      - {$ref: '#/parameters/order_by_timestamps'}
       responses:
         '200':
           description: Success
@@ -1106,9 +1105,6 @@ paths:
       parameters:
       - {$ref: '#/parameters/before'}
       - {$ref: '#/parameters/after'}
-      - {$ref: '#/parameters/page'}
-      - {$ref: '#/parameters/page_size'}
-      - {$ref: '#/parameters/order_by_timestamps'}
       - {$ref: '#/parameters/bag'}
       - {$ref: '#/parameters/to_node'}
       - {$ref: '#/parameters/from_node'}
@@ -1118,6 +1114,9 @@ paths:
         type: boolean}
       - {$ref: '#/parameters/cancelled'}
       - {$ref: '#/parameters/cancel_reason'}
+      - {$ref: '#/parameters/page'}
+      - {$ref: '#/parameters/page_size'}
+      - {$ref: '#/parameters/order_by_timestamps'}
       responses:
         '200':
           description: Success
