@@ -13,14 +13,14 @@ produces:
 basePath: /api-v2
 
 securityDefinitions:
-  TokenSecurity:
+  dpn_token:
     in: header
     type: apiKey
     name: dpn_token
     description: DPN Authorization Token
 
 security:
-  - TokenSecurity: []
+  - dpn_token: []
   
 definitions:
   $ref: definitions/index.yml
