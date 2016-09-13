@@ -10,12 +10,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/dpn-admin/DPN-REST-Wiki.git"
+    "url": "git://github.com/dpn-admin/dpn-rest-spec.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dpn-admin/DPN-REST-Wiki/issues"
+    "url": "https://github.com/dpn-admin/dpn-rest-spec/issues"
   },
   "dependencies": {
     "json-refs": "~2.1.6",
