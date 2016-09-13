@@ -5,7 +5,7 @@
   "main": "resolve.js",
   "scripts": {
     "resolve": "node resolve.js",
-    "build": "node resolve.js > dist/swagger.yaml",
+    "build": "node resolve.js > dist/swagger.yaml && node swaggerJson.js > dist/swagger.json",
     "serve": "gulp serve"
   },
   "repository": {
@@ -23,6 +23,7 @@
     "json-schema-ref-parser": "~3.1.2",
     "gulp": "~3.9.1",
     "gulp-connect": "~4.1.0",
-    "swagger-ui": "~2.1.4"
+    "swagger-ui": "~2.1.4",
+    "swagger-parser": "~3.4.1"
   }
 }
