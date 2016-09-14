@@ -1,0 +1,6 @@
+name: after
+in: query
+description: Only include records with created_at later than this, inclusive.
+required: false
+type: string
+format: date-time

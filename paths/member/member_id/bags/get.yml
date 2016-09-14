@@ -1,0 +1,16 @@
+summary: Returns the member's bags
+description: Returns the member's bags. Behavior should match that of ```/bags/?member=<member:member_id>```, including querystring options except for ```member```.
+tags:
+  - Member
+  - Bag
+parameters:
+  - $ref: '#/parameters/member_uuid_path'
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/BagResultList'
+  "401":
+    $ref: '#/responses/401'
+  "404":
+    $ref: '#/responses/404'

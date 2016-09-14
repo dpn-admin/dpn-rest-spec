@@ -1,0 +1,33 @@
+description: Container for a list of nodes
+type: object
+allOf:
+  - $ref: '#/definitions/ResultList'
+  - type: object
+    required:
+      - results
+    properties:
+      results:
+        description: List of nodes
+        type: array
+        items:
+          $ref: '#/definitions/Node'
+example:
+  count: 1
+  next: http://localhost:8000/api-v2/node/?page=3&page_size=2
+  previous: http://localhost:8000/api-v2/node/?page=1&page_size=2
+  results:
+   - name: Chronopolis
+     namespace: chron
+     api_root: https://chronopolis01.umiacs.umd.edu/
+     ssh_pubkey: some-ssh-key
+     protocols: [rsync]
+     storage:
+       region: central
+       type: proprietary-chron
+     replicate_from: [sdr,tdr,hathi,aptrust]
+     replicate_to: [sdr,tdr,hathi,aptrust]
+     restore_from: [sdr,tdr,hathi,aptrust]
+     restore_to: [sdr,tdr,hathi,aptrust]
+     fixity_algorithms: [sha256]
+     created_at: 2015-02-25T15:27:39Z
+     updated_at: 2015-03-06T14:21:50Z

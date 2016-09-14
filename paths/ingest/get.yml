@@ -1,0 +1,20 @@
+summary: List of ingest records
+description: Returns a list of ingest records
+tags:
+  - Ingest
+parameters:
+  - $ref: '#/parameters/before_created'
+  - $ref: '#/parameters/after_created'
+  - $ref: '#/parameters/bag'
+  - $ref: '#/parameters/ingested'
+  - $ref: '#/parameters/latest'
+  - $ref: '#/parameters/page'
+  - $ref: '#/parameters/page_size'
+  - $ref: '#/parameters/order_by_created_at'
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/IngestResultList'
+  '401':
+    $ref: '#/responses/401'

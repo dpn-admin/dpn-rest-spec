@@ -1,0 +1,5 @@
+name: admin_node
+in: query
+description: Filter by admin_node namespace
+required: false
+type: string

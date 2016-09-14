@@ -1,0 +1,5 @@
+name: ingested
+in: query
+description: Filter results by the value of their ingested field.
+required: false
+type: boolean

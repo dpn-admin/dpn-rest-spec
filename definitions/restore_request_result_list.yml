@@ -1,0 +1,13 @@
+description: Container for a list of restore requests
+type: object
+allOf:
+  - $ref: '#/definitions/ResultList'
+  - type: object
+    required:
+      - results
+    properties:
+      results:
+        description: List of restore requests
+        type: array
+        items:
+          $ref: '#/definitions/RestoreRequest'

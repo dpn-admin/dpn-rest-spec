@@ -1,0 +1,6 @@
+name: page_size
+in: query
+description: Max results per page.
+required: false
+type: integer
+format: int32

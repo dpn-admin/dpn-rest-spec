@@ -1,0 +1,5 @@
+name: cancel_reason
+description:  Filter by cancel_reason. Refer to the object definition for supported values.
+in: query
+required: false
+type: string

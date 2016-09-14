@@ -1,0 +1,28 @@
+summary: List of bags
+description: Returns a list of Bag records.
+tags:
+  - Bag
+parameters:
+  - $ref: '#/parameters/before'
+  - $ref: '#/parameters/after'
+  - $ref: '#/parameters/bag_type'
+  - $ref: '#/parameters/admin_node'
+  - $ref: '#/parameters/ingest_node'
+  - $ref: '#/parameters/member_uuid'
+  - $ref: '#/parameters/replicating_node'
+  - name: first_version_uuid
+    in: query
+    description: Filter by first_version_uuid.
+    required: false
+    type: string
+    format: uuid
+  - $ref: '#/parameters/page'
+  - $ref: '#/parameters/page_size'
+  - $ref: '#/parameters/order_by_timestamps'
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/BagResultList'
+  '401':
+    $ref: '#/responses/401'

@@ -1,0 +1,15 @@
+summary: Returns the data for a single replication request.
+description: Returns the data for a single replication transfer request record matching the replication_id.
+tags:
+  - Replicate
+parameters:
+  - $ref: '#/parameters/replication_id_path'
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/ReplicationRequest'
+  "401":
+    $ref: '#/responses/401'
+  "404":
+    $ref: '#/responses/404'

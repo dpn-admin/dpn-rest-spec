@@ -1,0 +1,28 @@
+description: Container for a list of ingests
+type: object
+allOf:
+  - $ref: '#/definitions/ResultList'
+  - type: object
+    required:
+      - results
+    properties:
+      results:
+        description: List of ingests
+        type: array
+        items:
+          $ref: '#/definitions/Ingest'
+example:
+  count: 2
+  next: http://localhost:8000/api-v2/ingest/?page=3&page_size=2
+  previous: http://localhost:8000/api-v2/ingest/?page=1&page_size=2
+  results:
+    - ingest_id: 1b49a2aa-6a2a-48db-a44b-28b2df1bc0e6
+      bag: 9998e960-fc6d-44f4-9d73-9a60a8eae609
+      ingested: true
+      replicating_nodes: [hathi, chron, aptrust]
+      created_at: 2015-02-25T16:24:02Z
+    - ingest_id: 7778e960-fc6d-44f4-9d73-9a60a8eae609
+      bag: 4444e960-fc6d-42e4-9d73-9a60a8eae332
+      ingested: true
+      replicating_nodes: [sdr, chron, aptrust]
+      created_at: 2015-02-25T16:24:02Z

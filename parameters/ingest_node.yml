@@ -1,0 +1,5 @@
+name: ingest_node
+in: query
+description: Filter by ingest_node namespace
+required: false
+type: string

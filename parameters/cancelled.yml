@@ -1,0 +1,5 @@
+name: cancelled
+description: Filter by cancelled
+in: query
+required: false
+type: boolean

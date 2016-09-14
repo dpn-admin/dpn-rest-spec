@@ -1,0 +1,8 @@
+name: latest
+in: query
+description: >
+  For each set of results that differ only by
+  timestamp, include only the most recent result.
+  This filter is applied after other filters.
+required: false
+type: boolean

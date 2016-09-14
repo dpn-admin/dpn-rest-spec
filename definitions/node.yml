@@ -1,0 +1,84 @@
+description: A DPN node
+type: object
+allOf:
+  - type: object
+    required:
+      - namespace
+    properties:
+      name:
+        description: Human readable name of this node
+        type: string
+      namespace:
+        description: Lowercase identifier to unambiguously reference this node.
+        type: string
+      api_root:
+        description: >
+          null or the root location of this node's server.
+          This field MUST NOT be changed during normal operations;
+          it should only change out of band.
+        type: string
+        format: url
+      ssh_pubkey:
+        description: null or the ssh public key of this node.
+        type: string
+      replicate_from:
+        description: Array of namespaces of the nodes that this node will replicate from.
+        type: array
+        items:
+          type: string
+      replciate_to:
+        description: Array of namespaces of the nodes that this node will replicate to.
+        type: array
+        items:
+          type: string
+      restore_from:
+        description: Array of namespaces of the nodes that this node will restore from.
+        type: array
+        items:
+          type: string
+      restore_to:
+        description: Array of namespaces of the nodes that this node will restore to.
+        type: array
+        items:
+          type: string
+      protocols:
+        description: Array of currently supported transfer protocols.
+        type: array
+        items:
+          type: string
+      fixity_algorithms:
+        description: Array of currently supported fixity algorithms.
+        type: array
+        items:
+          type: string
+      storage:
+        description: Storage profile for this node.
+        type: object
+        properties:
+          region:
+            description: Region where bags are stored.
+            type: string
+            enum:
+              - default
+          type:
+            description: Type of storage used.
+            type: string
+            enum:
+              - default
+  - $ref: '#/definitions/Timestamps'
+example:
+  protocols: [rsync]
+  storage:
+    region: central
+    type: proprietary-chron
+  replicate_from: [sdr,tdr,hathi,aptrust]
+  replicate_to: [sdr,tdr,hathi,aptrust]
+  restore_from: [sdr,tdr,hathi,aptrust]
+  restore_to: [sdr,tdr,hathi,aptrust]
+  fixity_algorithms: [sha256]
+  name: Chronopolis
+  namespace: chron
+  api_root: https://chronopolis01.umiacs.umd.edu/
+  ssh_pubkey: some-ssh-key
+  created_at: 2015-02-25T15:27:39Z
+  updated_at: 2015-03-06T14:21:50Z

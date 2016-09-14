@@ -1,0 +1,39 @@
+description: Container for a list of bags
+type: object
+allOf:
+  - $ref: '#/definitions/ResultList'
+  - type: object
+    required:
+      - results
+      - total_size
+    properties:
+      results:
+        description: List of bags
+        type: array
+        items:
+          $ref: '#/definitions/Bag'
+      total_size:
+        description: Total size of bags from query
+        type: integer
+        format: int32
+        minimum: 0
+example:
+  count: 2
+  next: http://localhost:8000/api-v2/bag/?page=3&page_size=2
+  previous: http://localhost:8000/api-v2/bag/?page=1&page_size=2
+  total_size: 2526492640 
+  results:
+    - uuid: 9998e960-fc6d-44f4-9d73-9a60a8eae609
+      ingest_node: aptrust
+      interpretive: []
+      rights: []
+      replicating_nodes: [aptrust,chron,hathi]
+      admin_node: aptrust
+      member: a58231cd-6573-4451-b767-f380ee08922c
+      local_id: my_bag
+      size: 2526492640
+      first_version_uuid: 9998e960-fc6d-44f4-9d73-9a60a8eae609
+      version: 1
+      bag_type: D
+      created_at: 2015-02-25T16:24:02Z
+      updated_at: 2015-02-25T16:24:02Z

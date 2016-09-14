@@ -1,0 +1,100 @@
+description: >
+  A Replication Request is the control construct that represents
+  and manages the exchange of a bag from an administrative or ingest
+  node to another node, which then becomes a replicating node for
+  the bag.
+type: object
+allOf:
+  - $ref: '#/definitions/BagReference'
+  - type: object
+    required:
+      - replication_id
+      - from_node
+      - to_node
+      - fixity_algorithm
+      - protocol
+      - link
+      - store_requested
+      - stored
+      - cancelled
+    properties:
+      replication_id:
+        description: UUIDv4 that uniquely identifies this replication transfer  request. _(read only)_
+        type: string
+        format: uuid
+      from_node:
+        description: Namespace of the node sending the bag. This is the node that generated this request. _(read only)_
+        type: string
+      to_node:
+        description: Namespace of the node receiving the bag. Must not be a replicating_node for the bag being transferred.
+        type: string
+        format: uuid
+      fixity_algorithm:
+        description: Name of the fixity algorithm expected for the receipt. _(read only)_
+        type: string
+      fixity_nonce:
+        description: null or the nonce to be used for verification. _(read only)_
+        type: string
+      fixity_value:
+        description: >
+          null or the string of the fixity value calculated by the to_node
+          after transferring the bag to its staging area.  _(Once set to a
+          value, this field is read only.)_
+        type: string
+      protocol:
+        description: Name of the transfer protocol. _(read only)_
+        type: string
+      link:
+        description: URL of the bag to be transferred. _(read only)_
+        type: string
+        format: url
+      store_requested:
+        description: >
+          Set by the from_node after it receives a correct fixity_value
+          to instruct the to_node to complete the replication.  _(Once
+          set to true, this field is read only.)_
+        type: boolean
+        default: false
+      stored:
+        description: >
+          Set by the to_node to indicate the bag has been transferred
+          into its storage repository from the staging area.  The
+          to_node promises to fulfill replicating node duties by setting
+          this field.  Must not be set before store_requested. _(Once
+          set to true, this field is read only.)_
+        type: boolean
+        default: false
+      cancelled:
+        description: >
+          Set by either node to immediately end the transaction. _(Once
+          set to true, the entire record is read-only)_
+        type: boolean
+        default: false
+      cancel_reason:
+        description: >
+          null or the reason for cancelling.  The cancel_reason must not be
+          treated as an actionable field; it is only for debugging
+          and analytics. Can only be set at the same time as cancelled.
+        type: string
+        enum:
+          - reject
+          - bag_invalid
+          - fixity_reject
+          - other
+  - $ref: '#/definitions/Timestamps'
+example:
+  from_node: aptrust
+  to_node: chron
+  bag: cfd167a0-baad-4235-b896-041e710e6c62
+  replication_id: 722947bb-d370-46d6-b64e-8428d3bc3181
+  fixity_algorithm: sha256
+  fixity_nonce: YQR5BL1V
+  fixity_value: fixity-value-goes-here
+  protocol: rsync
+  link: dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar
+  stored: false
+  store_requested: false
+  cancelled: false
+  cancel_reason: this isn't actually cancelled
+  created_at: 2015-02-25T15:27:40Z
+  updated_at: 2015-02-25T15:27:40Z

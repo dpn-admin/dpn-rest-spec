@@ -1,0 +1,19 @@
+summary: List of nodes
+deprecated: true # Nodes must be added out of band, so this
+                 # endpoint does nothing.
+description: Return a list of node records.
+tags:
+  - Node
+parameters:
+  - $ref: '#/parameters/before'
+  - $ref: '#/parameters/after'
+  - $ref: '#/parameters/page'
+  - $ref: '#/parameters/page_size'
+  - $ref: '#/parameters/order_by_timestamps'
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/NodeResultList'
+  "401":
+    $ref: '#/responses/401'

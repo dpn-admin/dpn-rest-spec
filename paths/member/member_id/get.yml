@@ -1,0 +1,15 @@
+summary: Returns the data for a single member record matching the member_id.
+description: Returns the data for a single member record matching the member_id.
+tags:
+  - Member
+parameters: 
+  - $ref: '#/parameters/member_uuid_path'
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/Member'
+  '401':
+    $ref: '#/responses/401'
+  '404':
+    $ref: '#/responses/404'

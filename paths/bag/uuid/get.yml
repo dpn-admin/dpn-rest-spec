@@ -1,0 +1,15 @@
+summary: Returns the data for a single bag record matching the uuid.
+description: Returns the data for a single bag record matching the uuid.
+tags:
+  - Bag
+parameters:
+  - $ref: '#/parameters/bag_uuid_path'
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/Bag'
+  '401':
+    $ref: '#/responses/401'
+  '404':
+    $ref: '#/responses/404'

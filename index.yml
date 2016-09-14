@@ -1,0 +1,35 @@
+swagger: '2.0'
+info:
+  title: DPN API
+  description: Digital Preservation Network
+  version: 2.0.0
+# schemes:
+#   - http
+#   - https
+consumes:
+  - application/json
+produces:
+  - application/json
+basePath: /api-v2
+
+securityDefinitions:
+  dpn_token:
+    in: header
+    type: apiKey
+    name: dpn_token
+    description: DPN Authorization Token
+
+security:
+  - dpn_token: []
+  
+definitions:
+  $ref: definitions/index.yml
+
+responses:
+  $ref: responses/index.yml
+    
+parameters:
+  $ref: parameters/index.yml
+
+paths:
+  $ref: paths/index.yml 

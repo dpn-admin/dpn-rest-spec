@@ -1,0 +1,40 @@
+description: >
+  A Fixity Check is a record of a node performing the necessary
+  operations on a bag to ensure that it remains unchanged at the
+  time of the check.  These records are only uniquely identifiable
+  by fixity_check_id.  The entire record is read-only.
+type: object
+allOf:
+  - $ref: '#/definitions/BagReference'
+  - type: object
+    required:
+      - fixity_check_id
+      - node
+      - success
+      - fixity_at
+    properties:
+      fixity_check_id:
+        description: UUIDv4 that uniquely identifies this fixity check. _(read only)_
+        type: string
+        format: uuid
+      node:
+        description: namespace of the node that performed the check. _(read only)_
+        type: string
+      success:
+        description: A check is successful if the bag remains unchanged, and is unsuccessful otherwise. _(read only)_
+        type: boolean
+      fixity_at:
+        description: >
+          The time the actual check was completed, as opposed
+          to when this record was created.  Must be less than
+          or equal to created_at.  _(read only)_
+        type: string
+        format: date-time
+  - $ref: '#/definitions/ReadOnlyTimestamps'
+example:
+  fixity_check_id: 7998e960-fc6d-44f4-9d73-9a60a8eae609
+  bag: 9998e960-fc6d-44f4-9d73-9a60a8eae609
+  node: hathi
+  success: true
+  fixity_at: 2015-02-25T16:23:58Z
+  created_at: 2015-02-25T16:24:02Z

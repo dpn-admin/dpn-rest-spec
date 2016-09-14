@@ -1,0 +1,6 @@
+name: uuid
+description: UUIDv4 of the target bag
+in: path
+required: true
+type: string
+format: uuid

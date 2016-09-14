@@ -1,0 +1,7 @@
+name: replication_id
+in: path
+description: replication_id of the target record
+required: true
+type: string
+format: uuid
+

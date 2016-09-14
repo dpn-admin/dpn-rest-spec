@@ -1,0 +1,7 @@
+description: Timestamps for read-only DPN objects
+type: object
+properties:
+  created_at:
+    description: DPN-formatted date-time when this record was first created. _(read only)_
+    type: string
+    format: date-time

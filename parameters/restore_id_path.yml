@@ -1,0 +1,7 @@
+name: restore_id
+in: path
+description: restore_id of the target record
+required: true
+type: string
+format: uuid
+

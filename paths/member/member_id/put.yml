@@ -1,0 +1,27 @@
+summary: Update the member
+description: >
+  Updates a single member matching the member_id.  The body of the put
+  is the same as the data structure for the member.  If successful,
+  the response will be identical to that of a GET request.
+tags:
+  - Member
+parameters:
+  - $ref: '#/parameters/member_uuid_path'
+  - name: body
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/Member'
+responses:
+  '200':
+    description: Success
+    schema:
+      $ref: '#/definitions/Member'
+  "400":
+    $ref: '#/responses/400'
+  "401":
+    $ref: '#/responses/401'
+  "403":
+    $ref: '#/responses/403'
+  "404":
+    $ref: '#/responses/404'

@@ -1,0 +1,10 @@
+name: order_by
+in: query
+description: Comma separated list of string fields by which to order the response.
+required: false
+type: array
+items:
+  type: string
+  collectionFormat: csv
+  enum:
+    - created_at

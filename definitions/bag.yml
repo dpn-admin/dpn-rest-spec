@@ -1,0 +1,89 @@
+description: A DPN bag of any type
+type: object
+allOf:
+  - type: object
+    required:
+      - uuid
+      - local_id
+      - size
+      - first_version_uuid
+      - ingest_node
+      - admin_node
+      - member
+      - version
+      - bag_type
+      - interpretive
+    properties:
+      uuid:
+        description: Unique UUIDv4 identifier for this bag. _(read only)_
+        type: string
+        format: uuid
+      local_id:
+        description: Primary local identifier.
+        type: string
+      size:
+        description: Size of the bag in bytes. _(read only)_
+        type: integer
+        format: int64
+      first_version_uuid:
+        description: UUID of the first version of this bag. _(read only)_
+        type: string
+        format: uuid
+      ingest_node:
+        description: Namespace of the node that originally ingest this bag. _(read only)_
+        type: string
+      admin_node:
+        description: Namespace of the node that administers this bag.
+        type: string
+      member:
+        description: UUIDv4 of the member who "owns" this bag.
+        type: string
+        format: uuid
+      version:
+        description: This bag's version number, beginning with 1. _(read only)_
+        type: integer
+        format: int32
+        minimum: 1
+      bag_type:
+        description: Single character specifying the type of this bag. 'D'->Data, 'I'->Interpretive, 'R'->Rights.
+        type: string
+        enum:
+          - D
+          - I
+          - R
+      interpretive:
+        description: Empty array or array of uuids of this bag's interpretive bags.
+        type: array
+        items:
+          type: string
+          format: uuid
+          uniqueItems: true
+      rights:
+        description: Empty array or array of uuids of this bag's rights bags.
+        type: array
+        items:
+          type: string
+          format: uuid
+          uniqueItems: true
+      replicating_nodes:
+        description: Empty array or array of namespaces of this bag's replicating nodes.
+        type: array
+        items:
+          type: string
+          uniqueItems: true
+  - $ref: "#/definitions/Timestamps"
+example:
+  uuid: 9998e960-fc6d-44f4-9d73-9a60a8eae609
+  ingest_node: aptrust
+  interpretive: []
+  rights: []
+  replicating_nodes: [aptrust,chron,hathi]
+  admin_node: aptrust
+  member: a58231cd-6573-4451-b767-f380ee08922c
+  local_id: my_bag
+  size: 2526492640
+  first_version_uuid: 9998e960-fc6d-44f4-9d73-9a60a8eae609
+  version: 1
+  bag_type: D
+  created_at: 2015-02-25T16:24:02Z
+  updated_at: 2015-02-25T16:24:02Z

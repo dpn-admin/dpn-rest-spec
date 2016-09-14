@@ -1,0 +1,6 @@
+name: member
+in: query
+description: Filter by member_id
+required: false
+type: string
+format: uuid
