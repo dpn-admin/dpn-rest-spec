@@ -4,8 +4,9 @@
   "description": "DPN Restful API Spec",
   "main": "resolve.js",
   "scripts": {
-    "resolve": "node resolve.js",
     "build": "node resolve.js > dist/swagger.yaml && node swaggerJson.js > dist/swagger.json",
+    "export": "node swaggerJson.js > dist/swagger.json",
+    "resolve": "node resolve.js",
     "serve": "gulp serve"
   },
   "repository": {
