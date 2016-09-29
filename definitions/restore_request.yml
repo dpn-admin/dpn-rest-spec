@@ -53,4 +53,12 @@ allOf:
         enum:
           - reject
           - other
+      cancel_reason_detail:
+        description: >
+          null or additional details about why the transfer was cancelled.
+           The cancel_reason must not be treated as an actionable field; it is
+           only for debugging and analytics. Can only be set at the same time
+           as cancelled.
+        type: string
+        maxLength: 255
   - $ref: '#/definitions/Timestamps'

@@ -217,14 +217,15 @@ definitions:
       - {from_node: aptrust, to_node: chron, bag: cfd167a0-baad-4235-b896-041e710e6c62,
         replication_id: 722947bb-d370-46d6-b64e-8428d3bc3181, fixity_algorithm: sha256,
         fixity_nonce: YQR5BL1V, fixity_value: some-fixity-val, protocol: rsync, link: 'dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar',
-        stored: false, store_requested: false, cancelled: false, cancel_reason: not-really-a-reason,
-        created_at: !!timestamp '2015-02-25T15:27:40.000Z', updated_at: !!timestamp '2015-02-25T15:27:40.000Z'}
+        stored: false, store_requested: false, cancelled: false, cancel_reason: null,
+        cancel_reason_detail: null, created_at: !!timestamp '2015-02-25T15:27:40.000Z',
+        updated_at: !!timestamp '2015-02-25T15:27:40.000Z'}
       - {from_node: aptrust, to_node: hathi, bag: bfd167a0-baad-4235-b896-041e710e6c55,
         replication_id: 442947bb-d370-46d6-b64e-8428d3bc3142, fixity_algorithm: sha256,
-        fixity_nonce: actually-a-null-nonce, fixity_value: some-other-fixity, protocol: rsync,
-        link: 'dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar',
-        stored: false, store_requested: false, cancelled: true, cancel_reason: reject,
-        created_at: !!timestamp '2015-03-19T15:27:40.000Z', updated_at: !!timestamp '2015-03-22T15:27:40.000Z'}
+        fixity_nonce: null, fixity_value: some-other-fixity, protocol: rsync, link: 'dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar',
+        stored: false, store_requested: false, cancelled: true, cancel_reason: fixity_reject,
+        cancel_reason_detail: 'the fixity wasn''t valid, we expected xxxxyyy', created_at: !!timestamp '2015-03-19T15:27:40.000Z',
+        updated_at: !!timestamp '2015-03-22T15:27:40.000Z'}
   RestoreRequestResultList:
     description: Container for a list of restore requests
     type: object
@@ -509,13 +510,17 @@ definitions:
             '
           type: string
           enum: [reject, bag_invalid, fixity_reject, other]
+        cancel_reason_detail: {description: "null or additional details about why\
+            \ the transfer was cancelled.\n The cancel_reason must not be treated\
+            \ as an actionable field; it is\n only for debugging and analytics. Can\
+            \ only be set at the same time\n as cancelled.\n", type: string, maxLength: 255}
     - {$ref: '#/definitions/Timestamps'}
     example: {from_node: aptrust, to_node: chron, bag: cfd167a0-baad-4235-b896-041e710e6c62,
       replication_id: 722947bb-d370-46d6-b64e-8428d3bc3181, fixity_algorithm: sha256,
       fixity_nonce: YQR5BL1V, fixity_value: fixity-value-goes-here, protocol: rsync,
       link: 'dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar',
-      stored: false, store_requested: false, cancelled: false, cancel_reason: this
-        isn't actually cancelled, created_at: !!timestamp '2015-02-25T15:27:40.000Z',
+      stored: false, store_requested: false, cancelled: false, cancel_reason: null,
+      cancel_reason_detail: null, created_at: !!timestamp '2015-02-25T15:27:40.000Z',
       updated_at: !!timestamp '2015-02-25T15:27:40.000Z'}
   RestoreRequest:
     description: 'A Restore Request is the control construct that represents and manages
@@ -555,6 +560,10 @@ definitions:
             '
           type: string
           enum: [reject, other]
+        cancel_reason_detail: {description: "null or additional details about why\
+            \ the transfer was cancelled.\n The cancel_reason must not be treated\
+            \ as an actionable field; it is\n only for debugging and analytics. Can\
+            \ only be set at the same time\n as cancelled.\n", type: string, maxLength: 255}
     - {$ref: '#/definitions/Timestamps'}
 responses:
   '400':
