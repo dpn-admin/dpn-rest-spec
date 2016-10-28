@@ -10,6 +10,10 @@ The format is as follows:
 
     YYYY-MM-DDTHH:MM:SSZ
 
+
+[All DPN Date Time values must conform to ISO 8601](http://www.iso.org/iso/home/standards/iso8601.htm)
+
+
 Example:
     
     2015-03-13T15:40:05Z
