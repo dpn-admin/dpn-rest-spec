@@ -1162,6 +1162,11 @@
                           "fixity_reject",
                           "other"
                         ]
+                      },
+                      "cancel_reason_detail": {
+                        "description": "null or additional details about why the transfer was cancelled.\n The cancel_reason must not be treated as an actionable field; it is\n only for debugging and analytics. Can only be set at the same time\n as cancelled.\n",
+                        "type": "string",
+                        "maxLength": 255
                       }
                     }
                   },
@@ -1189,13 +1194,14 @@
                   "replication_id": "722947bb-d370-46d6-b64e-8428d3bc3181",
                   "fixity_algorithm": "sha256",
                   "fixity_nonce": "YQR5BL1V",
-                  "fixity_value": "fixity-value-goes-here",
+                  "fixity_value": "ea9ec67a31efa9b672764ee2556cef66a7c84e07aada190dfd7f691f91e3dd8a",
                   "protocol": "rsync",
                   "link": "dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar",
                   "stored": false,
                   "store_requested": false,
                   "cancelled": false,
-                  "cancel_reason": "this isn't actually cancelled",
+                  "cancel_reason": "null-placeholder",
+                  "cancel_reason_detail": "null-placeholder",
                   "created_at": "2015-02-25T15:27:40.000Z",
                   "updated_at": "2015-02-25T15:27:40.000Z"
                 }
@@ -1216,13 +1222,14 @@
             "replication_id": "722947bb-d370-46d6-b64e-8428d3bc3181",
             "fixity_algorithm": "sha256",
             "fixity_nonce": "YQR5BL1V",
-            "fixity_value": "some-fixity-val",
+            "fixity_value": "ea9ec67a31efa9b672764ee2556cef66a7c84e07aada190dfd7f691f91e3dd8a",
             "protocol": "rsync",
             "link": "dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar",
             "stored": false,
             "store_requested": false,
             "cancelled": false,
-            "cancel_reason": "not-really-a-reason",
+            "cancel_reason": "null-placeholder",
+            "cancel_reason_detail": "null-placeholder",
             "created_at": "2015-02-25T15:27:40.000Z",
             "updated_at": "2015-02-25T15:27:40.000Z"
           },
@@ -1232,14 +1239,15 @@
             "bag": "bfd167a0-baad-4235-b896-041e710e6c55",
             "replication_id": "442947bb-d370-46d6-b64e-8428d3bc3142",
             "fixity_algorithm": "sha256",
-            "fixity_nonce": "actually-a-null-nonce",
-            "fixity_value": "some-other-fixity",
+            "fixity_nonce": "null-placeholder",
+            "fixity_value": "09f272af6368526618c2a12f0b5a93157d56d30791687846bdef74a0a30c9b74",
             "protocol": "rsync",
             "link": "dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar",
             "stored": false,
             "store_requested": false,
             "cancelled": true,
-            "cancel_reason": "reject",
+            "cancel_reason": "fixity_reject",
+            "cancel_reason_detail": "the fixity wasn't valid, we expected f3534ad7e1187c1be8d9acbf8f31f0fd036ef6cf4dad75bbcae6cf6fdce50aff",
             "created_at": "2015-03-19T15:27:40.000Z",
             "updated_at": "2015-03-22T15:27:40.000Z"
           }
@@ -1356,6 +1364,11 @@
                           "reject",
                           "other"
                         ]
+                      },
+                      "cancel_reason_detail": {
+                        "description": "null or additional details about why the transfer was cancelled.\n The cancel_reason must not be treated as an actionable field; it is\n only for debugging and analytics. Can only be set at the same time\n as cancelled.\n",
+                        "type": "string",
+                        "maxLength": 255
                       }
                     }
                   },
@@ -1974,6 +1987,11 @@
                 "fixity_reject",
                 "other"
               ]
+            },
+            "cancel_reason_detail": {
+              "description": "null or additional details about why the transfer was cancelled.\n The cancel_reason must not be treated as an actionable field; it is\n only for debugging and analytics. Can only be set at the same time\n as cancelled.\n",
+              "type": "string",
+              "maxLength": 255
             }
           }
         },
@@ -2001,13 +2019,124 @@
         "replication_id": "722947bb-d370-46d6-b64e-8428d3bc3181",
         "fixity_algorithm": "sha256",
         "fixity_nonce": "YQR5BL1V",
-        "fixity_value": "fixity-value-goes-here",
+        "fixity_value": "ea9ec67a31efa9b672764ee2556cef66a7c84e07aada190dfd7f691f91e3dd8a",
         "protocol": "rsync",
         "link": "dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar",
         "stored": false,
         "store_requested": false,
         "cancelled": false,
-        "cancel_reason": "this isn't actually cancelled",
+        "cancel_reason": "null-placeholder",
+        "cancel_reason_detail": "null-placeholder",
+        "created_at": "2015-02-25T15:27:40.000Z",
+        "updated_at": "2015-02-25T15:27:40.000Z"
+      }
+    },
+    "ReplicationRequestPost": {
+      "description": "A Replication Request is the control construct that represents and manages the exchange of a bag from an administrative or ingest node to another node, which then becomes a replicating node for the bag.\n",
+      "type": "object",
+      "allOf": [
+        {
+          "required": [
+            "bag"
+          ],
+          "properties": {
+            "bag": {
+              "description": "UUIDv4 of the associated bag. _(read only)_",
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "replication_id",
+            "from_node",
+            "to_node",
+            "fixity_algorithm",
+            "protocol",
+            "link",
+            "store_requested",
+            "stored",
+            "cancelled"
+          ],
+          "properties": {
+            "replication_id": {
+              "description": "UUIDv4 that uniquely identifies this replication transfer  request. _(read only)_",
+              "type": "string",
+              "format": "uuid"
+            },
+            "from_node": {
+              "description": "Namespace of the node sending the bag. This is the node that generated this request. _(read only)_",
+              "type": "string"
+            },
+            "to_node": {
+              "description": "Namespace of the node receiving the bag. Must not be a replicating_node for the bag being transferred.",
+              "type": "string",
+              "format": "uuid"
+            },
+            "fixity_algorithm": {
+              "description": "Name of the fixity algorithm expected for the receipt. _(read only)_",
+              "type": "string"
+            },
+            "fixity_nonce": {
+              "description": "null or the nonce to be used for verification. _(read only)_",
+              "type": "string"
+            },
+            "protocol": {
+              "description": "Name of the transfer protocol. _(read only)_",
+              "type": "string"
+            },
+            "link": {
+              "description": "URL of the bag to be transferred. _(read only)_",
+              "type": "string",
+              "format": "url"
+            },
+            "store_requested": {
+              "description": "Set by the from_node after it receives a correct fixity_value to instruct the to_node to complete the replication.  _(Once set to true, this field is read only.)_\n",
+              "type": "boolean",
+              "default": false
+            },
+            "stored": {
+              "description": "Set by the to_node to indicate the bag has been transferred into its storage repository from the staging area.  The to_node promises to fulfill replicating node duties by setting this field.  Must not be set before store_requested. _(Once set to true, this field is read only.)_\n",
+              "type": "boolean",
+              "default": false
+            },
+            "cancelled": {
+              "description": "Set by either node to immediately end the transaction. _(Once set to true, the entire record is read-only)_\n",
+              "type": "boolean",
+              "default": false
+            }
+          }
+        },
+        {
+          "description": "Timestamps for DPN objects",
+          "type": "object",
+          "properties": {
+            "created_at": {
+              "description": "DPN-formatted date-time when this record was first created. _(read only)_",
+              "type": "string",
+              "format": "date-time"
+            },
+            "updated_at": {
+              "description": "DPN-formatted date-time when this record was last updated.",
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      ],
+      "example": {
+        "from_node": "aptrust",
+        "to_node": "chron",
+        "bag": "cfd167a0-baad-4235-b896-041e710e6c62",
+        "replication_id": "722947bb-d370-46d6-b64e-8428d3bc3181",
+        "fixity_algorithm": "sha256",
+        "protocol": "rsync",
+        "link": "dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar",
+        "stored": false,
+        "store_requested": false,
+        "cancelled": false,
         "created_at": "2015-02-25T15:27:40.000Z",
         "updated_at": "2015-02-25T15:27:40.000Z"
       }
@@ -2084,6 +2213,11 @@
                 "reject",
                 "other"
               ]
+            },
+            "cancel_reason_detail": {
+              "description": "null or additional details about why the transfer was cancelled.\n The cancel_reason must not be treated as an actionable field; it is\n only for debugging and analytics. Can only be set at the same time\n as cancelled.\n",
+              "type": "string",
+              "maxLength": 255
             }
           }
         },
@@ -6614,6 +6748,11 @@
                                   "fixity_reject",
                                   "other"
                                 ]
+                              },
+                              "cancel_reason_detail": {
+                                "description": "null or additional details about why the transfer was cancelled.\n The cancel_reason must not be treated as an actionable field; it is\n only for debugging and analytics. Can only be set at the same time\n as cancelled.\n",
+                                "type": "string",
+                                "maxLength": 255
                               }
                             }
                           },
@@ -6641,13 +6780,14 @@
                           "replication_id": "722947bb-d370-46d6-b64e-8428d3bc3181",
                           "fixity_algorithm": "sha256",
                           "fixity_nonce": "YQR5BL1V",
-                          "fixity_value": "fixity-value-goes-here",
+                          "fixity_value": "ea9ec67a31efa9b672764ee2556cef66a7c84e07aada190dfd7f691f91e3dd8a",
                           "protocol": "rsync",
                           "link": "dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar",
                           "stored": false,
                           "store_requested": false,
                           "cancelled": false,
-                          "cancel_reason": "this isn't actually cancelled",
+                          "cancel_reason": "null-placeholder",
+                          "cancel_reason_detail": "null-placeholder",
                           "created_at": "2015-02-25T15:27:40.000Z",
                           "updated_at": "2015-02-25T15:27:40.000Z"
                         }
@@ -6668,13 +6808,14 @@
                     "replication_id": "722947bb-d370-46d6-b64e-8428d3bc3181",
                     "fixity_algorithm": "sha256",
                     "fixity_nonce": "YQR5BL1V",
-                    "fixity_value": "some-fixity-val",
+                    "fixity_value": "ea9ec67a31efa9b672764ee2556cef66a7c84e07aada190dfd7f691f91e3dd8a",
                     "protocol": "rsync",
                     "link": "dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar",
                     "stored": false,
                     "store_requested": false,
                     "cancelled": false,
-                    "cancel_reason": "not-really-a-reason",
+                    "cancel_reason": "null-placeholder",
+                    "cancel_reason_detail": "null-placeholder",
                     "created_at": "2015-02-25T15:27:40.000Z",
                     "updated_at": "2015-02-25T15:27:40.000Z"
                   },
@@ -6684,14 +6825,15 @@
                     "bag": "bfd167a0-baad-4235-b896-041e710e6c55",
                     "replication_id": "442947bb-d370-46d6-b64e-8428d3bc3142",
                     "fixity_algorithm": "sha256",
-                    "fixity_nonce": "actually-a-null-nonce",
-                    "fixity_value": "some-other-fixity",
+                    "fixity_nonce": "null-placeholder",
+                    "fixity_value": "09f272af6368526618c2a12f0b5a93157d56d30791687846bdef74a0a30c9b74",
                     "protocol": "rsync",
                     "link": "dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar",
                     "stored": false,
                     "store_requested": false,
                     "cancelled": true,
-                    "cancel_reason": "reject",
+                    "cancel_reason": "fixity_reject",
+                    "cancel_reason_detail": "the fixity wasn't valid, we expected f3534ad7e1187c1be8d9acbf8f31f0fd036ef6cf4dad75bbcae6cf6fdce50aff",
                     "created_at": "2015-03-19T15:27:40.000Z",
                     "updated_at": "2015-03-22T15:27:40.000Z"
                   }
@@ -6767,10 +6909,6 @@
                       "description": "null or the nonce to be used for verification. _(read only)_",
                       "type": "string"
                     },
-                    "fixity_value": {
-                      "description": "null or the string of the fixity value calculated by the to_node after transferring the bag to its staging area.  _(Once set to a value, this field is read only.)_\n",
-                      "type": "string"
-                    },
                     "protocol": {
                       "description": "Name of the transfer protocol. _(read only)_",
                       "type": "string"
@@ -6794,16 +6932,6 @@
                       "description": "Set by either node to immediately end the transaction. _(Once set to true, the entire record is read-only)_\n",
                       "type": "boolean",
                       "default": false
-                    },
-                    "cancel_reason": {
-                      "description": "null or the reason for cancelling.  The cancel_reason must not be treated as an actionable field; it is only for debugging and analytics. Can only be set at the same time as cancelled.\n",
-                      "type": "string",
-                      "enum": [
-                        "reject",
-                        "bag_invalid",
-                        "fixity_reject",
-                        "other"
-                      ]
                     }
                   }
                 },
@@ -6830,14 +6958,11 @@
                 "bag": "cfd167a0-baad-4235-b896-041e710e6c62",
                 "replication_id": "722947bb-d370-46d6-b64e-8428d3bc3181",
                 "fixity_algorithm": "sha256",
-                "fixity_nonce": "YQR5BL1V",
-                "fixity_value": "fixity-value-goes-here",
                 "protocol": "rsync",
                 "link": "dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar",
                 "stored": false,
                 "store_requested": false,
                 "cancelled": false,
-                "cancel_reason": "this isn't actually cancelled",
                 "created_at": "2015-02-25T15:27:40.000Z",
                 "updated_at": "2015-02-25T15:27:40.000Z"
               }
@@ -6936,6 +7061,11 @@
                         "fixity_reject",
                         "other"
                       ]
+                    },
+                    "cancel_reason_detail": {
+                      "description": "null or additional details about why the transfer was cancelled.\n The cancel_reason must not be treated as an actionable field; it is\n only for debugging and analytics. Can only be set at the same time\n as cancelled.\n",
+                      "type": "string",
+                      "maxLength": 255
                     }
                   }
                 },
@@ -6963,13 +7093,14 @@
                 "replication_id": "722947bb-d370-46d6-b64e-8428d3bc3181",
                 "fixity_algorithm": "sha256",
                 "fixity_nonce": "YQR5BL1V",
-                "fixity_value": "fixity-value-goes-here",
+                "fixity_value": "ea9ec67a31efa9b672764ee2556cef66a7c84e07aada190dfd7f691f91e3dd8a",
                 "protocol": "rsync",
                 "link": "dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar",
                 "stored": false,
                 "store_requested": false,
                 "cancelled": false,
-                "cancel_reason": "this isn't actually cancelled",
+                "cancel_reason": "null-placeholder",
+                "cancel_reason_detail": "null-placeholder",
                 "created_at": "2015-02-25T15:27:40.000Z",
                 "updated_at": "2015-02-25T15:27:40.000Z"
               }
@@ -7109,6 +7240,11 @@
                         "fixity_reject",
                         "other"
                       ]
+                    },
+                    "cancel_reason_detail": {
+                      "description": "null or additional details about why the transfer was cancelled.\n The cancel_reason must not be treated as an actionable field; it is\n only for debugging and analytics. Can only be set at the same time\n as cancelled.\n",
+                      "type": "string",
+                      "maxLength": 255
                     }
                   }
                 },
@@ -7136,13 +7272,14 @@
                 "replication_id": "722947bb-d370-46d6-b64e-8428d3bc3181",
                 "fixity_algorithm": "sha256",
                 "fixity_nonce": "YQR5BL1V",
-                "fixity_value": "fixity-value-goes-here",
+                "fixity_value": "ea9ec67a31efa9b672764ee2556cef66a7c84e07aada190dfd7f691f91e3dd8a",
                 "protocol": "rsync",
                 "link": "dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar",
                 "stored": false,
                 "store_requested": false,
                 "cancelled": false,
-                "cancel_reason": "this isn't actually cancelled",
+                "cancel_reason": "null-placeholder",
+                "cancel_reason_detail": "null-placeholder",
                 "created_at": "2015-02-25T15:27:40.000Z",
                 "updated_at": "2015-02-25T15:27:40.000Z"
               }
@@ -7264,6 +7401,11 @@
                         "fixity_reject",
                         "other"
                       ]
+                    },
+                    "cancel_reason_detail": {
+                      "description": "null or additional details about why the transfer was cancelled.\n The cancel_reason must not be treated as an actionable field; it is\n only for debugging and analytics. Can only be set at the same time\n as cancelled.\n",
+                      "type": "string",
+                      "maxLength": 255
                     }
                   }
                 },
@@ -7291,13 +7433,14 @@
                 "replication_id": "722947bb-d370-46d6-b64e-8428d3bc3181",
                 "fixity_algorithm": "sha256",
                 "fixity_nonce": "YQR5BL1V",
-                "fixity_value": "fixity-value-goes-here",
+                "fixity_value": "ea9ec67a31efa9b672764ee2556cef66a7c84e07aada190dfd7f691f91e3dd8a",
                 "protocol": "rsync",
                 "link": "dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar",
                 "stored": false,
                 "store_requested": false,
                 "cancelled": false,
-                "cancel_reason": "this isn't actually cancelled",
+                "cancel_reason": "null-placeholder",
+                "cancel_reason_detail": "null-placeholder",
                 "created_at": "2015-02-25T15:27:40.000Z",
                 "updated_at": "2015-02-25T15:27:40.000Z"
               }
@@ -7396,6 +7539,11 @@
                         "fixity_reject",
                         "other"
                       ]
+                    },
+                    "cancel_reason_detail": {
+                      "description": "null or additional details about why the transfer was cancelled.\n The cancel_reason must not be treated as an actionable field; it is\n only for debugging and analytics. Can only be set at the same time\n as cancelled.\n",
+                      "type": "string",
+                      "maxLength": 255
                     }
                   }
                 },
@@ -7423,13 +7571,14 @@
                 "replication_id": "722947bb-d370-46d6-b64e-8428d3bc3181",
                 "fixity_algorithm": "sha256",
                 "fixity_nonce": "YQR5BL1V",
-                "fixity_value": "fixity-value-goes-here",
+                "fixity_value": "ea9ec67a31efa9b672764ee2556cef66a7c84e07aada190dfd7f691f91e3dd8a",
                 "protocol": "rsync",
                 "link": "dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar",
                 "stored": false,
                 "store_requested": false,
                 "cancelled": false,
-                "cancel_reason": "this isn't actually cancelled",
+                "cancel_reason": "null-placeholder",
+                "cancel_reason_detail": "null-placeholder",
                 "created_at": "2015-02-25T15:27:40.000Z",
                 "updated_at": "2015-02-25T15:27:40.000Z"
               }
@@ -7679,6 +7828,11 @@
                                   "reject",
                                   "other"
                                 ]
+                              },
+                              "cancel_reason_detail": {
+                                "description": "null or additional details about why the transfer was cancelled.\n The cancel_reason must not be treated as an actionable field; it is\n only for debugging and analytics. Can only be set at the same time\n as cancelled.\n",
+                                "type": "string",
+                                "maxLength": 255
                               }
                             }
                           },
@@ -7794,6 +7948,11 @@
                         "reject",
                         "other"
                       ]
+                    },
+                    "cancel_reason_detail": {
+                      "description": "null or additional details about why the transfer was cancelled.\n The cancel_reason must not be treated as an actionable field; it is\n only for debugging and analytics. Can only be set at the same time\n as cancelled.\n",
+                      "type": "string",
+                      "maxLength": 255
                     }
                   }
                 },
@@ -7892,6 +8051,11 @@
                         "reject",
                         "other"
                       ]
+                    },
+                    "cancel_reason_detail": {
+                      "description": "null or additional details about why the transfer was cancelled.\n The cancel_reason must not be treated as an actionable field; it is\n only for debugging and analytics. Can only be set at the same time\n as cancelled.\n",
+                      "type": "string",
+                      "maxLength": 255
                     }
                   }
                 },
@@ -8031,6 +8195,11 @@
                         "reject",
                         "other"
                       ]
+                    },
+                    "cancel_reason_detail": {
+                      "description": "null or additional details about why the transfer was cancelled.\n The cancel_reason must not be treated as an actionable field; it is\n only for debugging and analytics. Can only be set at the same time\n as cancelled.\n",
+                      "type": "string",
+                      "maxLength": 255
                     }
                   }
                 },
@@ -8152,6 +8321,11 @@
                         "reject",
                         "other"
                       ]
+                    },
+                    "cancel_reason_detail": {
+                      "description": "null or additional details about why the transfer was cancelled.\n The cancel_reason must not be treated as an actionable field; it is\n only for debugging and analytics. Can only be set at the same time\n as cancelled.\n",
+                      "type": "string",
+                      "maxLength": 255
                     }
                   }
                 },
@@ -8250,6 +8424,11 @@
                         "reject",
                         "other"
                       ]
+                    },
+                    "cancel_reason_detail": {
+                      "description": "null or additional details about why the transfer was cancelled.\n The cancel_reason must not be treated as an actionable field; it is\n only for debugging and analytics. Can only be set at the same time\n as cancelled.\n",
+                      "type": "string",
+                      "maxLength": 255
                     }
                   }
                 },

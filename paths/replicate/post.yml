@@ -11,7 +11,7 @@ parameters:
     in: body
     required: true
     schema:
-      $ref: '#/definitions/ReplicationRequest'
+      $ref: '#/definitions/ReplicationRequestPost'
 responses:
   "201":
     description: Success

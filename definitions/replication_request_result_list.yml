@@ -22,13 +22,14 @@ example:
       replication_id: 722947bb-d370-46d6-b64e-8428d3bc3181
       fixity_algorithm: sha256
       fixity_nonce: YQR5BL1V
-      fixity_value: some-fixity-val
+      fixity_value: ea9ec67a31efa9b672764ee2556cef66a7c84e07aada190dfd7f691f91e3dd8a
       protocol: rsync
       link: dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar
       stored: false
       store_requested: false
       cancelled: false
-      cancel_reason: not-really-a-reason
+      cancel_reason: null-placeholder
+      cancel_reason_detail: null-placeholder
       created_at: 2015-02-25T15:27:40Z
       updated_at: 2015-02-25T15:27:40Z
     - from_node: aptrust
@@ -36,13 +37,14 @@ example:
       bag: bfd167a0-baad-4235-b896-041e710e6c55
       replication_id: 442947bb-d370-46d6-b64e-8428d3bc3142
       fixity_algorithm: sha256
-      fixity_nonce: actually-a-null-nonce
-      fixity_value: some-other-fixity
+      fixity_nonce: null-placeholder
+      fixity_value: 09f272af6368526618c2a12f0b5a93157d56d30791687846bdef74a0a30c9b74
       protocol: rsync
       link: dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar
       stored: false
       store_requested: false
       cancelled: true
-      cancel_reason: reject
+      cancel_reason: fixity_reject
+      cancel_reason_detail: the fixity wasn't valid, we expected f3534ad7e1187c1be8d9acbf8f31f0fd036ef6cf4dad75bbcae6cf6fdce50aff
       created_at: 2015-03-19T15:27:40Z
       updated_at: 2015-03-22T15:27:40Z
