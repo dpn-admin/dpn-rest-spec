@@ -35,12 +35,6 @@ allOf:
       fixity_nonce:
         description: null or the nonce to be used for verification. _(read only)_
         type: string
-      fixity_value:
-        description: >
-          null or the string of the fixity value calculated by the to_node
-          after transferring the bag to its staging area.  _(Once set to a
-          value, this field is read only.)_
-        type: string
       protocol:
         description: Name of the transfer protocol. _(read only)_
         type: string
@@ -70,25 +64,6 @@ allOf:
           set to true, the entire record is read-only)_
         type: boolean
         default: false
-      cancel_reason:
-        description: >
-          null or the reason for cancelling.  The cancel_reason must not be
-          treated as an actionable field; it is only for debugging
-          and analytics. Can only be set at the same time as cancelled.
-        type: string
-        enum:
-          - reject
-          - bag_invalid
-          - fixity_reject
-          - other
-      cancel_reason_detail:
-        description: >
-          null or additional details about why the transfer was cancelled.
-           The cancel_reason must not be treated as an actionable field; it is
-           only for debugging and analytics. Can only be set at the same time
-           as cancelled.
-        type: string
-        maxLength: 255
   - $ref: '#/definitions/Timestamps'
 example:
   from_node: aptrust
@@ -96,14 +71,10 @@ example:
   bag: cfd167a0-baad-4235-b896-041e710e6c62
   replication_id: 722947bb-d370-46d6-b64e-8428d3bc3181
   fixity_algorithm: sha256
-  fixity_nonce: YQR5BL1V
-  fixity_value: ea9ec67a31efa9b672764ee2556cef66a7c84e07aada190dfd7f691f91e3dd8a
   protocol: rsync
   link: dpn.chron@dpn.nodename.org:outgoing/cfd167a0-baad-4235-b896-041e710e6c62.tar
   stored: false
   store_requested: false
   cancelled: false
-  cancel_reason: null-placeholder
-  cancel_reason_detail: null-placeholder
   created_at: 2015-02-25T15:27:40Z
   updated_at: 2015-02-25T15:27:40Z
