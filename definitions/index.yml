@@ -38,5 +38,7 @@ Node:
   $ref: node.yml
 ReplicationRequest:
   $ref: replication_request.yml
+ReplicationRequestPost:
+  $ref: replication_request_post.yml
 RestoreRequest:
   $ref: restore_request.yml
